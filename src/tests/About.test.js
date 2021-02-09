@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import About from '../components/About';
 
-describe.only('Testes do requisito 2', () => {
+describe('Testes do requisito 2', () => {
   it('renders a heading with the text `About Pokédex`', () => {
     const { getByRole } = render(
       <MemoryRouter>
