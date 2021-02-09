@@ -15,8 +15,8 @@ describe('App.js', () => {
 
   it('shows the header nav links', () => {
     const { getAllByRole } = renderWithRouter(<App />);
-    const navLinks = getAllByRole('link');
 
+    const navLinks = getAllByRole('link');
     expect(navLinks[0]).toHaveTextContent('Home');
     expect(navLinks[1]).toHaveTextContent('About');
     expect(navLinks[2]).toHaveTextContent(favoriteLink);
@@ -24,27 +24,30 @@ describe('App.js', () => {
 
   it('redirects to `/` when Home link is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const homeLink = getByText('Home');
 
+    const homeLink = getByText('Home');
     userEvent.click(homeLink);
+
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
 
   it('redirects to `/about` when About link is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const aboutLink = getByText('About');
 
+    const aboutLink = getByText('About');
     userEvent.click(aboutLink);
+
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
   it('redirects to `/favorites` when Favorite Pokémons link is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const favoritePokemonLink = getByText(favoriteLink);
 
+    const favoritePokemonLink = getByText(favoriteLink);
     userEvent.click(favoritePokemonLink);
+
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });

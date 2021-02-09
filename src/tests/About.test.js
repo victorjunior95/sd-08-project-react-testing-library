@@ -17,14 +17,17 @@ describe('About.js', () => {
     const aboutHeading = getByRole('heading', {
       level: 2,
     });
-    expect(aboutHeading).toBeInTheDocument();
+    expect(aboutHeading).toHaveTextContent('About Pokédex');
   });
 
   it('has two paragraphs', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
+    const { getByText } = renderWithRouter(<About />);
 
-    const aboutParagraphs = getAllByTestId('about-paragraph');
-    expect(aboutParagraphs).toHaveLength(2);
+    const firstParagraph = getByText(/a digital encliclopedia containing all Pokémons/i);
+    expect(firstParagraph).toBeInTheDocument();
+
+    const secondParagraph = getByText(/One can filter Pokémons by type/i);
+    expect(secondParagraph).toBeInTheDocument();
   });
 
   it('has a pokedex image', () => {
