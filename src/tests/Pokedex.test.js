@@ -1,5 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+import { getByTestId } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import favorites from './favorites';
@@ -27,5 +28,38 @@ describe('Pokedex.js test', () => {
 
     const charmander = getByText(/charmander/i);
     expect(charmander).toBeInTheDocument();
+
+    userEvent.click(button);
+    expect(pikachu).toBeInTheDocument();
+  });
+  it('Teste se a Pokédex tem os botões de filtro.', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ favorites } isPokemonFavoriteById={ false } />,
+    );
+    const pikachu = getByText(/pikachu/i);
+    expect(pikachu).toBeInTheDocument();
+
+    const button = getByText(/fire/i);
+    userEvent.click(button);
+
+    const charmander = getByText(/charmander/i);
+    expect(charmander).toBeInTheDocument();
+  });
+  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ favorites } isPokemonFavoriteById={ false } />,
+    );
+    const buttonAll = getByText(/All/i);
+    const buttonFire = getByText(/fire/i);
+    // expect(buttonAll).toBeDisabled();
+
+    userEvent.click(buttonFire);
+
+    const charmander = getByText(/charmander/i);
+    expect(charmander).toBeInTheDocument();
+
+    userEvent.click(buttonAll);
+    const pikachu = getByText(/pikachu/i);
+    expect(pikachu).toBeInTheDocument();
   });
 });
