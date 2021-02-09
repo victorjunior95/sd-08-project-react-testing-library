@@ -24,8 +24,7 @@ class App extends Component {
     const isPokemonFavorite = pokemons.reduce((acc, pokemon) => {
       acc[pokemon.id] = favoritePokemonIds.includes(pokemon.id);
       return acc;
-    }, {});
-
+    }, {});    
     return isPokemonFavorite;
   }
 
