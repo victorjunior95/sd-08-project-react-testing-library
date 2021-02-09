@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 test('tests if display message "No favorite pokemon found" if there is no fav ', () => {
-  const { getByText, getByTestId } = render(
+  const { getByText } = render(
     <MemoryRouter initialEntries={ ['/favorites'] }>
       <App />
     </MemoryRouter>,
