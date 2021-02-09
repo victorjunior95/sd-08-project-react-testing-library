@@ -6,7 +6,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Requisito 1', () => {
-  test('renders a reading with the text `Pokédex`', () => {
+  it('renders a reading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
