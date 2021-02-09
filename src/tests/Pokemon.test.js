@@ -14,6 +14,11 @@ test('Teste se é renderizado um card com as informações de determinado Pokém
 
   const type = 'Normal';
   expect(getByText(card.type).textContent).toBe(type);
+  const averageWeightValue = card.averageWeight.value;
+  const averageWeightUnit = card.averageWeight.measurementUnit;
+  const weight = getByText(`Average weight: ${averageWeightValue} ${averageWeightUnit}`);
+  const weightData = 'Average weight: 460.0 kg';
+  expect(weight.textContent).toBe(weightData);
   const srcImageData = 'https://cdn.bulbagarden.net/upload/4/40/Spr_5b_143.png';
   const altImageData = getByAltText('Snorlax sprite');
   expect(altImageData.src).toBe(srcImageData);
@@ -25,7 +30,7 @@ test('Teste se é renderizado um card com as informações de determinado Pokém
 //   const { getElementById } = renderWithRouter(
 //     <Pokemon pokemon={ card } isFavorite={ {} } />,
 //   );
-
+// });
 //   const id = 143;
 //   expect(getElementById(card)).toBe(id);
 // });
