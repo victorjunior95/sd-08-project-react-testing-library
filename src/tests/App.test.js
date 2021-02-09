@@ -1,10 +1,16 @@
 import React from 'react';
+import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { history } = renderWithRouter(<App />);
+describe('App', () => {
+  test('Requisito 1', () => {
+    const { history } = renderWithRouter(<App />);
 
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+    const headingText = screen.getByRole('heading', {
+      level: 1,
+      name: /Pokédex/i,
+    });
+    expect(headingText).toBeInTheDocument();
+  });
 });
