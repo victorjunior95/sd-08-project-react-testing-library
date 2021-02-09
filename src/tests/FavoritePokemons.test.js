@@ -1,6 +1,6 @@
 import React from 'react';
-import { FavoritePokemons } from '../components';
 import renderWithRouter from '../services/renderWithRouter';
+import { FavoritePokemons } from '../components';
 
 describe('Favorite Pokémons page', () => {
   it('Should contain text "No favorite pokémon found" if no favorite pokemon', () => {
