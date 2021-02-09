@@ -45,9 +45,41 @@ describe('App.js ', () => {
     // O primeiro link deve possuir o texto Home.
     // O segundo link deve possuir o texto About.
     // O terceiro link deve possuir o texto Favorite Pokémons.
-  // test('the header application contains a fixed set of navigation links', () => {
-  //   const
-  // })
+  test('the header application contains a fixed set of navigation links', () => {
+    const { history } =  renderWithRouter(<App />);
+
+    const aboutLink = screen.getByRole('link', {
+      name: /About/i,
+    })
+    userEvent.click(aboutLink);
+
+    const heading = screen.getByRole('heading', {
+      level: 2,
+      name: 'About Pokédex',
+    });
+    expect(heading).toBeInTheDocument();
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
+
+  test('the header application contains a fixed set of navigation links', () => {
+    const { history } =  renderWithRouter(<App />);
+
+    const favoritesLink = screen.getByRole('link', {
+      name: /Favorite Pokémons/i,
+    })
+    userEvent.click(favoritesLink);
+
+    const heading = screen.getByRole('heading', {
+      level: 2,
+      name: 'Favorite pokémons',
+    });
+    expect(heading).toBeInTheDocument();
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
 });
 
 
