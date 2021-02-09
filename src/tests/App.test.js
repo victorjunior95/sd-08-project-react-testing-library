@@ -21,4 +21,30 @@ describe('tests for App.js', () => {
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
+
+  it('verifies if there is 4 links', () => {
+    const { getAllByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const links = getAllByRole('link');
+    const linksLength = 4;
+    expect(links.length).toBe(linksLength);
+  });
+
+  it('verifies the texts of the 4 links', () => {
+    const { getByRole } = render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
+    const homeLink = getByRole('link', { name: /Home/ });
+    const aboutLink = getByRole('link', { name: /About/ });
+    const favPokLink = getByRole('link', { name: /Favorite Pokémons/ });
+    const detailsLink = getByRole('link', { name: /More details/ });
+    const allLinks = [homeLink, aboutLink, favPokLink, detailsLink];
+    allLinks.forEach((link) => expect(link).toBeInTheDocument());
+    // expect(homeLink && aboutLink && favPokLink && detailsLink).toBeInTheDocument();
+  });
 });
