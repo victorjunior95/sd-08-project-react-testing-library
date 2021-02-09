@@ -1,7 +1,7 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
-import data from './mock/pokemons';
+import data from './mock/pokemon';
 
 describe('Teste o componente <FavoritePokemons.js />', () => {
   test('se é exibido mensagem No favorite pokemon found, não tendo favoritos.', () => {
