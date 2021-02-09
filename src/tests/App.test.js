@@ -9,7 +9,7 @@ const routes = {
   HOME: '/',
 };
 
-describe('Teste o componente <App.js />', () => {
+describe('Teste o componente <App />', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
