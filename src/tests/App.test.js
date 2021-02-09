@@ -34,7 +34,7 @@ test('searches for a Favorite Pokemon link', () => {
   expect(pathname).toBe('/favorites');
   const faveText = getByRole('heading', {
     level: 2,
-    name: /Favorite Pokémons/i
+    name: /Favorite Pokémons/i,
   });
   expect(faveText).toBeInTheDocument();
 });
@@ -44,4 +44,4 @@ test('testing Not Found Page', () => {
   history.push('/page/not-found');
   const notFound = getByText(/Page requested not found/i);
   expect(notFound).toBeInTheDocument();
-}) 
+});
