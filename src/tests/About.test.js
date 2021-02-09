@@ -12,9 +12,9 @@ describe('About Page', () => {
   });
 
   it('Should contain two paragraphs descripting the pokédex', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
+    const { container } = renderWithRouter(<About />);
 
-    const aboutParagraphs = getAllByTestId('paragraph');
+    const aboutParagraphs = container.querySelectorAll('p');
     expect(aboutParagraphs.length).toBe(2);
   });
 
