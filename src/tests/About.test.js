@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import App from '../App';
 
 test('test if the page contains information about Pokedex', () => {
-  const { getByText, getByRole, getAllByRole } = render(
+  const { getByText, getByRole } = render(
     <MemoryRouter initialEntries={ ['/about'] }>
       <App />
     </MemoryRouter>,
