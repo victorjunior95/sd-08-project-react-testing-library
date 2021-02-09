@@ -45,7 +45,7 @@ test('test if there is a link to more details on the pokemon and if it works', (
 });
 
 test('test the favorite functionality on the details page', () => {
-  const { getByTestId, getByRole } = render(
+  const { getByRole, getAllByRole } = render(
     <MemoryRouter initialEntries={ [pikachuPath] }>
       <App />
     </MemoryRouter>,
@@ -53,7 +53,8 @@ test('test the favorite functionality on the details page', () => {
   const favCheckbox = getByRole('checkbox');
   expect(favCheckbox).toBeInTheDocument();
   userEvent.click(favCheckbox);
-  const favoriteStar = getByTestId('favorite-star');
+  // const favoriteStar = getByTestId('favorite-star');
+  const favoriteStar = getAllByRole('img')[1];
   expect(favoriteStar).toBeInTheDocument();
   expect(favoriteStar.src).toContain('/star-icon.svg');
   expect(favoriteStar.alt).toBe('Pikachu is marked as favorite');
