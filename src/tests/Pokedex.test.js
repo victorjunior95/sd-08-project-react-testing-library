@@ -5,6 +5,9 @@ import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
+const EIGHT = 8;
+const NEXT = 'next-pokemon';
+const BTNTEXT = '.button-text';
 const allFavs = { 4: false,
   10: true,
   23: false,
@@ -87,7 +90,7 @@ describe('Requisito 5', () => {
       pokemons={ smallPokes }
       isPokemonFavoriteById={ smallFavs }
     />);
-    const botao = screen.getByTestId('next-pokemon');
+    const botao = screen.getByTestId(NEXT);
     userEvent.click(botao);
     const pokemonName = screen.getByText(/Charmander/i);
     expect(pokemonName).toBeInTheDocument();
@@ -110,7 +113,7 @@ describe('Requisito 5', () => {
       pokemons={ smallPokes }
       isPokemonFavoriteById={ smallFavs }
     />);
-    const botoes = document.querySelectorAll('.button-text');
+    const botoes = document.querySelectorAll(BTNTEXT);
     expect(botoes.length).toBeGreaterThan(1);
   });
 
@@ -119,7 +122,7 @@ describe('Requisito 5', () => {
       pokemons={ pokemons }
       isPokemonFavoriteById={ allFavs }
     />);
-    const botoes = document.querySelectorAll('.button-text');
+    const botoes = document.querySelectorAll(BTNTEXT);
     const botao = screen.getByTestId('next-pokemon');
     userEvent.click(botoes[2]);
     userEvent.click(botao);
@@ -132,8 +135,8 @@ describe('Requisito 5', () => {
       pokemons={ pokemons }
       isPokemonFavoriteById={ allFavs }
     />);
-    const botoes = document.querySelectorAll('.button-text');
-    const botao = screen.getByTestId('next-pokemon');
+    const botoes = document.querySelectorAll(BTNTEXT);
+    const botao = screen.getByTestId(NEXT);
     userEvent.click(botoes[2]);
     userEvent.click(botao);
     userEvent.click(botoes[0]);
@@ -147,7 +150,7 @@ describe('Requisito 5', () => {
       isPokemonFavoriteById={ allFavs }
     />);
     const botoes = document.querySelectorAll('.filter-button');
-    expect(botoes.length).toBe(8);
+    expect(botoes.length).toBe(EIGHT);
   });
 
   it('Teste se O botão de Próximo pokémon deve ser desabilitado', () => {
@@ -155,8 +158,8 @@ describe('Requisito 5', () => {
       pokemons={ pokemons }
       isPokemonFavoriteById={ allFavs }
     />);
-    const botoes = document.querySelectorAll('.button-text');
-    const botao = screen.getByTestId('next-pokemon');
+    const botoes = document.querySelectorAll(BTNTEXT);
+    const botao = screen.getByTestId(NEXT);
     userEvent.click(botoes[1]);
     expect(botao.disabled).toBeTruthy();
   });
