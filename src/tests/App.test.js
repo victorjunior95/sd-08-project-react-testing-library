@@ -1,6 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
+import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -21,4 +22,79 @@ test('shows the Pokédex when the route is `/`', () => {
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+});
+
+test('O primeiro link deve possuir o texto Home', () => {
+  const { getByRole } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const home = getByRole('link', {
+    name: /home/i,
+  });
+  expect(home).toBeInTheDocument();
+});
+
+test('O segundo link deve possuir o texto About', () => {
+  const { getByRole } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const about = getByRole('link', {
+    name: /about/i,
+  });
+  expect(about).toBeInTheDocument();
+});
+
+test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
+  const { getByRole } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const favorite = getByRole('link', {
+    name: /Favorite Pokémons/i,
+  });
+  expect(favorite).toBeInTheDocument();
+});
+
+test('Teste se ao clicar no link Home a página inicial é redirecionada na URL /', () => {
+  const { getByText, history } = renderWithRouter(
+    <App />,
+  );
+  const pathHome = getByText(/Home/i);
+  fireEvent.click(pathHome);
+  const { pathname } = history.location;
+  expect(pathname).toBe('/');
+});
+
+test('Teste se ao clicar no link About a página é redirecionada na URL /about', () => {
+  const { getByText, history } = renderWithRouter(
+    <App />,
+  );
+  const pathHome = getByText(/About/i);
+  fireEvent.click(pathHome);
+  const { pathname } = history.location;
+  expect(pathname).toBe('/about');
+});
+
+test('Ao clicar no link Favorite Pokémons ela é redirecionada pra URL /favorites', () => {
+  const { getByText, history } = renderWithRouter(
+    <App />,
+  );
+  const pathHome = getByText(/Favorite Pokémons/i);
+  fireEvent.click(pathHome);
+  const { pathname } = history.location;
+  expect(pathname).toBe('/favorites');
+});
+
+test('A aplicação é redirecionada ao entrar em uma URL desconhecida.', () => {
+  const { getByText, history } = renderWithRouter(
+    <App />,
+  );
+  history.push('xablau');
+  const notFound = getByText('Page requested not found');
+  expect(notFound).toBeInTheDocument();
 });
