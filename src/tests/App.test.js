@@ -13,7 +13,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('shows the Pokédex when the route is `/`', () => {
+test('shows the Pokédex main page when the route is `/`', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -21,4 +21,7 @@ test('shows the Pokédex when the route is `/`', () => {
   );
 
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  expect(getByText('Home')).toBeInTheDocument();
+  expect(getByText('About')).toBeInTheDocument();
+  expect(getByText('Favorite Pokémons')).toBeInTheDocument();
 });
