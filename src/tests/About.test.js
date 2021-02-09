@@ -5,9 +5,9 @@ import { About } from '../components';
 describe('Teste o componente <About.js /.', () => {
   it('Página contém as informações sobre a Pokédex', () => {
     render(<About />);
-    const inf1 = 'This application simulates a Pokédex,';
-    const inf2 = ' a digital encliclopedia containing all Pokémons';
-    const text = screen.getByText(inf1 + inf2);
+    const info = 'This application simulates a Pokédex,'
+    + ' a digital encliclopedia containing all Pokémons';
+    const text = screen.getByText(info);
     expect(text).toBeInTheDocument();
   });
 
