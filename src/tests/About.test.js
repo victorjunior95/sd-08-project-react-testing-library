@@ -25,17 +25,14 @@ describe('Teste se a página contém dois parágrafos com texto sobre a Pokédex
   });
 
   it('testando o segundo paragrafo', () => {
-    const { getByTestId, getByText } = renderWithRouter(<About />);
+    const { getByTestId } = renderWithRouter(<About />);
 
-    const paragraph2 = getByTestId('paragraph-about-1');
+    const paragraph2 = getByTestId('paragraph-about-2');
     expect(paragraph2).toBeInTheDocument();
-    expect(
-      getByText(
+    expect(paragraph2)
+      .toHaveTextContent(
         'One can filter Pokémons by type, and see more details for each one of them',
-        paragraph2,
-      ),
-    )
-      .toBeTruthy();
+      );
   });
 });
 
