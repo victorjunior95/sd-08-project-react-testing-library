@@ -14,17 +14,14 @@ test('Teste se a página contém um heading `h2` com o texto `About Pokédex`.',
 
 describe('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getByTestId, getByText } = renderWithRouter(<About />);
+    const { getByTestId } = renderWithRouter(<About />);
+
+    const inf1 = 'This application simulates a Pokédex,';
+    const inf2 = ' a digital encliclopedia containing all Pokémons';
 
     const paragraph1 = getByTestId('paragraph-about-1');
     expect(paragraph1).toBeInTheDocument();
-    expect(
-      getByText(
-        'This application simulates a Pokédex, a digital encliclopedia containing all Pokémons',
-        paragraph1,
-      ),
-    )
-      .toBeTruthy();
+    expect(paragraph1).toHaveTextContent(inf1 + inf2);
   });
 
   it('testando o segundo paragrafo', () => {
