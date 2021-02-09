@@ -30,7 +30,6 @@ test('O topo da aplicação contém um conjunto fixo de links de navegação', (
   expect(linkFavorite).toBeInTheDocument();
 });
 
-
 test('a aplicação é direcionada para a página inicial', () => {
   const { history, getByText } = renderWithRouter(<App />);
   fireEvent.click(getByText('Home'));
