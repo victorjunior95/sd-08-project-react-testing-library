@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import About from '../components/About';
 
 test('Tests About', () => {
-  const { getByText, getByRole, getAllByRole, getByAltText } = render(<About />);
+  const { getByText, getByRole, getByAltText } = render(<About />);
   const phrasePartOne = 'This application simulates a Pokédex, ';
   const phrasePartTwo = 'a digital encliclopedia containing all Pokémons';
   expect(getByText(phrasePartOne + phrasePartTwo)).toBeInTheDocument();
@@ -18,9 +18,6 @@ test('Tests About', () => {
     name: 'About Pokédex',
   });
   expect(title).toBeInTheDocument();
-
-  const paragraphs = getAllByRole('paragraph');
-  expect(paragraphs.length).toBe(2);
 
   const image = getByAltText('Pokédex');
 
