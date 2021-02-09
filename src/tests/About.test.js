@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { getByRole, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import renderWithRouter from '../services/renderWithRouter';
 import About from '../components/About';
 
