@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe.only('Testes do requisito 1', () => {
+describe('Testes do requisito 1', () => {
   it('renders a heading with the text `Pokédex`', () => {
     const { getByText } = render(
       <MemoryRouter>
