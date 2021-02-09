@@ -12,7 +12,8 @@ describe('Teste o componente <About.js />', () => {
     const { getByRole } = render(<About />);
     expect(getByRole('heading', {
       level: 2,
-    }));
+      name: 'About Pokédex',
+    })).toBeDefined();
   });
 
   test('se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
