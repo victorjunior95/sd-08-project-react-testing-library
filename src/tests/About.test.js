@@ -4,8 +4,8 @@ import { About } from '../components';
 
 describe('Teste o componente <About.js />', () => {
   test('se a página contém as informações sobre a Pokédex.', () => {
-    const { getAllByText } = render(<About />);
-    expect(getAllByText(/pokédex/gi));
+    const { getByText } = render(<About />);
+    expect(getByText(/This application simulates a Pokédex/i));
   });
 
   test('se a página contém um heading h2 com o texto About Pokédex.', () => {
