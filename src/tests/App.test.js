@@ -4,7 +4,6 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Testes no App.js', () => {
-  //Testes de texto
   test('Existe o h1 `Pokédex` ?', () => {
     const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
@@ -29,11 +28,10 @@ describe('Testes no App.js', () => {
     expect(favouritePokemons).toBeInTheDocument();
   });
 
-  //Testes de click
   test('Deve renderizar o componente Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Home/i));
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/');
     const homePage = getByText(/Pokédex/i);
     expect(homePage).toBeInTheDocument();
@@ -42,7 +40,7 @@ describe('Testes no App.js', () => {
   test('Deve renderizar o componente About', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/About/i));
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/about');
     const aboutPage = getByText(/About Pokédex/i);
     expect(aboutPage).toBeInTheDocument();
@@ -51,7 +49,7 @@ describe('Testes no App.js', () => {
   test('Deve renderizar o componente Favorite Pokémons', () => {
     const { getByText, history } = renderWithRouter(<App />);
     fireEvent.click(getByText(/Favorite Pokémons/i));
-    const pathname = history.location.pathname;
+    const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
     const favoritePage = getByText(/No favorite pokemon found/i);
     expect(favoritePage).toBeInTheDocument();
