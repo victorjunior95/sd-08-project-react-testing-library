@@ -25,7 +25,7 @@ describe('Teste o componente <App.js />', () => {
     const { getByRole } = renderWithRouter(<App />);
     ['Home', 'About', 'Favorite Pokémons'].map((link) => expect(getByRole('link', {
       name: link,
-    })));
+    })).toBeInTheDocument());
   });
 
   test(
