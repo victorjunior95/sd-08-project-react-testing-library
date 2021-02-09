@@ -50,7 +50,6 @@ describe('Pokedex.js test', () => {
     );
     const buttonAll = getByText(/All/i);
     const buttonFire = getByText(/fire/i);
-    // expect(buttonAll).toBeDisabled();
 
     userEvent.click(buttonFire);
 
@@ -74,7 +73,7 @@ describe('Pokedex.js test', () => {
     expect(buttonEletric).toBeInTheDocument();
   });
   it('O botão de Próximo pokémon deve ser desabilitado', () => {
-    const { getByText } = renderWithRouter(
+    const { getByText, getAllByTestId } = renderWithRouter(
       <Pokedex pokemons={ favorites } isPokemonFavoriteById={ false } />,
     );
     const buttonFire = getByText(/fire/i);
@@ -82,5 +81,8 @@ describe('Pokedex.js test', () => {
 
     const buttonNext = getByText(/próximo pokémon/i);
     expect(buttonNext).toBeDisabled();
+
+    const allbutons = getAllByTestId('pokemon-type-button');
+    expect(allbutons.length).toBe(2);
   });
 });
