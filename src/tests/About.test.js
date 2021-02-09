@@ -18,8 +18,8 @@ describe('Testa o componente "About', () => {
   });
 
   test('a página contém dois pararágrafos', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const paragraphs = getAllByTestId('paragraph');
+    const { container } = renderWithRouter(<About />);
+    const paragraphs = container.querySelectorAll('p');
     expect(paragraphs.length).toBe(2);
   });
 
