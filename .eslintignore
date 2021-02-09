@@ -4,3 +4,6 @@ src/components/*
 src/services/*
 coverage/*
 reports
+package.json
+package-lock.json
+/node_modules/*
