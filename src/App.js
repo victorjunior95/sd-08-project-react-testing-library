@@ -73,6 +73,11 @@ class App extends Component {
     return (
       <Switch>
         <Route
+          exact
+          path="/"
+          render={ ({ match }) => this.renderPokedex(match) }
+        />
+        <Route
           path="/pokemons/:id"
           render={ ({ match }) => this.renderPokemonDetails(match) }
         />
@@ -82,11 +87,6 @@ class App extends Component {
         />
         <Route path="/about" component={ About } />
         <Route component={ NotFound } />
-        <Route
-          exact
-          path="/"
-          render={ ({ match }) => this.renderPokedex(match) }
-        />
       </Switch>
     );
   }
