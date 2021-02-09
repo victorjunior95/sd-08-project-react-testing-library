@@ -192,7 +192,8 @@ test('show all filters buttons in screen', () => {
       <App />
     </MemoryRouter>,
   );
+  const value = 7;
 
   const allButtons = getAllByTestId('pokemon-type-button');
-  expect(allButtons.length).toBe('7');
+  expect(allButtons.length).toBe(value);
 });
