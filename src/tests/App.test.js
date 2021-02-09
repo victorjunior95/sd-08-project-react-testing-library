@@ -3,8 +3,8 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
-describe('App', () => {
-  test('Requisito 1', () => {
+describe('Requisito 1 - App.test', () => {
+  test('Caminho feliz', () => {
     const { history } = renderWithRouter(<App />);
 
     const headingText = screen.getByRole('heading', {
@@ -12,5 +12,8 @@ describe('App', () => {
       name: /Pokédex/i,
     });
     expect(headingText).toBeInTheDocument();
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
 });
