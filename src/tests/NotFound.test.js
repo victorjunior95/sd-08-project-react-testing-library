@@ -1,4 +1,3 @@
-import { getAllByAltText, screen } from '@testing-library/react';
 import React from 'react';
 import { NotFound } from '../components';
 import renderWithRouter from '../RenderWithRouter';
