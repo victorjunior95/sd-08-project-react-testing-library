@@ -1,8 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { render, screen, fireEvent, Link } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-// import userEvent from '@testing-library/user-event';
 import App from '../App';
 
 const renderWithRouter = (component) => {
