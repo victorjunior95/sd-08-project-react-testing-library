@@ -28,6 +28,3 @@ yarn-error.log*
 
 # stryker temp files
 .stryker-tmp
-
-package.json
-package-lock.json
