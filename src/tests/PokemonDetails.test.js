@@ -1,5 +1,5 @@
 import React from 'react';
-import { MemoryRouter, Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
@@ -7,7 +7,7 @@ import App from '../App';
 
 test('testing pokemon card', () => {
   const history = createMemoryHistory();
-  const { getByTestId, getByAltText, getByRole, getByText } = render(
+  const { getByRole, getByText } = render(
     <Router history={ history }>
       <App />
     </Router>,
