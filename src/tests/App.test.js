@@ -1,14 +1,9 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../helpers/renderWithRouter';
 
 test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
+  const { getByText } = renderWithRouter(<App />);
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
