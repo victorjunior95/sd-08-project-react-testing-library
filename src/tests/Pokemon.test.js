@@ -19,7 +19,13 @@ test('Teste se é renderizado um card com as informações de determinado Pokém
   expect(altImageData.src).toBe(srcImageData);
 });
 
-test('Teste se o card do Pokémon contém um link para exibir detalhes deste Pokémon.'
-+ 'O link deve ser /pokemons/<id>, onde <id> é o id do Pokémon exibido;', () => {
+// test('Teste se o card do Pokémon contém um link para exibir detalhes deste Pokémon.'
+// + 'O link deve ser /pokemons/<id>, onde <id> é o id do Pokémon exibido;', () => {
+//   const card = pokemons[7];
+//   const { getElementById } = renderWithRouter(
+//     <Pokemon pokemon={ card } isFavorite={ {} } />,
+//   );
 
-});
+//   const id = 143;
+//   expect(getElementById(card)).toBe(id);
+// });
