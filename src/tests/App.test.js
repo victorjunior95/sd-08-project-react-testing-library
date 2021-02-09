@@ -1,19 +1,17 @@
 import React from 'react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import App from '../App';
 import userEvent from '@testing-library/user-event';
+import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
-  let testHistory;
   let testLocation;
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
       <Route
         path="*"
-        render={ ({ history, location }) => {
-          testHistory = history;
+        render={ ({ location }) => {
           testLocation = location;
           return null;
         } }
