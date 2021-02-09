@@ -2,7 +2,7 @@ import React from 'react';
 import About from '../components/About';
 import renderWithRouter from '../renderWithRouter';
 
-describe('About.js test', () => {
+describe.only('About.js test', () => {
   it('Teste se a página contém as informações sobre a Pokédex.', () => {
     const { getByText } = renderWithRouter(<About />);
     const pokedexInfo = getByText(
@@ -19,9 +19,12 @@ describe('About.js test', () => {
     expect(info).toBeInTheDocument();
   });
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByRole } = renderWithRouter(<About />);
-    const paragraphs = getAllByRole('paragraph');
-    expect(paragraphs.length).toBe(2);
+    const { getByTestId } = renderWithRouter(<About />);
+    const paragraph1 = getByTestId('paragraph1');
+    const paragraph2 = getByTestId('paragraph2');
+
+    expect(paragraph1).toBeInTheDocument();
+    expect(paragraph2).toBeInTheDocument();
   });
   it('Teste se a página contém a imagem de uma Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
