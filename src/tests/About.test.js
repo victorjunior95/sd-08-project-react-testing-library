@@ -13,10 +13,9 @@ describe('Teste o componente <About.js />', () => {
     );
     const heading = getByRole(
       'heading',
-      { leve: 2 },
-      { name: /about pokédex/i },
+      { level: 2 },
     );
-    expect(heading).toBeInTheDocument();
+    expect(heading).toHaveTextContent(/About Pokédex/i);
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
