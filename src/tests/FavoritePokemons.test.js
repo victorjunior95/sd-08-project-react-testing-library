@@ -17,8 +17,4 @@ describe('FavoritePokemons.js test', () => {
     expect(pikachu).toBeInTheDocument();
     expect(charmander).toBeInTheDocument();
   });
-  it('Teste se nenhum card de pokémon é exibido, se ele não estiver favoritado.', () => {
-    const { getByTestId } = renderWithRouter(<FavoritePokemons />);
-
-  });
 });
