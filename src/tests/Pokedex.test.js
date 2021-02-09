@@ -5,7 +5,9 @@ import Pokedex from '../components/Pokedex';
 
 describe('tests for Pokedex.js', () => {
   it('shows the Pokédex when the route is `/`', () => {
-    const { getByText } = renderWithRouter(<Pokedex />);
-    expect(getByText('Encountered pokémons')).toBeInTheDocument();
+    const { getByRole } = renderWithRouter(<Pokedex pokemons={ ['Pikachu', 'Charmander'] } />);
+    expect(getByRole(
+      'heading', { level: 2, name: /Encountered pokémons/ },
+    )).toBeInTheDocument();
   });
 });
