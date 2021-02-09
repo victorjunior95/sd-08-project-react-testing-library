@@ -1,6 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
@@ -16,7 +17,7 @@ test('renders a reading with the text `Pokédex`', () => {
 
 describe('group of tests for App.js', () => {
   it('test links from Pokedex', async () => {
-    const { getByRole } = renderWithRouter(<App />);
+    const { history, getByRole } = renderWithRouter(<App />);
 
     const pokedexHeader = getByRole('heading', {
       level: 1,
@@ -36,5 +37,32 @@ describe('group of tests for App.js', () => {
     expect(linkHome).toBeInTheDocument();
     expect(linkAbout).toBeInTheDocument();
     expect(linkFavoritePokemons).toBeInTheDocument();
+
+    userEvent.click(linkHome);
+    const enconteredPokemonHomeText = getByRole('heading', {
+      level: 2,
+      name: /encountered pokémons/i,
+    });
+    expect(enconteredPokemonHomeText).toBeInTheDocument();
+    const pathnameHome = history.location.pathname;
+    expect(pathnameHome).toBe('/');
+
+    userEvent.click(linkAbout);
+    const aboutPokedexText = getByRole('heading', {
+      level: 2,
+      name: /About Pokédex/i,
+    });
+    expect(aboutPokedexText).toBeInTheDocument();
+    const pathnameAbout = history.location.pathname;
+    expect(pathnameAbout).toBe('/about');
+
+    userEvent.click(linkFavoritePokemons);
+    const favoritePokemonText = getByRole('heading', {
+      level: 2,
+      name: /favorite pokémons/i,
+    });
+    expect(favoritePokemonText).toBeInTheDocument();
+    const pathnameFavorite = history.location.pathname;
+    expect(pathnameFavorite).toBe('/favorites');
   });
 });
