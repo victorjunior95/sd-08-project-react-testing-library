@@ -9,4 +9,10 @@ describe('tests Pokédex application features with events', () => {
     const heading = getByRole('heading', { level: 2 });
     expect(heading).toBeInTheDocument();
   });
+
+  test('next Pokémon button', () => {
+    const { getByText, getByRole, getByAltText } = renderWithRouter(<App />);
+    const nextPokemonButton = getByText('Próximo pokémon');
+    expect(nextPokemonButton).toBeInTheDocument();
+  });
 });
