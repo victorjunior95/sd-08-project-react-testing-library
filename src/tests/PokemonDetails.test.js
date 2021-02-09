@@ -21,6 +21,4 @@ test('testing pokemon card', () => {
 
   const textDetails = getByText('Pikachu Details');
   expect(textDetails).toBeInTheDocument();
-  // const pokemonLinkDetails = getByText(/more details/i);
-  // expect(pokemonLinkDetails).toBeNull();
 });

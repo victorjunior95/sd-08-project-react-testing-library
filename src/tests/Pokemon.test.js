@@ -20,7 +20,8 @@ test('testing pokemon card', () => {
   expect(pokemonType).toHaveTextContent('Electric');
 
   const pokemonWeight = getByTestId('pokemon-weight');
-  expect(pokemonWeight).toHaveTextContent(/Average weight/i);
+  expect(pokemonWeight).toHaveTextContent('Average weight: 6.0 kg');
+  expect(pokemonWeight).toBeInTheDocument();
 
   const pokemonImage = getByAltText('Pikachu sprite');
   expect(pokemonImage).toBeInTheDocument();
