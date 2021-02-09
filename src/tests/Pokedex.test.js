@@ -1,6 +1,5 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { getByTestId } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import favorites from './favorites';
@@ -61,5 +60,27 @@ describe('Pokedex.js test', () => {
     userEvent.click(buttonAll);
     const pikachu = getByText(/pikachu/i);
     expect(pikachu).toBeInTheDocument();
+  });
+  it('se há um botão de filtro para cada tipo de Pokémon.', () => {
+    const { getByText, getByRole } = renderWithRouter(
+      <Pokedex pokemons={ favorites } isPokemonFavoriteById={ false } />,
+    );
+    const buttonEletric = getByRole('button', {
+      name: /Electric/i,
+    });
+    const buttonFire = getByText(/fire/i);
+
+    expect(buttonFire).toBeInTheDocument();
+    expect(buttonEletric).toBeInTheDocument();
+  });
+  it('O botão de Próximo pokémon deve ser desabilitado', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ favorites } isPokemonFavoriteById={ false } />,
+    );
+    const buttonFire = getByText(/fire/i);
+    userEvent.click(buttonFire);
+
+    const buttonNext = getByText(/próximo pokémon/i);
+    expect(buttonNext).toBeDisabled();
   });
 });
