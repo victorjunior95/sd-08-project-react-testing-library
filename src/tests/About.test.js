@@ -2,7 +2,7 @@ import React from 'react';
 import { screen } from '@testing-library/dom';
 import About from '../components/About';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 describe('About.js', () => {
   test('if contain the Pokédex info', () => {

@@ -3,7 +3,7 @@ import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import FavoritePokemons from '../components/FavoritePokemons';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 describe('FavoritePokemons.js', () => {
   test('if contain the message with no pokemon marked as favorite', () => {

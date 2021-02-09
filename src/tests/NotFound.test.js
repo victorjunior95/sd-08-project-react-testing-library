@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/dom';
 import NotFound from '../components/NotFound';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../renderWithRouter';
 
 describe('NotFound.js', () => {
   test('if contain a h2 heading', () => {
