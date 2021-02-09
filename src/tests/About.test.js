@@ -16,9 +16,9 @@ describe('Teste o componente <About />', () => {
   });
 
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const headings = getAllByTestId('about-paragraph');
-    expect(headings.length).toBe(2);
+    const { getByText } = renderWithRouter(<About />);
+    expect(getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
+    expect(getByText(/One can filter Pokémons by type/i)).toBeInTheDocument();
   });
 
   test('Teste se a página contém a imagem de uma Pokédex.', () => {
