@@ -1,24 +1,67 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+describe('Shows the Pokédex when the route is `/`', () => {
+  it('renders a heading with the text `Pokédex`', () => {
+    const { history: { location: { pathname } } } = renderWithRouter(<App />);
+    expect(pathname).toBe('/');
+    const heading = screen.getByRole('heading', { level: 1, name: /pokédex/i });
+    expect(heading).toBeInTheDocument();
+  });
+
+  it('renders Links with the text `Home`, `About` e `Favorite Pokémons`', () => {
+    renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /home/i });
+    expect(home).toBeInTheDocument();
+    const about = screen.getByRole('link', { name: /about/i });
+    expect(about).toBeInTheDocument();
+    const favoritePokemons = screen.getByRole('link', { name: /favorite pokémons/i });
+    expect(favoritePokemons).toBeInTheDocument();
+  });
+
+  it('renders a heading with the text `Encountered pokémons`', () => {
+    renderWithRouter(<App />);
+    const heading = screen.getByRole('heading', {
+      level: 2,
+      name: /encountered pokémons/i,
+    });
+    expect(heading).toBeInTheDocument();
+  });
 });
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+describe('Shows the components,', () => {
+  it('When the route is `/about` show <About /> component', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /about/i });
+    userEvent.click(home);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/about');
+  });
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  it('When the route is `/favorite` show <FavoritePokemons /> component', () => {
+    const { history } = renderWithRouter(<App />);
+    const home = screen.getByRole('link', { name: /favorite pokémons/i });
+    userEvent.click(home);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
+
+  it('When the route isnt match, show <NotFound /> component', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/no-match/');
+    const noMatchHeading = screen.getByRole('heading', {
+      level: 2,
+      name: /page requested not found/i,
+    });
+    const noMatchImg = screen.getByRole('img', {
+      name: /pikachu crying because the page requested was not found/i,
+    });
+    console.log(noMatchHeading);
+    console.log(noMatchImg);
+    expect(noMatchHeading).toBeInTheDocument();
+    expect(noMatchImg).toBeInTheDocument();
+  });
 });
