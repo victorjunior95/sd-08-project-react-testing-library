@@ -34,3 +34,17 @@ test('Teste se o card do Pokémon contém um link para exibir detalhes deste Pok
   const details = getByText('More details');
   expect(details.href).toContain('/pokemons/143');
 });
+
+test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+  const card = pokemons[7];
+  const { getByAltText } = renderWithRouter(
+    <Pokemon pokemon={ card } isFavorite={ {} } />,
+  );
+
+  const star = getByAltText('Snorlax is marked as favorite');
+  expect(star.src).toContain('/star-icon.svg');
+});
+
+// https://jestjs.io/docs/en/expect#tocontainitem
+// Os dois últimos strykes ( teste linha 27 e teste linha 38) foram adaptados á partir do trabalho de Izelda.
+// https://github.com/tryber/sd-07-project-react-testing-library/pull/138/
