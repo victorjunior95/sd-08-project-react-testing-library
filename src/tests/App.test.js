@@ -12,3 +12,9 @@ test('renders a reading with the text `Pokédex`', () => {
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
 });
+
+describe('App.js', () => {
+  test('Teste se a página principal da Pokédex é renderizada ao carregar a aplicação no caminho de URL /.', () => {
+
+  });
+});
