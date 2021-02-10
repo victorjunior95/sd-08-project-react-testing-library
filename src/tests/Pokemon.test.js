@@ -32,4 +32,17 @@ describe('test pokemon component', () => {
     const linkToMoreDetails = getByRole('link', { name: /more details/i });
     expect(linkToMoreDetails.href.endsWith(`${pokemons[0].id}`)).toBeTruthy();
   });
+
+  test('renders a image from the given pokemon image path', () => {
+    const { getByRole } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[0] }
+      isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+    />);
+    const image = getByRole('img');
+    console.log(image.src);
+    console.log(image.alt);
+    expect(image).toBeInTheDocument();
+    expect(image.src).toBe(pokemons[0].image);
+    expect(image.alt).toBe('Pikachu sprite');
+  });
 });
