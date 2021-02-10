@@ -38,7 +38,7 @@ describe('test PokemonDetails component', () => {
       pokemons={ pokemons }
     />);
     const summaryTitle = getByText('Summary');
-    expect(summaryTitle.innerHTML).toBe('Summary');
+    expect(summaryTitle.innerHTML).toBe(' Summary ');
     const pokemonSummary = getByText(`${pokemons[0].summary}`);
     expect(pokemonSummary.innerHTML).toBe(`${pokemons[0].summary}`);
   });
