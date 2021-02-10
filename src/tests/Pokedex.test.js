@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
@@ -50,5 +51,28 @@ describe('Requisito 5', () => {
     />);
     const proximoBtn = screen.getByText('Próximo pokémon');
     expect(proximoBtn).toBeInTheDocument();
+  });
+
+  it('Teste se página contém o Titulo', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ allFavs }
+    />);
+    const titulo = screen.getByRole('heading', {
+      level: 2,
+    });
+    expect(titulo).toHaveTextContent('Encountered pokémons');
+  });
+
+  it('Teste se filtro All funciona', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ allFavs }
+    />);
+    const botoes = document.querySelectorAll('.filter-button');
+    userEvent.click(botoes[2]);
+    userEvent.click(botoes[0]);
+    const name = screen.getByText('Pikachu');
+    expect(name).toBeInTheDocument();
   });
 });
