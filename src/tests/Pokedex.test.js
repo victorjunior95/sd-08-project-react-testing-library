@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import Pokedex from '../components/Pokedex';
-import Button from '../components/Button';
 
 const testPokemons = [
   { id: 1,
