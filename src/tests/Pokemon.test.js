@@ -1,6 +1,4 @@
 import React from 'react';
-// import { MemoryRouter } from 'react-router-dom';
-// import { fireEvent, render, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
