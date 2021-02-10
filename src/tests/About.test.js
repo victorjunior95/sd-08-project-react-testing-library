@@ -10,13 +10,12 @@ describe('About main page', () => {
     expect(heading.textContent).toBe('About Pokédex');
   });
   it('should have two paragraphs with Pokédex information', () => {
-    const { getByTestId } = render(<About />);
-    const firstParagraph = getByTestId('first-paragraph');
-    expect(firstParagraph).toBeInTheDocument();
-    expect(firstParagraph.textContent.includes('Pokédex'));
-    const secondParagraph = getByTestId('second-paragraph');
-    expect(secondParagraph).toBeInTheDocument();
-    expect(secondParagraph.textContent.includes('Pokédex'));
+    const { container } = render(<About />);
+    const paragraph = container.querySelectorAll('p');
+    expect(paragraph[0]).toBeInTheDocument();
+    expect(paragraph[0].textContent.includes('Pokédex'));
+    expect(paragraph[1]).toBeInTheDocument();
+    expect(paragraph[1].textContent.includes('Pokédex'));
   });
   it('should have a image of a Pokédex', () => {
     const { getByRole } = render(<About />);
