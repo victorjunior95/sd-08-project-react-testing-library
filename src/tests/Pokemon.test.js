@@ -23,4 +23,13 @@ describe('test pokemon component', () => {
     expect(weight).toBeInTheDocument();
     expect(weight.innerHTML).toBe('Average weight: 6.0 kg');
   });
+
+  test('renders a link to show more details', () => {
+    const { getByRole } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[0] }
+      isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+    />);
+    const linkToMoreDetails = getByRole('link', { name: /more details/i });
+    expect(linkToMoreDetails.href.endsWith(`${pokemons[0].id}`)).toBeTruthy();
+  });
 });
