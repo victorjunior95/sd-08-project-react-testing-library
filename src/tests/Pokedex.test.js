@@ -89,5 +89,12 @@ describe('tests for Pokedex.js', () => {
     userEvent.click(nextPk);
     expect(getByText(testPokemons[2].name)).toBeInTheDocument();
     userEvent.click(getByText(/All/));
+    expect(getByText(testPokemons[0].name)).toBeInTheDocument();
+    userEvent.click(nextPk);
+    expect(getByText(testPokemons[1].name)).toBeInTheDocument();
+    userEvent.click(nextPk);
+    expect(getByText(testPokemons[2].name)).toBeInTheDocument();
+    userEvent.click(nextPk);
+    expect(getByText(testPokemons[0].name)).toBeInTheDocument();
   });
 });
