@@ -241,9 +241,9 @@ test(`O botão de Próximo pokémon deve ser desabilitado quando a lista
     const count = countFilteredPokemons(pokedex);
     const nextPokemon = getByTestId(testIds.nextPokemon);
     if (count <= 1) {
-      expect(nextPokemon.disabled).toBeTruthy();
+      expect(nextPokemon).toBeDisabled();
     } else {
-      expect(nextPokemon.disabled).toBeFalsy();
+      expect(nextPokemon).not.toBeDisabled();
     }
   });
 });
