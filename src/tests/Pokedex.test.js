@@ -54,6 +54,16 @@ describe('Testes no component Pokedex.js', () => {
     userEvent.click(proximoPokemon);
     const pikachu = getByText(/Pikachu/i);
     expect(pikachu).toBeInTheDocument();
+
+    const testIds = screen.getAllByTestId('pokemon-type-button');
+
+    expect(testIds[0]).toBeInTheDocument();
+    expect(testIds[1]).toBeInTheDocument();
+    expect(testIds[2]).toBeInTheDocument();
+    expect(testIds[3]).toBeInTheDocument();
+    expect(testIds[4]).toBeInTheDocument();
+    expect(testIds[5]).toBeInTheDocument();
+    expect(testIds[6]).toBeInTheDocument();
   });
 
   test('Teste se a Pokédex tem os botões de filtro.', () => {
