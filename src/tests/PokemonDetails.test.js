@@ -29,4 +29,17 @@ describe('test PokemonDetails component', () => {
       expect(image.alt).toBe(`${pokemons[0].name} location`);
     });
   });
+
+  test('renders a section with title `Summary` and a text content', () => {
+    const match = { params: { id: pokemons[0].id } };
+    const { getByText, getAllByAltText } = renderWithRouter(<PokemonDetails
+      isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+      match={ match }
+      pokemons={ pokemons }
+    />);
+    const sectionTitle = getByText('Summary');
+    expect(sectionTitle.innerHTML).toBe('Summary');
+    const pokemonSummary = getByText(`${pokemons[0].summary}`);
+    expect(pokemonSummary.innerHTML).toBe(`${pokemons[0].summary}`);
+  });
 });
