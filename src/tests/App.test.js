@@ -46,7 +46,7 @@ describe('Testando o componente <App.js />', () => {
     expect(history.location.pathname).toBe('/');
   });
 
-  it('Se é redirecionada para a página inicial ao clicar no link About', () => {
+  it('Se é redirecionada para a página /about ao clicar no link About', () => {
     const { history } = renderWithRouter(<App />);
     const buttonLink = screen.getByText(/about/i);
 
@@ -58,7 +58,7 @@ describe('Testando o componente <App.js />', () => {
     expect(history.location.pathname).toBe('/about');
   });
 
-  it('Se é redirecionada para Favoritos ao clicar no link Favorite Pokémons', () => {
+  it('Se é redirecionada para /favorites ao clicar no link Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
     const buttonLink = screen.getByText(/favorite pokémons/i);
 
