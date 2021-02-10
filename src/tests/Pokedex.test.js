@@ -7,6 +7,12 @@ import App from '../App';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../mocks/pokemonDataMock01';
 
+const isPokemonFavoriteMock = {
+  25: false,
+  4: false,
+  65: false,
+  143: false,
+};
 const btnType = 'pokemon-type-button';
 describe('Pokedex', () => {
   test('title', () => {
@@ -16,7 +22,6 @@ describe('Pokedex', () => {
         <App />
       </Router>,
     );
-
     const el = screen.getByRole('heading', {
       level: 2,
       name: /Encountered pokémons/i,
@@ -33,34 +38,24 @@ describe('Pokedex', () => {
     );
     expect(screen.getByText(/All/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/All/i));
-
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
     expect(screen.getByText(/Próximo pokémon/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Caterpie/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Ekans/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Alakazam/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Mew/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Rapidash/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Snorlax/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Dragonair/i)).toBeInTheDocument();
-
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
   });
@@ -75,41 +70,34 @@ describe('Pokedex', () => {
     const els = screen.getAllByTestId(btnType);
     const count = 7;
     expect(els.length).toBe(count);
-
     userEvent.click(els[0]);
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
-
     userEvent.click(els[1]);
     expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Rapidash/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
-
     userEvent.click(els[2]);
     expect(screen.getByText(/Caterpie/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Caterpie/i)).toBeInTheDocument();
-
     userEvent.click(els[3]);
     expect(screen.getByText(/Ekans/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Ekans/i)).toBeInTheDocument();
-
     userEvent.click(els[4]);
     expect(screen.getByText(/Alakazam/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Mew/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Alakazam/i)).toBeInTheDocument();
-
     userEvent.click(els[5]);
     expect(screen.getByText(/Snorlax/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Snorlax/i)).toBeInTheDocument();
-
     userEvent.click(els[6]);
     expect(screen.getByText(/Dragonair/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
@@ -141,12 +129,6 @@ describe('Pokedex', () => {
 
   test('dinamico', () => {
     const history = createMemoryHistory();
-    const isPokemonFavoriteMock = {
-      25: false,
-      4: false,
-      65: false,
-      143: false,
-    };
     render(
       <Router history={ history }>
         <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ isPokemonFavoriteMock } />
@@ -156,5 +138,9 @@ describe('Pokedex', () => {
     const count = 4;
     expect(els.length).toBe(count);
     expect(screen.getByText(/All/i)).toBeInTheDocument();
+    expect(els[0].textContent).toBe('Electric');
+    expect(els[1].textContent).toBe('Fire');
+    expect(els[2].textContent).toBe('Psychic');
+    expect(els[3].textContent).toBe('Normal');
   });
 });
