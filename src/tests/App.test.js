@@ -17,7 +17,7 @@ describe('Teste o componente <App />', () => {
   });
 
   test(`A página principal da Pokédex é renderizada ao carregar a 
-aplicação no caminho de URL /.`, () => {
+  aplicação no caminho de URL /.`, () => {
     const { history, getByText } = renderWithRouter(<App />);
     const { location: { pathname } } = history;
     expect(pathname).toBe(routes.HOME);
@@ -25,7 +25,7 @@ aplicação no caminho de URL /.`, () => {
   });
 
   test(`Teste se o topo da aplicação contém um conjunto fixo 
-de links de navegação.`, () => {
+  de links de navegação.`, () => {
     const { history, getByRole } = renderWithRouter(<App />);
 
     const linkNames = ['Home', 'About', 'Favorite Pokémons'];
@@ -49,7 +49,7 @@ de links de navegação.`, () => {
   });
 
   test(`O primeiro link deve possuir o texto Home, o segundo link deve possuir 
-o texto About e o terceiro link deve possuir o texto Favorite Pokémons.`, () => {
+  o texto About e o terceiro link deve possuir o texto Favorite Pokémons.`, () => {
     const { getAllByRole } = renderWithRouter(<App />);
     const links = getAllByRole('link');
     expect(links[0].textContent).toBe('Home');
@@ -58,7 +58,7 @@ o texto About e o terceiro link deve possuir o texto Favorite Pokémons.`, () =>
   });
 
   test(`Teste se a aplicação é redirecionada para a página inicial, 
-na URL / ao clicar no link Home da barra de navegação.`, () => {
+  na URL / ao clicar no link Home da barra de navegação.`, () => {
     const { getByRole, history } = renderWithRouter(<App />);
     expect(history.location.pathname).toBe(routes.HOME);
     history.push(routes.ABOUT);
@@ -69,7 +69,7 @@ na URL / ao clicar no link Home da barra de navegação.`, () => {
   });
 
   test(`Teste se a aplicação é redirecionada para a página de About, na URL 
-/about, ao clicar no link About da barra de navegação.`, () => {
+  /about, ao clicar no link About da barra de navegação.`, () => {
     const { getByRole, history } = renderWithRouter(<App />);
     expect(history.location.pathname).toBe(routes.HOME);
     const about = getByRole('link', { name: /about/i });
@@ -78,7 +78,7 @@ na URL / ao clicar no link Home da barra de navegação.`, () => {
   });
 
   test(`Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, 
-na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`, () => {
+  na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.`, () => {
     const { getByRole, history } = renderWithRouter(<App />);
     expect(history.location.pathname).toBe(routes.HOME);
     const about = getByRole('link', { name: /Favorite Pokémons/i });
@@ -87,11 +87,29 @@ na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.
   });
 
   test(`Teste se a aplicação é redirecionada para a página Not Found ao entrar 
-em uma URL desconhecida.`, () => {
+  em uma URL desconhecida.`, () => {
     const { getByAltText, history } = renderWithRouter(<App />);
     expect(history.location.pathname).toBe(routes.HOME);
     history.push(`/${Math.random()}`);
     const text = 'Pikachu crying because the page requested was not found';
     expect(getByAltText(new RegExp(text, 'i'))).toBeInTheDocument();
+  });
+
+  test(`Ao clicar em More Details há um redirecionamento para uma página com
+  os detalhes daquele pokemon. Nesta página haverá uma checkbox que quando
+  selecionada favorita aquele pokemon`, () => {
+    const { getByRole, getByLabelText,
+      getByAltText, history } = renderWithRouter(<App />);
+    expect(history.location.pathname).toBe('/');
+    const moreDetails = getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    const destination = moreDetails.pathname;
+    expect(history.location.pathname).toBe(destination);
+    const label = 'Pokémon favoritado?';
+    const checkbox = getByLabelText(label);
+    expect(checkbox).toBeInTheDocument();
+    userEvent.click(checkbox);
+    const alt = 'Pikachu is marked as favorite';
+    expect(getByAltText(alt)).toBeInTheDocument();
   });
 });
