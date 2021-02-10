@@ -4,7 +4,6 @@ import NotFound from '../components/NotFound';
 import renderWithRouter from './renderWithRouter';
 
 test('verifica heading e img na pagina NotFound', () => {
-
   const { getByText } = renderWithRouter(<NotFound />);
   const aboutOnly = getByText(/Page requested not found/i);
   expect(aboutOnly).toBeInTheDocument();
