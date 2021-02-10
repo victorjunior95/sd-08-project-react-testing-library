@@ -23,7 +23,6 @@ describe('Teste o componente <About.js /.', () => {
   it('Página contém dois parágrafos com texto sobre a Pokédex', () => {
     render(<About />);
     const section = screen.getByRole('img').parentNode;
-    console.log(section);
     const filhos = [...section.children].filter((element) => element.tagName === 'P');
     expect(filhos.length).toBe(2);
   });
