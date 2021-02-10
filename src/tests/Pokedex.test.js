@@ -141,10 +141,15 @@ describe('Pokedex', () => {
 
   test('dinamico', () => {
     const history = createMemoryHistory();
-
+    const isPokemonFavoriteMock = {
+      25: false,
+      4: false,
+      65: false,
+      143: false,
+    };
     render(
       <Router history={ history }>
-        <Pokedex pokemons={ pokemons } />
+        <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ isPokemonFavoriteMock } />
       </Router>,
     );
     const els = screen.getAllByTestId(btnType);
