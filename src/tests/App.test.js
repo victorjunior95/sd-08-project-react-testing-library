@@ -40,20 +40,10 @@ describe('App.js tests', () => {
     userEvent.click(links[1]);
     let { pathname } = history.location;
     expect(pathname).toBe('/about');
-    const aboutHeading = screen.getByRole('heading', {
-      level: 2,
-      name: /about pokédex/i,
-    });
-    expect(aboutHeading).toBeInTheDocument();
 
     userEvent.click(links[2]);
     pathname = history.location.pathname;
     expect(pathname).toBe('/favorites');
-    const favoriteHeading = screen.getByRole('heading', {
-      level: 2,
-      name: /favorite pokémons/i,
-    });
-    expect(favoriteHeading).toBeInTheDocument();
   });
 
   it('Should render pageNotFound and go back to Home on link click', () => {
