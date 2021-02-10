@@ -7,7 +7,7 @@ describe('Favorite Pokemons page', () => {
     const { getByRole } = renderWithRouter(<NotFound />);
     const pageNotFound = getByRole('heading', { level: 2 });
     expect(pageNotFound).toBeInTheDocument();
-    expect(pageNotFound.textContent).toBe('Page requested not found 😭');
+    expect(pageNotFound.textContent).toBe('Page requested not found 😭 ');
   });
   it('should display a image', () => {
     const { getAllByRole } = renderWithRouter(<NotFound />);
