@@ -53,4 +53,58 @@ describe('Pokedex.js', () => {
     expect(imgCard.src).toContain('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
     expect(imgCard.alt).not.toContain('Charmander');
   });
+
+  test('if render the filter buttons and itś function', () => {
+    renderWithRouter(<App />);
+
+    const filterBtnFire = screen.getByRole('button', { name: /fire/i });
+    userEvent.click(filterBtnFire);
+
+    const Charmander = screen.getByText(/Charmander/i);
+    expect(Charmander).toBeInTheDocument();
+
+    const nextBtn = screen.getByRole('button', { name: /Próximo pokémon/i });
+    userEvent.click(nextBtn);
+
+    const Rapidash = screen.getByText(/Rapidash/i);
+    expect(Rapidash).toBeInTheDocument();
+
+    userEvent.click(nextBtn);
+    expect(Charmander).toBeInTheDocument();
+  });
+
+  test('if contatin the All filter btn and it is checked when page render', () => {
+    renderWithRouter(<App />);
+
+    const Pikachu = screen.getByText(/pikachu/i);
+    expect(Pikachu).toBeInTheDocument();
+
+    const nextBtn = screen.getByRole('button', { name: /Próximo pokémon/i });
+    userEvent.click(nextBtn);
+
+    const Charmander = screen.getByText(/Charmander/i);
+    expect(Charmander).toBeInTheDocument();
+
+    const filterBtnFire = screen.getByRole('button', { name: /fire/i });
+    userEvent.click(filterBtnFire);
+
+    userEvent.click(nextBtn);
+    const Rapidash = screen.getByText(/Rapidash/i);
+    expect(Rapidash).toBeInTheDocument();
+
+    const filterBtnAll = screen.getByRole('button', { name: /all/i });
+    userEvent.click(filterBtnAll);
+
+    expect(Pikachu).toBeInTheDocument();
+  });
+
+  test('if the filter btns have all types, without repetition, and the all btn', () => {
+    renderWithRouter(<App />);
+
+    const lengthOfBtn = 7;
+    const filterBtnAll = screen.getByRole('button', { name: /all/i });
+    expect(filterBtnAll).toBeInTheDocument();
+    const filterBtns = screen.getAllByTestId('pokemon-type-button');
+    expect(filterBtns.length).toBe(lengthOfBtn);
+  });
 });
