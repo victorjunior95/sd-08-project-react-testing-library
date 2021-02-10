@@ -11,10 +11,10 @@ describe('Testando o About', () => {
       </MemoryRouter>,
     );
     const text = screen.getByText(/this application simulates a pokédex/i);
-    const firstText = 'This application simulates a Pokédex,';
-    const secondText = ' a digital encliclopedia containing all Pokémons';
+    const firstText = 'This application simulates a Pokédex,'
+    + ' a digital encliclopedia containing all Pokémons';
 
-    expect(text.textContent).toBe(firstText + secondText);
+    expect(text.textContent).toBe(firstText);
   });
 
   it('Teste se a página contém um heading h2 com o texto About Pokédex', () => {
