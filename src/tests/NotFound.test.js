@@ -14,9 +14,9 @@ describe('Teste o componente `<NotFound.js />', () => {
   test('se página mostra a imagem `https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif`', () => {
     const { getByAltText } = render(<NotFound />);
     const selectAlt = getByAltText(
-      'Pikachu crying because the page requested was not found'
+      'Pikachu crying because the page requested was not found',
     );
-    const selectUrl = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif'
+    const selectUrl = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
     expect(selectAlt.src).toBe(selectUrl);
   });
 });
