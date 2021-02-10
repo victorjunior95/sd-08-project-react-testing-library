@@ -1,9 +1,6 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import About from '../components/About';
-import renderWithRouter from './renderWithRouter';
 
 describe('Requisito 2 - Teste o componente \\"About"\\', () => {
   it('Teste se a página contém as informações sobre a Pokédex.', () => {
