@@ -14,7 +14,7 @@ describe('NotFound.js', () => {
     expect(message).toBeInTheDocument();
   });
 
-  test('Teste se a página contém a seguinte imagem de uma Pokédex:', () => {
+  test('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif.', () => {
     renderWithRouter(<NotFound />);
     const imgNotFound = screen.getByAltText(
       'Pikachu crying because the page requested was not found',
