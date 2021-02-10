@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('About.js tests', () => {
-  it('Should have a h2 with `About Pokédex`', () => {
+  it('Should has a h2 with `About Pokédex`', () => {
     render(<About />);
 
     const aboutHeading = screen.getByRole('heading', {
@@ -15,7 +15,7 @@ describe('About.js tests', () => {
     expect(aboutHeading).toBeInTheDocument();
   });
 
-  it('Should have 2 <p/> about the Pokédex', () => {
+  it('Should has 2 tags `p` about the Pokédex', () => {
     render(<About />);
 
     const p1 = screen.getByText((content, element) => (
@@ -28,7 +28,7 @@ describe('About.js tests', () => {
     expect(p2).toBeInTheDocument();
   });
 
-  it('Should have a specific img', () => {
+  it('Should has a specific img', () => {
     render(<About />);
 
     const img = screen.getByRole('img');
