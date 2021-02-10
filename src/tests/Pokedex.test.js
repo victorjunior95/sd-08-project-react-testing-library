@@ -112,4 +112,27 @@ describe('Pokedex', () => {
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Dragonair/i)).toBeInTheDocument();
   });
+  test('proximo desabilitado', () => {
+    const history = createMemoryHistory();
+    render(
+      <Router history={ history }>
+        <App />
+      </Router>,
+    );
+    const els = screen.getAllByTestId('pokemon-type-button');
+    userEvent.click(els[0]);
+    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    userEvent.click(els[1]);
+    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe(null);
+    userEvent.click(els[2]);
+    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    userEvent.click(els[3]);
+    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    userEvent.click(els[4]);
+    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe(null);
+    userEvent.click(els[5]);
+    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    userEvent.click(els[6]);
+    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+  });
 });
