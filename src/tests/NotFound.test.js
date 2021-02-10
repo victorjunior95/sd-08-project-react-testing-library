@@ -12,9 +12,9 @@ describe('Testa o componente "NotFound"', () => {
   });
 
   test('a página mostra uma imagem', () => {
-    const { getByTestId } = renderWithRouter(<NotFound />);
+    const { getByAltText } = renderWithRouter(<NotFound />);
     const imgUrl = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
-    const img = getByTestId('not-found-image');
+    const img = getByAltText('Pikachu crying because the page requested was not found');
     expect(img.src).toBe(imgUrl);
   });
 });
