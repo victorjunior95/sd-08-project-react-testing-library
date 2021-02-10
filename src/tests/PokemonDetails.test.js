@@ -1,7 +1,7 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
 import pokemons from '../data';
 
@@ -9,11 +9,7 @@ const DETAILS = 'More details';
 
 describe('Tests "PokemonDetails" component', () => {
   it('renders detailed pokemon info', () => {
-    const { getByText, getAllByRole } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, getAllByRole } = renderWithRouter(<App />);
 
     const details = getByText(DETAILS);
     fireEvent.click(details);
@@ -31,11 +27,7 @@ describe('Tests "PokemonDetails" component', () => {
   });
 
   it('tests pokemon location rendering', () => {
-    const { getByText, getAllByAltText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, getAllByAltText } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(DETAILS));
     const renderedLocations = getAllByAltText(`${pokemons[0].name} location`);
@@ -50,11 +42,7 @@ describe('Tests "PokemonDetails" component', () => {
   });
 
   it('tests favorite assignment', () => {
-    const { getByText, getByLabelText, queryByText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, getByLabelText, queryByText } = renderWithRouter(<App />);
 
     const testSequence = () => {
       fireEvent.click(getByText(DETAILS));
@@ -80,5 +68,13 @@ describe('Tests "PokemonDetails" component', () => {
     expect(getByText(pokemons[1].name)).toBeInTheDocument();
     expect(getByText(pokemons[2].name)).toBeInTheDocument();
     expect(queryByText(pokemons[3].name)).toBeNull();
+
+    fireEvent.click(getByText('Home'));
+
+    nextCounter(2);
+    testSequence();
+
+    fireEvent.click(getByText('Favorite Pokémons'));
+    expect(queryByText(pokemons[2].name)).toBeNull();
   });
 });

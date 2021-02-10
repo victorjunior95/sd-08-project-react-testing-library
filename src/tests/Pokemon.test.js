@@ -1,17 +1,13 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from '../renderWithRouter';
 
 import pokemons from '../data';
 
 describe('Tests "Pokemon" component', () => {
   it('renders the correct data', () => {
-    const { getByTestId } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByTestId } = renderWithRouter(<App />);
 
     const pokeName = getByTestId('pokemon-name');
     const pokeType = getByTestId('pokemonType');
@@ -24,11 +20,7 @@ describe('Tests "Pokemon" component', () => {
   });
 
   it('tests link to details page', () => {
-    const { getByText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText } = renderWithRouter(<App />);
 
     const details = getByText('More details');
     expect(details.href).toMatch(`/pokemons/${pokemons[0].id}`);
@@ -37,21 +29,13 @@ describe('Tests "Pokemon" component', () => {
   });
 
   it('tests pokemon image', () => {
-    const { getByAltText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByAltText } = renderWithRouter(<App />);
 
     expect(getByAltText(`${pokemons[0].name} sprite`).src).toBe(pokemons[0].image);
   });
 
   it('tests favorite star', () => {
-    const { getByText, getByLabelText, getByAltText } = render(
-      <MemoryRouter initialEntries={ ['/'] }>
-        <App />
-      </MemoryRouter>,
-    );
+    const { getByText, getByLabelText, getByAltText } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('More details'));
     fireEvent.click(getByLabelText('Pokémon favoritado?'));
