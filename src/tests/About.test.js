@@ -13,8 +13,8 @@ describe('checks if About page loads everything correctly', () => {
   });
 
   test('tests if there are two paragraphs', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const paragraphs = getAllByTestId('paragraph');
+    const { container } = renderWithRouter(<About />);
+    const paragraphs = container.querySelectorAll('p');
     expect(paragraphs.length).toBe(2);
   });
 
