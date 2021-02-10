@@ -112,19 +112,19 @@ describe('Pokedex', () => {
     );
     const els = screen.getAllByTestId(btnType);
     userEvent.click(els[0]);
-    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    expect(screen.getByText(/Próximo pokémon/i)).toHaveAttribute('disabled');
     userEvent.click(els[1]);
-    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe(null);
+    expect(screen.getByText(/Próximo pokémon/i)).not.toHaveAttribute('disabled');
     userEvent.click(els[2]);
-    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    expect(screen.getByText(/Próximo pokémon/i)).toHaveAttribute('disabled');
     userEvent.click(els[3]);
-    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    expect(screen.getByText(/Próximo pokémon/i)).toHaveAttribute('disabled');
     userEvent.click(els[4]);
-    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe(null);
+    expect(screen.getByText(/Próximo pokémon/i)).not.toHaveAttribute('disabled');
     userEvent.click(els[5]);
-    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    expect(screen.getByText(/Próximo pokémon/i)).toHaveAttribute('disabled');
     userEvent.click(els[6]);
-    expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+    expect(screen.getByText(/Próximo pokémon/i)).toHaveAttribute('disabled');
   });
 
   test('dinamico', () => {
