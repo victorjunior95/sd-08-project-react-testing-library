@@ -59,15 +59,13 @@ describe('tests Pokédex application features with events', () => {
   });
 
   test('filter all button parameter to be `all`', () => {
-    const { getByRole, history } = renderWithRouter(<Pokedex
+    const { getByRole } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
     />);
     const filterAll = getByRole('button', { name: /all/i });
     console.log(filterAll);
     fireEvent.click(filterAll);
-    // expect(filterAll)
-    // console.log(history);
   });
 
   test('calls onClick prop when clicked', () => {
@@ -76,13 +74,4 @@ describe('tests Pokédex application features with events', () => {
     fireEvent.click(screen.getByText(/all/i));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
-  // test('render heading level 2 with text `Encounterd pokémons`', () => {
-  //   const { getByText, getByRole } = render(
-  //     <MemoryRouter>
-  //       <App />
-  //     </MemoryRouter>,
-  //   );
-  //   const heading = getByRole('heading', { level: 2 });
-  //   expect(heading).toBeInTheDocument();
-  // });
 });
