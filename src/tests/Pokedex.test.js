@@ -5,6 +5,7 @@ import Pokedex from '../components/Pokedex';
 import App from '../App';
 import pokemons from '../data';
 
+const nextPokenonID = 'next-pokemon';
 const isPokemonFavoriteById = {
   4: false,
   10: false,
@@ -35,16 +36,16 @@ describe('Teste se é exibido o próximo Pokémon da lista'
   + 'quando o botão Próximo pokémon é clicado.', () => {
   test('O botão deve conter o texto Próximo pokémon', () => {
     renderWithRouter(<App />);
-    const btn = screen.getByTestId('next-pokemon');
-    expect(btn).toBeInTheDocument();
-    expect(btn.type).toBe('button');
-    expect(btn).toHaveTextContent('Próximo pokémon');
+    const btn1 = screen.getByTestId(nextPokenonID);
+    expect(btn1).toBeInTheDocument();
+    expect(btn1.type).toBe('button');
+    expect(btn1).toHaveTextContent('Próximo pokémon');
   });
 
   test(`Os próximos Pokémons da lista devem ser mostrados, 
   um a um, ao clicar sucessivamente no botão`, () => {
     renderWithRouter(<App />);
-    const btn = screen.getByTestId('next-pokemon');
+    const btn = screen.getByTestId(nextPokenonID);
     fireEvent.click(btn);
     const pokemonName = screen.getByText(/Charmander/i);
     expect(pokemonName).toBeInTheDocument();
@@ -53,7 +54,7 @@ describe('Teste se é exibido o próximo Pokémon da lista'
   it('O primeiro Pokémon da lista deve ser mostrado ao clicar '
 + 'no botão, se estiver no último Pokémon da lista', () => {
     renderWithRouter(<App />);
-    const btn = screen.getByTestId('next-pokemon');
+    const btn = screen.getByTestId(nextPokenonID);
     const size = Object.keys(isPokemonFavoriteById).length;
     for (let count = 1; count < size; count += 1) {
       fireEvent.click(btn);
@@ -70,7 +71,7 @@ describe('Teste se é exibido o próximo Pokémon da lista'
 describe('Teste da unicidade na tela dos cards', () => {
   it('Teste se é mostrado apenas um Pokémon por vez.', () => {
     renderWithRouter(<App />);
-    const btn = screen.getByTestId('next-pokemon');
+    const btn = screen.getByTestId(nextPokenonID);
     const size = Object.keys(isPokemonFavoriteById).length;
     for (let count = 1; count < size + 1; count += 1) {
       const name = screen.getAllByTestId('pokemon-name');
@@ -84,7 +85,7 @@ describe('Teste se a Pokédex tem os botões de filtro.', () => {
   it('A partir da seleção de um botão de tipo, a Pokédex deve '
     + 'circular somente pelos pokémons daquele tipo;', () => {
     renderWithRouter(<App />);
-    const btnClick = screen.getByTestId('next-pokemon');
+    const btnClick = screen.getByTestId(nextPokenonID);
     const btnFire = screen.getByRole('button', { name: /Fire/i });
     fireEvent.click(btnFire);
     const n = 5;
@@ -115,7 +116,7 @@ describe('Teste se a Pokédex contém um botão para '
   it('A Pokedéx deverá mostrar os Pokémons normalmente '
   + '(sem filtros) quando o botão All for clicado', () => {
     renderWithRouter(<App />);
-    const btnClick = screen.getByTestId('next-pokemon');
+    const btnClick = screen.getByTestId(nextPokenonID);
     const btnAll = screen.getByRole('button', { name: /All/i });
     fireEvent.click(btnAll);
     const pokemonType1 = screen.getByTestId('pokemonType');
@@ -206,7 +207,7 @@ describe('Teste de botão desabilitado', () => {
       if (filtered.length === 1) {
         const btn = screen.getByRole('button', { name: filtered[0] });
         fireEvent.click(btn);
-        const btnGreen = screen.getByTestId('next-pokemon');
+        const btnGreen = screen.getByTestId(nextPokenonID);
         expect(btnGreen.disabled).toBeTruthy();
       }
     });
