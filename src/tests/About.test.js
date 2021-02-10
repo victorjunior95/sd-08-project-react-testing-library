@@ -29,9 +29,9 @@ test('Testa se About traz segundo Paragrafo sobre pokédex', () => {
 
 test('testa se tem uma imagem da pokédex', () => {
   renderWithRouter(<About />);
-  const deximag = screen.getByRole(
-    'image', {
-      name: '800px-Gen_I_Pok%C3%A9dex.png',
+  const deximag = screen.getByAltText(
+    'Pokédex', {
+      src: 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
     },
   );
   expect(deximag).toBeInTheDocument();
