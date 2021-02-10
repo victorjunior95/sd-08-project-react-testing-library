@@ -45,4 +45,15 @@ describe('test pokemon component', () => {
     expect(image.src).toBe(pokemons[0].image);
     expect(image.alt).toBe('Pikachu sprite');
   });
+
+  test('renders star favorite icon', () => {
+    const { getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[0] }
+      isFavorite
+    />);
+    const icon = getByAltText(`${pokemons[0].name} is marked as favorite`);
+    expect(icon).toBeInTheDocument();
+    expect(icon.alt).toBe(`${pokemons[0].name} is marked as favorite`);
+    expect(icon.src).toBe('http://localhost/star-icon.svg');
+  });
 });
