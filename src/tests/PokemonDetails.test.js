@@ -21,7 +21,7 @@ test('tests if the detailed info of the pokemon is on the screen', () => {
 });
 
 test('tests is there is a section with de maps of the pokemon location', () => {
-  const { getByRole, getAllByAltText, getAllByRole } = render(
+  const { getByRole, getAllByAltText } = render(
     <MemoryRouter initialEntries={ [pikachuDetailsPath] }>
       <App />
     </MemoryRouter>,
