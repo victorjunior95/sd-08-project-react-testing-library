@@ -31,7 +31,7 @@ describe('tests Pokédex application features with events', () => {
     expect(heading).toHaveTextContent('Encountered pokémons');
   });
 
-  test('type buttons text content', () => {
+  test('all type buttons text content', () => {
     const { queryAllByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
@@ -47,6 +47,15 @@ describe('tests Pokédex application features with events', () => {
     buttons.forEach((pokemon, index) => {
       expect(pokemon.textContent).toEqual(types[index]);
     });
+  });
+
+  test('filter all button text content', () => {
+    const { getByRole } = renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+    />);
+    const filterAll = getByRole('button', { name: /all/i });
+    expect(filterAll.textContent).toBe('All');
   });
   // test('render heading level 2 with text `Encounterd pokémons`', () => {
   //   const { getByText, getByRole } = render(
