@@ -17,8 +17,7 @@ test('renders a reading with the text `Pokédex`', () => {
 });
 
 test('Os links home - About - Favorit... existem? ', () => {
-  const { rend } = renderWithRouter(<App />);
-  // console.log(rend);
+  renderWithRouter(<App />);
   const linkhome = screen.getByRole(
     'link', {
       name: /Home/i,
