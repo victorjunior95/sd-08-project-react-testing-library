@@ -27,7 +27,9 @@ test('renders Pokedex', () => {
   });
   expect(pokeDexTitle).toBeInTheDocument();
 
-  const displayingPoke = screen.getAllByTestId('pokemon-name');
+  const pokenameID = 'pokemon-name';
+
+  const displayingPoke = screen.getAllByTestId(pokenameID);
   expect(displayingPoke.length).toBe(1);
 
   const nextPoke = pokemons.indexOf(pokemons
@@ -38,7 +40,7 @@ test('renders Pokedex', () => {
 
   fireEvent.click(ButtonNextPoke);
 
-  const newPoke = screen.getByTestId('pokemon-name').innerHTML;
+  const newPoke = screen.getByTestId(pokenameID).innerHTML;
   if (nextPoke > pokemons.length) {
     expect(newPoke).toBe(pokemons[0].name);
   }
