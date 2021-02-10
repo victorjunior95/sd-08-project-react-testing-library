@@ -1,24 +1,53 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+describe('O primeiro link deve possuir o texto Home', () => {
+  test('teste Home', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const homeLink = screen.getByRole('link', {
+      name: /Home/i,
+    });
+
+    userEvent.click(homeLink);
+
+    const { pathname } = history.location;
+
+    expect(pathname).toBe('/');
+  });
 });
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
+describe('O segundo link deve possuir o texto About', () => {
+  test('teste About', () => {
+    const { history } = renderWithRouter(<App />);
 
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+    const AboutLink = screen.getByRole('link', {
+      name: /About/i,
+    });
+
+    userEvent.click(AboutLink);
+
+    const { pathname } = history.location;
+
+    expect(pathname).toBe('/about');
+  });
+});
+
+describe('O terceiro link deve possuir o texto Favorite Pokémons', () => {
+  test('teste Favorite Pokémons', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const favoritePokemonLink = screen.getByRole('link', {
+      name: /Favorite Pokémons/i,
+    });
+
+    userEvent.click(favoritePokemonLink);
+
+    const { pathname } = history.location;
+
+    expect(pathname).toBe('/favorites');
+  });
 });
