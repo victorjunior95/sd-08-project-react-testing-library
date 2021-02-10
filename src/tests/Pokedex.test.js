@@ -1,10 +1,10 @@
 import React from 'react';
 // import { MemoryRouter } from 'react-router-dom';
-// import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
-import { Pokedex } from '../components';
+import { Button, Pokedex } from '../components';
 
 describe('tests Pokédex application features with events', () => {
   // test('renders a heading level 2 with text `Encounterd pokémons`', () => {
@@ -56,6 +56,25 @@ describe('tests Pokédex application features with events', () => {
     />);
     const filterAll = getByRole('button', { name: /all/i });
     expect(filterAll.textContent).toBe('All');
+  });
+
+  test('filter all button parameter to be `all`', () => {
+    const { getByRole, history } = renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+    />);
+    const filterAll = getByRole('button', { name: /all/i });
+    console.log(filterAll);
+    fireEvent.click(filterAll);
+    // expect(filterAll)
+    // console.log(history);
+  });
+
+  test('calls onClick prop when clicked', () => {
+    const handleClick = jest.fn();
+    render(<Button onClick={ handleClick }>All</Button>);
+    fireEvent.click(screen.getByText(/all/i));
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
   // test('render heading level 2 with text `Encounterd pokémons`', () => {
   //   const { getByText, getByRole } = render(
