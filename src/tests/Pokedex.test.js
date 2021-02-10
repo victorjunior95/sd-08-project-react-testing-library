@@ -234,7 +234,6 @@ test(`O botão de Próximo pokémon deve ser desabilitado quando a lista
   filtrada de Pokémons tiver um só pokémon.`, () => {
   const pokedex = renderPokedex();
   const { getByRole, getByTestId } = pokedex;
-  console.log(getByRole, getByTestId);
   pokemonTypes.forEach((type) => {
     const button = getByRole('button', { name: new RegExp(type, 'i') });
     userEvent.click(button);
