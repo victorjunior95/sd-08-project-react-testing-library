@@ -39,6 +39,7 @@ describe('Requisito 6 <Pokemon.js />', () => {
       const cardLink = getByRole('link', { name: /more details/i });
       expect(cardLink).toHaveAttribute('href', `/pokemons/${id}`);
     });
+
   test('se ao clicar no link de navegação do Pokémon, é feito o redirecionamento', () => {
     const { getByRole, history, getByText } = renderWithRouter(<App />);
     const cardLink = getByRole('link', { name: /more details/i });
@@ -51,6 +52,7 @@ describe('Requisito 6 <Pokemon.js />', () => {
     expect(pathname).toEqual(`/pokemons/${id}`);
     expect(heading).toBeInTheDocument();
   });
+
   test('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
     const { getByRole } = renderWithRouter(<Pokemon
       pokemon={ pokemons[4] }
