@@ -1,20 +1,12 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import { screen, fireEvent } from '@testing-library/react';
 import App from '../App';
-
-const renderWithRouter = (component) => {
-  const history = createMemoryHistory();
-  return ({
-    ...render(<Router history={ history }>{component}</Router>), history,
-  });
-};
+import RenderWithRouter from './renderWithRouter';
 
 describe('Testando o componente <App.js />', () => {
   const it1 = 'Pág principal é renderizada ao carregar a aplicação no caminho de URL /';
   it(it1, () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { getByText, history } = RenderWithRouter(<App />);
 
     const home = getByText('Encountered pokémons');
     const homeButton = getByText('Próximo pokémon');
@@ -25,7 +17,7 @@ describe('Testando o componente <App.js />', () => {
   });
 
   it('Teste se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
-    const { getByText } = renderWithRouter(<App />);
+    const { getByText } = RenderWithRouter(<App />);
 
     expect(getByText('Home')).toBeInTheDocument();
     expect(getByText('About')).toBeInTheDocument();
@@ -33,7 +25,7 @@ describe('Testando o componente <App.js />', () => {
   });
 
   it('Se é redirecionada para a página inicial ao clicar no link Home', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = RenderWithRouter(<App />);
     const buttonLink = screen.getByText(/home/i);
 
     fireEvent.click(buttonLink);
@@ -47,7 +39,7 @@ describe('Testando o componente <App.js />', () => {
   });
 
   it('Se é redirecionada para a página /about ao clicar no link About', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = RenderWithRouter(<App />);
     const buttonLink = screen.getByText(/about/i);
 
     fireEvent.click(buttonLink);
@@ -59,7 +51,7 @@ describe('Testando o componente <App.js />', () => {
   });
 
   it('Se é redirecionada para /favorites ao clicar no link Favorite Pokémons', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = RenderWithRouter(<App />);
     const buttonLink = screen.getByText(/favorite pokémons/i);
 
     fireEvent.click(buttonLink);
@@ -74,7 +66,7 @@ describe('Testando o componente <App.js />', () => {
   });
 
   it('Se é redirecionada para Not Found ao entrar em uma URL desconhecida', () => {
-    const { history } = renderWithRouter(<App />);
+    const { history } = RenderWithRouter(<App />);
     history.push('/notfound');
 
     const pokeTitle = screen.getByRole('heading', {
