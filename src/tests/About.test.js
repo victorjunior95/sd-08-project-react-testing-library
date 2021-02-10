@@ -5,7 +5,7 @@ import About from '../components/About';
 describe('A página contém as informações sobre a Pokédex', () => {
   test('A página contém um heading h2 com o texto About Pokédex', () => {
     const { getByRole } = renderWithRouter(<About />);
-    expect(getByRole('heading', { name:'About Pokédex', level: 2 })).toBeInTheDocument();
+    expect(getByRole('heading', { name: 'About Pokédex', level: 2 })).toBeInTheDocument();
   });
 
   test('A página contém dois parágrafos com texto sobre a Pokédex', () => {

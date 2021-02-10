@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe('O primeiro link deve possuir o texto Home', () => {
-  test('teste Home', () => {
+describe('Teste o componente <App.js />', () => {
+  test('O primeiro link deve possuir o texto Home', () => {
     const { history } = renderWithRouter(<App />);
 
     const homeLink = screen.getByRole('link', {
@@ -18,10 +18,8 @@ describe('O primeiro link deve possuir o texto Home', () => {
 
     expect(pathname).toBe('/');
   });
-});
 
-describe('O segundo link deve possuir o texto About', () => {
-  test('teste About', () => {
+  test('O segundo link deve possuir o texto About', () => {
     const { history } = renderWithRouter(<App />);
 
     const AboutLink = screen.getByRole('link', {
@@ -34,10 +32,8 @@ describe('O segundo link deve possuir o texto About', () => {
 
     expect(pathname).toBe('/about');
   });
-});
 
-describe('O terceiro link deve possuir o texto Favorite Pokémons', () => {
-  test('teste Favorite Pokémons', () => {
+  test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
     const { history } = renderWithRouter(<App />);
 
     const favoritePokemonLink = screen.getByRole('link', {
