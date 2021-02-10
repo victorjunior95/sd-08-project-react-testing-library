@@ -74,7 +74,7 @@ class Pokedex extends React.Component {
         <h2>{`Encountered pokémons`}</h2>
         <Pokemon
           pokemon={ pokemon }
-          isFavorite={ isPokemonFavoriteById[pokemon.id] }
+          isFavorite={ {} }
         />
         {this.renderPokemonButtonsPanel()}
         <Button

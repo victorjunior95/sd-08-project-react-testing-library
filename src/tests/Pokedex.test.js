@@ -4,7 +4,10 @@ import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
+import Pokedex from '../components/Pokedex';
+import pokemons from '../mocks/pokemonDataMock01';
 
+const btnType = 'pokemon-type-button';
 describe('Pokedex', () => {
   test('title', () => {
     const history = createMemoryHistory();
@@ -69,7 +72,7 @@ describe('Pokedex', () => {
         <App />
       </Router>,
     );
-    const els = screen.getAllByTestId('pokemon-type-button');
+    const els = screen.getAllByTestId(btnType);
     const count = 7;
     expect(els.length).toBe(count);
 
@@ -119,7 +122,7 @@ describe('Pokedex', () => {
         <App />
       </Router>,
     );
-    const els = screen.getAllByTestId('pokemon-type-button');
+    const els = screen.getAllByTestId(btnType);
     userEvent.click(els[0]);
     expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
     userEvent.click(els[1]);
@@ -134,5 +137,19 @@ describe('Pokedex', () => {
     expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
     userEvent.click(els[6]);
     expect(screen.getByText(/Próximo pokémon/i).getAttribute('disabled')).toBe('');
+  });
+
+  test('dinamico', () => {
+    const history = createMemoryHistory();
+
+    render(
+      <Router history={ history }>
+        <Pokedex pokemons={ pokemons } />
+      </Router>,
+    );
+    const els = screen.getAllByTestId(btnType);
+    const count = 4;
+    expect(els.length).toBe(count);
+    expect(screen.getByText(/All/i)).toBeInTheDocument();
   });
 });
