@@ -42,7 +42,7 @@ describe('tests the main component (App.js)', () => {
     expect(getByRole('heading', { level: 2 })).toHaveTextContent(/Favorite pokémons/i);
   });
 
-  it('tests routing of navigation links', () => {
+  it('tests routing to page not found', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/random-string'] }>
         <App />
