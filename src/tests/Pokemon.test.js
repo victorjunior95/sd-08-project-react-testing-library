@@ -2,25 +2,53 @@ import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 
+const testPokemon = { id: 1,
+  name: 'Xablowski',
+  image: 'xablau.png',
+  type: 'Fire',
+  averageWeight: { measurementUnit: 'kg', value: '800' },
+  showDetailsLink: true,
+  isFavorite: true,
+};
 describe('tests for Pokemon.js', () => {
-  it('shows the title `Pokemon Pokédex` and corresponding text', () => {
-    const { getByRole, getByText } = renderWithRouter(<Pokemon />);
-    const title = getByRole('heading', { level: 2, name: /Pokemon Pokédex/ });
-    const text1 = getByText(['This application simulates a Pokédex,',
-      'a digital encliclopedia containing all Pokémons'].join(' '));
-    const text2 = getByText(['One can filter Pokémons by type,',
-      'and see more details for each one of them'].join(' '));
-    const allTextElements = [title, text1, text2];
-    allTextElements.forEach((textElement) => expect(textElement).toBeInTheDocument());
-    // expect(title && text1 && text2).toBeInTheDocument();
+  it('shows information of Pokemon', () => {
+    const { averageWeight } = testPokemon;
+    const { measurementUnit, value } = averageWeight;
+    const { getByTestId } = renderWithRouter(<Pokemon
+      pokemon={ testPokemon }
+      isFavorite={ testPokemon.isFavorite }
+    />);
+    const pkName = getByTestId('pokemon-name');
+    const pkType = getByTestId('pokemonType');
+    const pkWeight = getByTestId('pokemon-weight');
+    expect(pkName).toHaveTextContent(testPokemon.name);
+    expect(pkType).toHaveTextContent(testPokemon.type);
+    expect(pkWeight).toHaveTextContent(
+      `Average weight: ${value} ${measurementUnit}`,
+    );
+  });
+  it('shows the images correctly', () => {
+    const { getAllByRole, getByAltText } = renderWithRouter(<Pokemon
+      pokemon={ testPokemon }
+      isFavorite={ testPokemon.isFavorite }
+    />);
+    const allImages = getAllByRole('img');
+    expect(allImages).toHaveLength(2);
+    const pkImg = getByAltText(`${testPokemon.name} sprite`);
+    const favImg = getByAltText(`${testPokemon.name} is marked as favorite`);
+    expect(pkImg && favImg).toBeInTheDocument();
+    expect(pkImg && favImg).toHaveAttribute('src');
+    expect(pkImg.src).toContain(testPokemon.image);
+    expect(favImg.src).toContain('/star-icon.svg');
   });
 
-  it('shows the pokedex image correctly', () => {
-    const { getByRole } = renderWithRouter(<Pokemon />);
-    const img = getByRole('img');
-    const src = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
-    const alt = 'Pokédex';
-    expect(img.src).toBe(src);
-    expect(img.alt).toBe(alt);
+  it('verifies link "more details"', () => {
+    const { getByRole } = renderWithRouter(<Pokemon
+      pokemon={ testPokemon }
+      isFavorite={ testPokemon.isFavorite }
+    />);
+    const detailsLink = getByRole('link', { name: /More details/ });
+    expect(detailsLink).toBeInTheDocument();
+    expect(detailsLink).toHaveAttribute('href', `/pokemons/${testPokemon.id}`);
   });
 });
