@@ -1,6 +1,3 @@
-npx stryker run ./stryker/About.conf.json
-npx stryker run ./stryker/FavoritePokemons.conf.json
-npx stryker run ./stryker/NotFound.conf.json
 npx stryker run ./stryker/Pokedex.conf.json
 npx stryker run ./stryker/Pokemon.conf.json
 npx stryker run ./stryker/PokemonDetails.conf.json

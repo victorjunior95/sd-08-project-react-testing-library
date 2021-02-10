@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { fireEvent, render } from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
+test('renders <App>', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
     <Router history={ history }>
