@@ -19,14 +19,15 @@ describe('Requisito 6 <Pokemon.js />', () => {
       const type = getByText(/psychic/i);
       expect(type).toBeInTheDocument();
 
-      const { averageWeight: { value, measurementUnit }, name } = pokemons[4];
+      const { averageWeight: { value, measurementUnit }, name, image } = pokemons[4];
       const weight = getByTestId('pokemon-weight');
       expect(weight.innerHTML).toBe(`Average weight: ${value} ${measurementUnit}`);
 
-      const image = getByRole('img', {
+      const pokeImage = getByRole('img', {
         name: /alakazam/i,
       });
-      expect(image).toHaveProperty('alt', `${name} sprite`);
+      expect(pokeImage).toHaveAttribute('src', image);
+      expect(pokeImage).toHaveAttribute('alt', `${name} sprite`);
     });
 
   test('se o card indicado contém um link com url /pokemons/<id>',
