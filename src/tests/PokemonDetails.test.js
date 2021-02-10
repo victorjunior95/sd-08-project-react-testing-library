@@ -86,6 +86,8 @@ describe('req 6', () => {
     const images = getAllByAltText('Pikachu location');
     expect(mapsHeading).toBeInTheDocument();
     expect(images.length).toBe(2);
+    expect(images[0].src).toBe('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(images[1].src).toBe('https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
 
   it('favoritar funciona', () => {
