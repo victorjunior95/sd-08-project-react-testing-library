@@ -12,7 +12,7 @@ describe('Testando o About', () => {
     );
     const text = screen.getByText(/this application simulates a pokédex/i);
     const firstText = 'This application simulates a Pokédex,'
-    + ' a digital encliclopedia containing all Pokémons';
+    + ' a digital encliclopedia containing all Pokémons ';
 
     expect(text.textContent).toBe(firstText);
   });
