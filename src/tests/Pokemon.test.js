@@ -15,7 +15,7 @@ describe('Pokemon.js', () => {
 
     expect(cardName).toHaveTextContent(/pikachu/i);
     expect(cardType).toHaveTextContent(/electric/i);
-    expect(cardWeight).toHaveTextContent(/Average weight:/i);
+    expect(cardWeight).toHaveTextContent(/Average weight: 6.0 kg/i);
     expect(cardImg.src).toContain('http');
     expect(cardImg.alt).toContain('sprite');
   });
@@ -43,7 +43,7 @@ describe('Pokemon.js', () => {
     const favoriteMarker = screen.getByLabelText(/Pokémon favoritado\?/i);
     userEvent.click(favoriteMarker);
 
-    const favoriteIcon = screen.getByAltText(/is marked as favorite/i);
+    const favoriteIcon = screen.getByAltText(/Snorlax is marked as favorite/i);
     expect(favoriteIcon).toBeInTheDocument();
     expect(favoriteIcon.src).toContain('/star-icon.svg');
   });
