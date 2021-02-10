@@ -62,7 +62,7 @@ describe('Pokedex', () => {
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
   });
 
-  test('filtros existem', () => {
+  test('filtros', () => {
     const history = createMemoryHistory();
     render(
       <Router history={ history }>
@@ -72,19 +72,44 @@ describe('Pokedex', () => {
     const els = screen.getAllByTestId('pokemon-type-button');
     const count = 7;
     expect(els.length).toBe(count);
-  });
 
-  test('filtros electric', () => {
-    const history = createMemoryHistory();
-    render(
-      <Router history={ history }>
-        <App />
-      </Router>,
-    );
-    const els = screen.getAllByTestId('pokemon-type-button');
     userEvent.click(els[0]);
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
     userEvent.click(screen.getByText(/Próximo pokémon/i));
     expect(screen.getByText(/Pikachu/i)).toBeInTheDocument();
+
+    userEvent.click(els[1]);
+    expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Rapidash/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Charmander/i)).toBeInTheDocument();
+
+    userEvent.click(els[2]);
+    expect(screen.getByText(/Caterpie/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Caterpie/i)).toBeInTheDocument();
+
+    userEvent.click(els[3]);
+    expect(screen.getByText(/Ekans/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Ekans/i)).toBeInTheDocument();
+
+    userEvent.click(els[4]);
+    expect(screen.getByText(/Alakazam/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Mew/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Alakazam/i)).toBeInTheDocument();
+
+    userEvent.click(els[5]);
+    expect(screen.getByText(/Snorlax/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Snorlax/i)).toBeInTheDocument();
+
+    userEvent.click(els[6]);
+    expect(screen.getByText(/Dragonair/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/Próximo pokémon/i));
+    expect(screen.getByText(/Dragonair/i)).toBeInTheDocument();
   });
 });
