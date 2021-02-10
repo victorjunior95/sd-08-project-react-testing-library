@@ -42,4 +42,16 @@ describe('test PokemonDetails component', () => {
     const pokemonSummary = getByText(`${pokemons[0].summary}`);
     expect(pokemonSummary.innerHTML).toBe(`${pokemons[0].summary}`);
   });
+
+  test('renders a checkbox with label `Pokémon favoritado?`', () => {
+    const match = { params: { id: pokemons[0].id } };
+    const { getByText, getAllByAltText } = renderWithRouter(<PokemonDetails
+      isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+      match={ match }
+      pokemons={ pokemons }
+    />);
+    const label = getByText('Pokémon favoritado?');
+    expect(label).toBeInTheDocument();
+    expect(label.innerHTML).toBe('Pokémon favoritado?<input type=\"checkbox\" id=\"favorite\">');
+  });
 });
