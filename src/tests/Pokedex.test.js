@@ -4,8 +4,6 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
-const nextPokemonId = 'next-pokemon';
-
 test('there is a "h2" with the text "Encountered pokémons"', () => {
   const { getByRole } = render(
     <MemoryRouter initialEntries={ ['/'] }>
@@ -19,12 +17,12 @@ test('there is a "h2" with the text "Encountered pokémons"', () => {
 test('test if it shows the next pokemon when click', () => {
   const lengthPokemons = 8;
   const pokemonTestId = 'pokemon-name';
-  const { getByTestId } = render(
+  const { getByTestId, getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
-  const nextButton = getByTestId(nextPokemonId);
+  const nextButton = getByText(/próximo pokémon/i);
   expect(nextButton).toBeInTheDocument();
   const firstPokemon = getByTestId(pokemonTestId).innerHTML;
   userEvent.click(nextButton);
@@ -50,7 +48,7 @@ test('test if it shows only 1 pokemon at a time', () => {
 });
 
 test('test if there are the filter buttons', () => {
-  const { getByTestId, getAllByTestId, getAllByRole } = render(
+  const { getByTestId, getAllByTestId, getAllByRole, getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
@@ -62,7 +60,7 @@ test('test if there are the filter buttons', () => {
   expect(psychicButton).toHaveTextContent('Psychic');
   userEvent.click(psychicButton);
   expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
-  const nextButton = getByTestId(nextPokemonId);
+  const nextButton = getByText(/próximo pokémon/i);
   expect(nextButton).toBeInTheDocument();
   userEvent.click(nextButton);
   expect(getByTestId('pokemonType')).toHaveTextContent('Psychic');
@@ -78,7 +76,7 @@ test('test if there is a button to reset filter', () => {
   expect(allButton).toBeInTheDocument();
   const firstPokemonType = getByTestId('pokemonType').innerHTML;
   expect(firstPokemonType).toBe('Electric');
-  const nextButton = getByTestId(nextPokemonId);
+  const nextButton = getByText(/próximo pokémon/i);
   expect(nextButton).toBeInTheDocument();
   userEvent.click(nextButton);
   expect(getByTestId('pokemonType')).not.toHaveTextContent(firstPokemonType);
@@ -87,12 +85,12 @@ test('test if there is a button to reset filter', () => {
 });
 
 test('test if next pokemon button is disable when there is only one of the type', () => {
-  const { getAllByRole, getByTestId } = render(
+  const { getAllByRole, getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
-  const nextButton = getByTestId(nextPokemonId);
+  const nextButton = getByText(/próximo pokémon/i);
   expect(nextButton).toBeInTheDocument();
   expect(nextButton).not.toBeDisabled();
   const electricButton = getAllByRole('button')[1];
