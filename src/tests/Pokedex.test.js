@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Requisito 5 - Pokedex.test', () => {
-  test('Caminho feliz', () => {
+  test('Teste feliz', () => {
     const { history } = renderWithRouter(<App />);
 
     const headingTextLvlTwoHome = screen.getByRole('heading', {

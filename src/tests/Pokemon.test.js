@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Requisito 6 - Pokemon.test', () => {
-  test('Caminho feliz', () => {
+  test('Teste feliz', () => {
     const { history } = renderWithRouter(<App />);
 
     const pokemonOverview = document.querySelector('.pokemon-overview');

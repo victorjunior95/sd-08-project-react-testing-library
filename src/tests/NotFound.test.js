@@ -4,7 +4,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Requisito 4 - NotFound.test', () => {
-  test('Caminho feliz', () => {
+  test('Teste feliz', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/some-route');

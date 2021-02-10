@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Requisito 7 - PokemonDetails.test', () => {
-  test('Caminho feliz', () => {
+  test('Teste feliz', () => {
     const { history } = renderWithRouter(<App />);
 
     history.push('/pokemons/25');
