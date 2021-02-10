@@ -5,7 +5,7 @@ import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 
-const EIGHT = 8;
+const SEVEN = 7;
 const NEXT = 'next-pokemon';
 const BTNTEXT = '.button-text';
 const allFavs = { 4: false,
@@ -136,12 +136,7 @@ describe('Requisito 5', () => {
       isPokemonFavoriteById={ allFavs }
     />);
     const botoes = document.querySelectorAll(BTNTEXT);
-    const botao = screen.getByTestId(NEXT);
-    userEvent.click(botoes[2]);
-    userEvent.click(botao);
-    userEvent.click(botoes[0]);
-    const pokeName = screen.getByText(/Pikachu/);
-    expect(pokeName).toBeInTheDocument();
+    expect(botoes[0].innerHTML).toBe('All');
   });
 
   it('Teste se é criado um botão de filtro para cada tipo de Pokémon.', () => {
@@ -149,8 +144,17 @@ describe('Requisito 5', () => {
       pokemons={ pokemons }
       isPokemonFavoriteById={ allFavs }
     />);
-    const botoes = document.querySelectorAll('.filter-button');
-    expect(botoes.length).toBe(EIGHT);
+    const botoes = screen.getAllByTestId('pokemon-type-button');
+    expect(botoes.length).toBe(SEVEN);
+  });
+
+  it('Deve existir um botão de filtragem para cada tipo de Pokémon', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ allFavs }
+    />);
+    const botoes = screen.getAllByTestId('pokemon-type-button');
+    expect(botoes[1].innerHTML).toBe('Fire');
   });
 
   it('Teste se O botão de Próximo pokémon deve ser desabilitado', () => {
@@ -162,5 +166,14 @@ describe('Requisito 5', () => {
     const botao = screen.getByTestId(NEXT);
     userEvent.click(botoes[1]);
     expect(botao.disabled).toBeTruthy();
+  });
+
+  it('Teste se O botão de Próximo pokémon existe', () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ allFavs }
+    />);
+    const botao = screen.getByTestId(NEXT);
+    expect(botao.innerHTML).toBe('Próximo pokémon');
   });
 });
