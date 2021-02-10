@@ -59,8 +59,6 @@ describe('Shows the components,', () => {
     const noMatchImg = screen.getByRole('img', {
       name: /pikachu crying because the page requested was not found/i,
     });
-    console.log(noMatchHeading);
-    console.log(noMatchImg);
     expect(noMatchHeading).toBeInTheDocument();
     expect(noMatchImg).toBeInTheDocument();
   });
