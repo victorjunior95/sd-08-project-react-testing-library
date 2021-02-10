@@ -41,16 +41,23 @@ describe('Requisito 6 <Pokemon.js />', () => {
     });
 
   test('se ao clicar no link de navegação do Pokémon, é feito o redirecionamento', () => {
-    const { getByRole, history, getByText } = renderWithRouter(<App />);
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const cardLink = getByRole('link', { name: /more details/i });
+
+    fireEvent.click(cardLink);
+    const heading = getByText('Pikachu Details');
+    expect(heading).toBeInTheDocument();
+  });
+
+  test('Teste também se a URL exibida no navegador muda para /pokemon/<id>', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
     const cardLink = getByRole('link', { name: /more details/i });
 
     fireEvent.click(cardLink);
     const { id } = pokemons[0];
     const { pathname } = history.location;
-    const heading = getByText('Pikachu Details');
 
     expect(pathname).toEqual(`/pokemons/${id}`);
-    expect(heading).toBeInTheDocument();
   });
 
   test('Teste se existe um ícone de estrela nos Pokémons favoritados.', () => {
