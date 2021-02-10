@@ -16,6 +16,27 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
+test('Os links home - About - Favorit... existem? ', () => {
+  const { rend } = renderWithRouter(<App />);
+  console.log(rend);
+  const linkhome = screen.getByRole(
+    'link', {
+      name: /Home/i,
+    },
+  );
+  const linkAbout = screen.getByRole(
+    'link', {
+      name: /About/i,
+    },
+  );
+  const linkFavorite = screen.getByRole(
+    'link', {
+      name: /Favorite Pokémons/i,
+    },
+  );
+  expect(linkhome && linkAbout && linkFavorite).toBeInTheDocument();
+});
+
 test('Testa se o link leva a Home', () => {
   const { history } = renderWithRouter(<App />);
   const { pathname } = history.location;
