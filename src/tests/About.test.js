@@ -16,9 +16,17 @@ describe('Realiza testes no component About', () => {
   });
 
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const paragraph = getAllByTestId('paragraph');
+    const { container, getByText } = renderWithRouter(<About />);
+    const paragraph = container.querySelectorAll('p');
     expect(paragraph.length).toBe(2);
+
+    const firstParagraph1 = 'This application simulates a Pokédex, a';
+    const firstParagraph2 = ' digital encliclopedia containing all Pokémons';
+    const secondParagraph = getByText(
+      'One can filter Pokémons by type, and see more details for each one of them',
+    );
+    expect(getByText(firstParagraph1 + firstParagraph2)).toBeInTheDocument();
+    expect(secondParagraph).toBeInTheDocument();
   });
 
   it('Teste se a página contém a seguinte imagem de uma Pokédex', () => {
