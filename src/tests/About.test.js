@@ -1,8 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import About from '../components/About';
-// import renderWhitRouter from './renderWithRouter';
 
 describe('About.js ', () => {
   test('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
