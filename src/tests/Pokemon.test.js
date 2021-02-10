@@ -46,15 +46,19 @@ describe('Requisito 6 <Pokemon.js />', () => {
 
     fireEvent.click(cardLink);
     const heading = getByText('Pikachu Details');
+
     expect(heading).toBeInTheDocument();
   });
 
   test('Teste também se a URL exibida no navegador muda para /pokemon/<id>', () => {
-    const { getByRole, history } = renderWithRouter(<App />);
+    const { getByRole, history } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[4] }
+      isFavorite={ false }
+    />);
     const cardLink = getByRole('link', { name: /more details/i });
 
     fireEvent.click(cardLink);
-    const { id } = pokemons[0];
+    const { id } = pokemons[4];
     const { pathname } = history.location;
 
     expect(pathname).toEqual(`/pokemons/${id}`);
@@ -67,6 +71,7 @@ describe('Requisito 6 <Pokemon.js />', () => {
     />);
     const { name } = pokemons[4];
     const icone = getByRole('img', { name: /alakazam is marked as favorite/i });
+
     expect(icone).toHaveAttribute('src', '/star-icon.svg');
     expect(icone).toHaveAttribute('alt', `${name} is marked as favorite`);
   });
