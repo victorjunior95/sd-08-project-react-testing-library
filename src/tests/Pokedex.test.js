@@ -18,6 +18,8 @@ const fav = [
   },
 ];
 
+const pokemonFiltered = pokemons.filter((pokemon) => pokemon.type === 'Eletric' || pokemon.type === 'Psychic' || pokemon.type === 'Fire' || pokemon.type === 'Normal');
+
 describe('req 5', () => {
   it('contem heading', () => {
     const { getByRole } = renderWithRouter(
@@ -42,6 +44,7 @@ describe('req 5', () => {
     );
     const nextBut = getByTestId('next-pokemon');
     const pokemonName = getByTestId('pokemon-name');
+    expect(nextBut.innerHTML).toBe('Próximo pokémon');
     for (let index = 0; index < fav.length; index += 1) {
       const oldPokemon = pokemonName.innerHTML;
       userEvent.click(nextBut);
@@ -63,7 +66,7 @@ describe('req 5', () => {
   it('testando botão de filtro e all, e se next é disabilitado', () => {
     const { queryAllByTestId, getByTestId, getByText } = renderWithRouter(
       <Pokedex
-        pokemons={ pokemons }
+        pokemons={ pokemonFiltered }
         isPokemonFavoriteById={ fav }
       />,
     );
@@ -71,13 +74,13 @@ describe('req 5', () => {
     const pokemonType = getByTestId('pokemonType');
     const buttonNext = getByTestId('next-pokemon');
     const buttonAll = getByText('All');
-    expect(pokemonType.innerHTML).toBe('Electric');
-    userEvent.click(buttonsType[1]);
     expect(pokemonType.innerHTML).toBe('Fire');
+    userEvent.click(buttonsType[1]);
+    expect(pokemonType.innerHTML).toBe('Psychic');
     userEvent.click(buttonAll);
-    expect(pokemonType.innerHTML).toBe('Electric');
+    expect(pokemonType.innerHTML).toBe('Fire');
     expect(buttonNext.disabled).toBe(false);
-    userEvent.click(buttonsType[0]);
+    userEvent.click(buttonsType[2]);
     expect(buttonNext.disabled).toBe(true);
   });
 });
