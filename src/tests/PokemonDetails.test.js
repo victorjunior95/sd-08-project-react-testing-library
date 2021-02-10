@@ -7,7 +7,7 @@ import { PokemonDetails } from '../components';
 describe('test PokemonDetails component', () => {
   test('renders a heading level 2 with text', () => {
     const match = { params: { id: pokemons[0].id } };
-    const { getAllByRole, getByText } = renderWithRouter(<PokemonDetails
+    const { getByText } = renderWithRouter(<PokemonDetails
       isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
       match={ match }
       pokemons={ pokemons }
@@ -18,7 +18,7 @@ describe('test PokemonDetails component', () => {
 
   test('renders image(s) with the location', () => {
     const match = { params: { id: pokemons[0].id } };
-    const { getByRole, getAllByAltText } = renderWithRouter(<PokemonDetails
+    const { getAllByAltText } = renderWithRouter(<PokemonDetails
       isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
       match={ match }
       pokemons={ pokemons }
@@ -32,26 +32,38 @@ describe('test PokemonDetails component', () => {
 
   test('renders a section with title `Summary` and a text content', () => {
     const match = { params: { id: pokemons[0].id } };
-    const { getByText, getAllByAltText } = renderWithRouter(<PokemonDetails
+    const { getByText } = renderWithRouter(<PokemonDetails
       isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
       match={ match }
       pokemons={ pokemons }
     />);
-    const sectionTitle = getByText('Summary');
-    expect(sectionTitle.innerHTML).toBe('Summary');
+    const summaryTitle = getByText('Summary');
+    expect(summaryTitle.innerHTML).toBe('Summary');
     const pokemonSummary = getByText(`${pokemons[0].summary}`);
     expect(pokemonSummary.innerHTML).toBe(`${pokemons[0].summary}`);
   });
 
   test('renders a checkbox with label `Pokémon favoritado?`', () => {
     const match = { params: { id: pokemons[0].id } };
-    const { getByText, getAllByAltText } = renderWithRouter(<PokemonDetails
+    const { getByText } = renderWithRouter(<PokemonDetails
       isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
       match={ match }
       pokemons={ pokemons }
     />);
     const label = getByText('Pokémon favoritado?');
     expect(label).toBeInTheDocument();
-    expect(label.innerHTML).toBe('Pokémon favoritado?<input type=\"checkbox\" id=\"favorite\">');
+    expect(label.innerHTML.startsWith('Pokémon favoritado?')).toBeTruthy();
+  });
+
+  test('renders a heading level 2 for section title', () => {
+    const match = { params: { id: pokemons[0].id } };
+    const { getByText } = renderWithRouter(<PokemonDetails
+      isPokemonFavoriteById={ App.setIsPokemonFavoriteById() }
+      match={ match }
+      pokemons={ pokemons }
+    />);
+    const sectionTitle = getByText(`${pokemons[0].name} Details`);
+    expect(sectionTitle).toBeInTheDocument();
+    expect(sectionTitle.innerHTML).toBe(`${pokemons[0].name} Details`);
   });
 });
