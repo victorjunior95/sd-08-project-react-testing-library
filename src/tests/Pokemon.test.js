@@ -1,10 +1,10 @@
 import React from 'react';
 // import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+// import { fireEvent, render, screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
-import { Button, Pokedex, Pokemon } from '../components';
+import { Pokemon } from '../components';
 
 describe('test pokemon component', () => {
   test('renders name, type and weight of a pokemon', () => {
