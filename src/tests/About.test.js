@@ -1,6 +1,5 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
@@ -15,7 +14,7 @@ describe('Req 2 - About Test', () => {
   });
 
   test('2 - Shows h2 with About Pokédex', () => {
-    const { getByRole, getByText, history } = renderWithRouter(<App />);
+    const { getByRole, getByText } = renderWithRouter(<App />);
     const btn = getByText('About');
 
     fireEvent.click(btn);
@@ -25,7 +24,7 @@ describe('Req 2 - About Test', () => {
   });
 
   test('3 - Shows 2 paragraphs about pokédex', () => {
-    const { getByText, history } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
     const btn = getByText('About');
 
     fireEvent.click(btn);
@@ -36,11 +35,11 @@ describe('Req 2 - About Test', () => {
   });
 
   test('4 - Shows Pokédex image', () => {
-    const { getByRole, getByText, history } = renderWithRouter(<App />);
+    const { getByRole, getByText } = renderWithRouter(<App />);
     const btn = getByText('About');
 
     fireEvent.click(btn);
     const img = getByRole('img');
-    expect(img).toHaveAttribute('src','https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
+    expect(img).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
   });
 });
