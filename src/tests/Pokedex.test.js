@@ -54,7 +54,8 @@ describe('Teste o componente <Pokedex.js />', () => {
   it('Teste se a Pokédex tem os botões de filtro', () => {
     const { getAllByTestId, getByRole, getByText } = renderWithRouter(<App />);
     const filter = getAllByTestId('pokemon-type-button');
-    expect(filter).toHaveLength(7);
+    const seven = 7;
+    expect(filter).toHaveLength(seven);
     userEvent.click(getByRole('button', { name: /fire/i }));
     expect(getByText(/Charmander/i)).toBeInTheDocument();
   });
