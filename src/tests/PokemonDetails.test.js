@@ -44,8 +44,8 @@ describe('Testes Requisito 7 - Teste se as informações são mostradas na tela.
   });
 });
 
-describe('Teste se existe na página uma seção com os mapas contendo as localizações',() => {
-  test('Na seção de detalhes deverá existir um h2 com o texto Game Locations of <name>.', () => {
+describe('Teste se existe na página os mapas contendo as localizações', () => {
+  test('Na seção de detalhes deve existir um h2 escrito Game Locations...', () => {
     const { getByText, getByRole } = renderWithRouter(<App />);
     const details = getByText(/More details/i);
 
@@ -58,32 +58,31 @@ describe('Teste se existe na página uma seção com os mapas contendo as locali
     }));
   });
 
-  test('Todas as localizações do Pokémon devem ser mostradas na seção de detalhes', () => {
+  test('Todas as localizações devem ser mostradas na seção de detalhes', () => {
     const { getByText } = renderWithRouter(<App />);
     const details = getByText(/More details/i);
 
     fireEvent.click(details);
     expect(getByText(`${pokemons[0].name} Details`)).toBeInTheDocument();
 
-    pokemons[0].foundAt.map((pokemon) => {
-      expect(getByText(pokemon.location)).toBeInTheDocument();
-    });
+    pokemons[0].foundAt.map(
+      (pokemon) => expect(getByText(pokemon.location)).toBeInTheDocument());
   });
 
-  test('Devem ser exibidos, o nome da localização e uma imagem do mapa em cada localização', () => {
-
-  });
-
-  test('A imagem da localização deve ter um atributo src com a URL da localização', () => {
+  test('Devem ser exibidos, o nome da localização e uma imagem do mapa', () => {
 
   });
 
-  test('A imagem da localização deve ter um atributo alt com o texto <name> location.', () => {
+  test('A imagem da localização deve ter um atributo src com a URL', () => {
 
   });
-});  
 
-describe('Teste se o usuário pode favoritar um pokémon através da página de detalhes', () => {
+  test('A imagem da localização deve ter um atributo alt com o texto', () => {
+
+  });
+});
+
+describe('Teste se o usuário pode favoritar um pokémon pela página de detalhes', () => {
   test('A página deve exibir um checkbox que permite favoritar o Pokémon', () => {
     const { getByText, getByLabelText } = renderWithRouter(<App />);
     const details = getByText(/More details/i);
@@ -96,7 +95,7 @@ describe('Teste se o usuário pode favoritar um pokémon através da página de 
     expect(button).toBeTruthy();
   });
 
-  test('Cliques alternados no checkbox devem adicionar e remover o Pokémon de favoritos;', () => {
+  test('Cliques alternados no checkbox devem adicionar e remover o Pokémon', () => {
     const { getByText, getByLabelText } = renderWithRouter(<App />);
     const details = getByText(/More details/i);
 

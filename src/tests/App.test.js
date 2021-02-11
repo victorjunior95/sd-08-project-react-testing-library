@@ -51,7 +51,7 @@ describe('Testes Requisito 1', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  test('Teste se é enviado para a página Not Found ao entrar em uma URL desconhecida', () => {
+  test('Teste se é enviado a página Not Found ao entrar em uma URL desconhecida', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     history.push('/oi');
