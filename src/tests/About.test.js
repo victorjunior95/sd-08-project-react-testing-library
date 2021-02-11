@@ -41,8 +41,8 @@ test('testa se tem uma imagem da pokédex', () => {
 test('testa SRC imagem da pokédex', () => {
   renderWithRouter(<About />);
   const dximag = screen.getByAltText('Pokédex');
-  const { src } = dximag;
-  expect(dximag.src).toBe(src);
+  const urlimg = dximag.src;
+  expect(dximag).toHaveProperty('src', urlimg);
 });
 
 /* renderizar app
