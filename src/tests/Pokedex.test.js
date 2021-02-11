@@ -101,15 +101,11 @@ describe('Testando o componente <Pokedex.js />', () => {
     />);
 
     const nextButton = screen.getByRole('button', { name: /próximo pokémon/i });
-    userEvent.click(screen.getByRole('button', { name: /electric/i }));
-    expect(nextButton).toBeDisabled();
-    userEvent.click(screen.getByRole('button', { name: /bug/i }));
-    expect(nextButton).toBeDisabled();
-    userEvent.click(screen.getByRole('button', { name: /poison/i }));
-    expect(nextButton).toBeDisabled();
-    userEvent.click(screen.getByRole('button', { name: /normal/i }));
-    expect(nextButton).toBeDisabled();
-    userEvent.click(screen.getByRole('button', { name: /dragon/i }));
-    expect(nextButton).toBeDisabled();
+    const pokeType = [/electric/i, /bug/i, /poison/i, /normal/i, /dragon/i];
+    pokeType.forEach((type) => {
+      const button = screen.getByRole('button', { name: type });
+      userEvent.click(button);
+      expect(nextButton).toBeDisabled();
+    });
   });
 });
