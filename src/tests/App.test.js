@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../services/renderWithRouter';
 
-describe('Testing routes', () => {
+describe('Testing component App', () => {
   test('renders a reading with the text `Pokédex`', () => {
     const { getByText } = renderWithRouter(<App />);
 

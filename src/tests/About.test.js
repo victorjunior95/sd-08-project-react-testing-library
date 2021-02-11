@@ -2,7 +2,7 @@ import React from 'react';
 import renderWithRouter from '../services/renderWithRouter';
 import About from '../components/About';
 
-describe('Testing About page', () => {
+describe('Testing component About', () => {
   test('page contains info about Pokedex', () => {
     const { getByText, history } = renderWithRouter(<About />);
 
