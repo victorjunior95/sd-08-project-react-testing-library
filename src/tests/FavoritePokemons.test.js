@@ -42,7 +42,6 @@ test('Testa se existe favorito', async () => {
 });
 
 test('exibe nenhum favorito', async () => {
-
   renderWithRouter(<App />);
 
   const linkAll = screen.getByText(/All/i);
