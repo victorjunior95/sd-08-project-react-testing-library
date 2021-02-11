@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
 import pokemons from '../data';
 
-test('renders a about page', () => {
+test('Test pokemon favorite', () => {
   const history = createMemoryHistory();
   const { getByText, getByAltText } = render(
     <Router history={ history }>
