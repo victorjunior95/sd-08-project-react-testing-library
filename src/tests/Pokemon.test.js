@@ -51,11 +51,11 @@ describe('Req 6 - Pokemon Test', () => {
     expect(pathname).toBe(`/pokemons/${pikachu.id}`);
   });
   test('5 - Shows a star in the favorited pokémons card ', () => {
-    const { getByText, getByLabelText, getByAltText } = renderWithRouter(<App />);
+    const { getAllByText, getByLabelText, getByAltText } = renderWithRouter(<App />);
     const { history } = renderWithRouter(<App />);
     const pikachu = pokemons[0];
 
-    const link = getByText(/More/i);
+    const link = getAllByText(/More/i)[0];
     fireEvent.click(link);
 
     const favorite = getByLabelText('Pokémon favoritado?');
