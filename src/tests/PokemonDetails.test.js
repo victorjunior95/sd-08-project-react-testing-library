@@ -66,7 +66,8 @@ describe('Teste se existe na página os mapas contendo as localizações', () =>
     expect(getByText(`${pokemons[0].name} Details`)).toBeInTheDocument();
 
     pokemons[0].foundAt.map(
-      (pokemon) => expect(getByText(pokemon.location)).toBeInTheDocument());
+      (pokemon) => expect(getByText(pokemon.location)).toBeInTheDocument()
+    );
   });
 
   test('Devem ser exibidos, o nome da localização e uma imagem do mapa', () => {
