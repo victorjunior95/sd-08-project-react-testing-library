@@ -19,7 +19,7 @@ describe('Req 7 - Pokemon Details Test', () => {
 
     expect(title.textContent).toBe(`${pikachu.name} Details`);
     expect(link).not.toBeInTheDocument();
-    expect(summary.textContent).toBe('Summary');
+    expect(summary.textContent).toBe('Summary ');
     expect(paragraph).toBeInTheDocument();
   });
   test('2 - Shows Pokemon Location maps', () => {
