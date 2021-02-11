@@ -1,7 +1,6 @@
 import React from 'react';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
-import { getByLabelText } from '@testing-library/react';
 
 describe('Testa o componente PokemonDetails', () => {
   const pokemonId = '/pokemons/25';
