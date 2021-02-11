@@ -41,8 +41,10 @@ test('testa se tem uma imagem da pokédex', () => {
 test('testa SRC imagem da pokédex', () => {
   renderWithRouter(<About />);
   const dximag = screen.getByAltText('Pokédex');
-  const urlimg = dximag.src;
-  expect(dximag).toHaveProperty('src', urlimg);
+  expect(dximag).toHaveProperty(
+    'src',
+    'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png',
+  );
 });
 
 /* renderizar app
