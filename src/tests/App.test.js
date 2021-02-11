@@ -21,16 +21,16 @@ describe('Testing component App', () => {
     expect(pathname).toBe('/');
   });
 
-  test('menu contains: "Home", "About", "Favorite Pokémons', () => {
+  test('menu contains: "Home", "About", "Favorite Pokémons"', () => {
     const { getByText } = renderWithRouter(<App />);
 
-    const menuHome = getByText('/Home/i');
+    const menuHome = getByText(/Home/i);
     expect(menuHome).toBeInTheDocument();
 
-    const menuAbout = getByText('/About/i');
+    const menuAbout = getByText(/About/i);
     expect(menuAbout).toBeInTheDocument();
 
-    const menuFavoritePokemons = getByText('/Favorite Pokémons/i');
+    const menuFavoritePokemons = getByText(/Favorite Pokémons/i);
     expect(menuFavoritePokemons).toBeInTheDocument();
   });
 
@@ -58,7 +58,7 @@ describe('Testing component App', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
 
-    const about = getByText(/About Pokémons/i);
+    const about = getByText(/About Pokédex/i);
     expect(about).toBeInTheDocument();
   });
 
@@ -68,14 +68,14 @@ describe('Testing component App', () => {
     const subtitle = getByText(/Encountered pokémons/i);
     expect(subtitle).toBeInTheDocument();
 
-    const menuFavoritePokemons = getByText(/Favorite pokémons/i);
+    const menuFavoritePokemons = getByText(/Favorite Pokémons/i);
     expect(menuFavoritePokemons).toBeInTheDocument();
 
     userEvent.click(getByText(/Favorite Pokémons/i));
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
 
-    const favorite = getByText(/No favorite pokémon found/i);
+    const favorite = getByText(/No favorite pokemon found/i);
     expect(favorite).toBeInTheDocument();
   });
 
@@ -88,7 +88,7 @@ describe('Testing component App', () => {
     const routeNotFound = '/pokemon';
     history.push(routeNotFound);
 
-    const pageNotFound = getByText(/Page request not found/i);
+    const pageNotFound = getByText(/Page requested not found/i);
     expect(pageNotFound).toBeInTheDocument();
   });
 });
