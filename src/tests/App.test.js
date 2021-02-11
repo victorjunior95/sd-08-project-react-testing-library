@@ -15,7 +15,7 @@ describe('Testes Requisito 1', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  test('Teste se o topo da aplicação contém os Links Home, About, Favorite Pokémons', () => {
+  test('Teste se o topo da aplicação contém os Links Home, About e Favorite', () => {
     const { getByText } = render(
       <MemoryRouter>
         <App />
@@ -27,7 +27,7 @@ describe('Testes Requisito 1', () => {
     expect(getByText('Favorite Pokémons')).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada para a página inicial, ao clicar no link Home', () => {
+  test('Teste se é enviado para a página inicial, ao clicar no link Home', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('Home'));
@@ -35,7 +35,7 @@ describe('Testes Requisito 1', () => {
     expect(pathname).toBe('/');
   });
 
-  test('Teste se a aplicação é redirecionada para a página de About, ao clicar no link About', () => {
+  test('Teste se é enviado para a página de About, ao clicar no link About', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('About'));
@@ -43,7 +43,7 @@ describe('Testes Requisito 1', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('Teste se a aplicação é redirecionada para a página de Favorite Pokémons, ao clicar no link About', () => {
+  test('Teste se é enviado para a página de Favorite, ao clicar no link About', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('Favorite Pokémons'));
@@ -51,7 +51,7 @@ describe('Testes Requisito 1', () => {
     expect(pathname).toBe('/favorites');
   });
 
-  test('Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida', () => {
+  test('Teste se é enviado para a página Not Found ao entrar em uma URL desconhecida', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     history.push('/oi');
