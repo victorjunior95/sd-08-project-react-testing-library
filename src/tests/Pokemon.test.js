@@ -1,5 +1,5 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
@@ -22,7 +22,6 @@ test('Testa pokemon encontrado por peso', () => {
   renderWithRouter(<App />);
   const idpeso = screen.getByTestId('pokemon-weight');
   // console.log(idpeso.textContent);
-  // expect(idpeso).toBe();
   expect(idpeso.textContent).toBe('Average weight: 6.0 kg');
 });
 
