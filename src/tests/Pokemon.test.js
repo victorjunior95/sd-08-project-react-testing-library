@@ -25,6 +25,13 @@ test('Testa pokemon encontrado por peso', () => {
   expect(idpeso.textContent).toBe('Average weight: 6.0 kg');
 });
 
+test('Testa se existe detalhes ', () => {
+  renderWithRouter(<App />);
+  const idDetalhe = screen.getByText('More details');
+  console.log(idDetalhe.textContent);
+  expect(idDetalhe.textContent).toBe('More details');
+});
+
 /*
 test('Testa botão proximo pokemon', () => {
   renderWithRouter(<App />);
