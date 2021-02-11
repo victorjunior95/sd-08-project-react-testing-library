@@ -40,3 +40,30 @@ test('Testa se existe favorito', async () => {
 
   expect(screen.getByText(/Electric/i)).toBeInTheDocument();
 });
+
+test('exibe nenhum favorito', async () => {
+
+  renderWithRouter(<App />);
+
+  const linkAll = screen.getByText(/All/i);
+
+  expect(linkAll).toBeInTheDocument();
+
+  userEvent.click(linkAll);
+
+  const pikachu = screen.getByText(/Pikachu/i);
+
+  expect(pikachu).toBeInTheDocument();
+
+  expect(screen.getByText(/More details/i)).toBeInTheDocument();
+
+  userEvent.click(screen.getByText(/More details/i));
+
+  userEvent.click(screen.getByText(/Pokémon favoritado?/i));
+
+  userEvent.click(screen.getByText(/Favorite Pokémons/i));
+
+  const el = screen.getByText(/No favorite pokemon found/i);
+
+  expect(el).toBeInTheDocument();
+});
