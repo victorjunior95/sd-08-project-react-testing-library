@@ -105,4 +105,6 @@ test('Testa se é favorito ', () => {
   );
   // console.log(imgFav);
   expect(imgFav).toBeInTheDocument();
+
+  expect(imgFav.src).toContain('star-icon.svg');
 });
