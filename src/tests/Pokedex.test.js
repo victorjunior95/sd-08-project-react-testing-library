@@ -10,6 +10,7 @@ import mockFavorite from '../services/mockFavorite';
 
 const POKEMON_NAME = 'pokemon-name';
 const PROXIMO_POKEMON = 'Próximo pokémon';
+const POKE_TYPE_BUTTONS = 'pokemon-type-button';
 
 const pokemonNameTest = (pokemon) => {
   const button = screen.getByRole('button', { name: PROXIMO_POKEMON });
@@ -185,11 +186,12 @@ describe('Teste se é criado, dinamicamente,'
       if (acc.includes(curr.type)) return [...acc];
       return [...acc, curr.type];
     }, []);
-    const screenBtn = screen.getAllByRole('button');
+    const screenBtn = screen.getAllByTestId(POKE_TYPE_BUTTONS);
+    const allBtn = screen.getByRole('button', { name: 'All' });
     const textScreenBtn = screenBtn.map((btn) => btn.textContent);
-    const textScreenBtnWithoutAll = textScreenBtn.slice(1, textScreenBtn.length - 1);
-    expect(mockPokeBtn.entries === textScreenBtnWithoutAll.entries).toBe(true);
-    expect(textScreenBtn[0]).toBe('All');
+    // const textScreenBtnWithoutAll = textScreenBtn.slice(1, textScreenBtn.length - 1);
+    expect(mockPokeBtn.entries === textScreenBtn.entries).toBe(true);
+    expect(allBtn).toBeInTheDocument();
   });
 });
 
