@@ -24,6 +24,8 @@ describe('o componente <Pokemon.js />', () => {
     expect(weight).toBeInTheDocument();
     expect(pokemonImg).toHaveAttribute('src',
       'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(pokemonImg).toHaveAttribute('alt',
+      'Pikachu sprite');
   });
 
   test('se o URL /pokemons/<id>, onde <id> é o id do Pokémon exibido', () => {
