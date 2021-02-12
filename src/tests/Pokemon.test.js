@@ -4,6 +4,8 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
+const str = 'Pikachu sprite';
+
 test('Testa pokemon encontrado por nome', () => {
   renderWithRouter(<App />);
   const idname = screen.getByTestId('pokemon-name');
@@ -27,11 +29,17 @@ test('Testa pokemon encontrado por peso', () => {
 
 test('Testa se existe detalhes ', () => {
   renderWithRouter(<App />);
-  const idDetalhe = screen.getByText('More details');
+  const idDetalhe = screen.getByRole(
+    'link',
+    {
+      name: 'More details',
+      href: '/pokemons/25',
+    },
+  );
 
   // console.log(idDetalhe.textContent);
 
-  userEvent.click(screen.getByText(/More details/i));
+  userEvent.click(idDetalhe);
 
   const txtDetalhe = screen.getByRole(
     'heading',
@@ -49,12 +57,11 @@ test('Testa a imagem do pokemon', () => {
   const img = screen.getByRole(
     'img',
     {
-      // name: 'Pikachu sprite',
-      alt: 'Pikachu sprite',
+      name: str,
     },
   );
   // wqqconsole.log(img);
-  expect(img).toHaveProperty('alt', 'Pikachu sprite');
+  expect(img).toHaveProperty('alt', str);
 });
 
 test('Testa endreço da imagem do pokemon', () => {
@@ -62,8 +69,8 @@ test('Testa endreço da imagem do pokemon', () => {
   const img = screen.getByRole(
     'img',
     {
-      name: 'Pikachu sprite',
-      alt: 'Pikachu sprite',
+      name: str,
+      alt: str,
     },
   );
   // console.log(img);
