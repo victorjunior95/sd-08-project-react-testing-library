@@ -76,87 +76,33 @@ test('Testa endreço da imagem do pokemon', () => {
   // console.log(img);
   expect(img).toHaveProperty('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
 });
-/*
-test('Testa botão proximo pokemon', () => {
+
+test('Testa se é favorito ', () => {
   renderWithRouter(<App />);
-  const btao = screen.getByRole(
-    'button',
+  const idDetalhe = screen.getByRole(
+    'link',
     {
-      name: /Próximo pokémon/i,
+      name: 'More details',
+      href: '/pokemons/25',
     },
   );
-  expect(btao).toBeInTheDocument();
+
+  // console.log(idDetalhe.textContent);
+
+  userEvent.click(idDetalhe);
+
+  const labelFav = screen.getByText('Pokémon favoritado?');
+  // console.log(labelFav);
+  userEvent.click(labelFav);
+
+  const imgFav = screen.getByRole(
+    'img',
+    {
+      name: 'Pikachu is marked as favorite',
+      class: 'favorite-icon',
+      src: '/star-icon.svg',
+    },
+  );
+  // console.log(imgFav);
+  expect(imgFav).toBeInTheDocument();
 });
-
-test('Testa click next', async () => {
-  renderWithRouter(<App />);
-
-  const btnnext = screen.getByRole(
-    'button',
-    {
-      name: 'Próximo pokémon',
-    },
-  );
-
-  userEvent.click(btnnext);
-
-  const Charmander = screen.getByText(/Charmander/i);
-
-  expect(Charmander).toBeInTheDocument();
-
-  userEvent.click(btnnext);
-
-  const Caterpie = screen.getByText(/Caterpie/i);
-
-  expect(Caterpie).toBeInTheDocument();
-});
-
-test('Teste escolha do tipo', async () => {
-  renderWithRouter(<App />);
-
-  const btnfire = screen.getByRole(
-    'button',
-    {
-      name: 'Fire',
-    },
-  );
-  userEvent.click(btnfire);
-  const tipofire = screen.getByText('Charmander');
-
-  expect(tipofire).toBeInTheDocument();
-
-  const btnext = screen.getByRole(
-    'button',
-    {
-      name: 'Próximo pokémon',
-    },
-  );
-
-  userEvent.click(btnext);
-  const tipofire2 = screen.getByText('Rapidash');
-
-  expect(tipofire2).toBeInTheDocument();
-});
-
-test('Teste todos os tipos', async () => {
-  renderWithRouter(<App />);
-
-  const all = screen.getByRole(
-    'button',
-    {
-      name: 'All',
-    },
-  );
-  userEvent.click(all);
-  const tipoall = screen.getByText('Pikachu');
-
-  expect(tipoall).toBeInTheDocument();
-});
-
-test('Teste selecionando pelo id', async () => {
-  renderWithRouter(<App />);
-
-  const dtsId = screen.getAllByTestId('pokemon-type-button');
-  const lgth = 7;
-  expect(dtsId.length).toBe(lgth);
-}); */
