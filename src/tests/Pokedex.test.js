@@ -68,7 +68,6 @@ describe('Teste o componente <Pokedex.js />', () => {
   });
 
   it('É criado, dinamicamente, um botão de filtro para cada tipo de Pokémon', () => {
-    // Os botões de filtragem devem ser dinâmicos;
     const { getByRole } = renderWithRouter(<App />);
     expect(getByRole('button', { name: /Electric/i })).toBeInTheDocument();
     expect(getByRole('button', { name: /fire/i })).toBeInTheDocument();
