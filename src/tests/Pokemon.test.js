@@ -1,5 +1,5 @@
 import React from 'react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
@@ -28,10 +28,47 @@ test('Testa pokemon encontrado por peso', () => {
 test('Testa se existe detalhes ', () => {
   renderWithRouter(<App />);
   const idDetalhe = screen.getByText('More details');
-  console.log(idDetalhe.textContent);
-  expect(idDetalhe.textContent).toBe('More details');
+
+  // console.log(idDetalhe.textContent);
+
+  userEvent.click(screen.getByText(/More details/i));
+
+  const txtDetalhe = screen.getByRole(
+    'heading',
+    {
+      level: 2,
+      name: 'Summary',
+    },
+  );
+
+  expect(txtDetalhe).toBeInTheDocument();
 });
 
+test('Testa a imagem do pokemon', () => {
+  renderWithRouter(<App />);
+  const img = screen.getByRole(
+    'img',
+    {
+      // name: 'Pikachu sprite',
+      alt: 'Pikachu sprite',
+    },
+  );
+  // wqqconsole.log(img);
+  expect(img).toHaveProperty('alt', 'Pikachu sprite');
+});
+
+test('Testa endreço da imagem do pokemon', () => {
+  renderWithRouter(<App />);
+  const img = screen.getByRole(
+    'img',
+    {
+      name: 'Pikachu sprite',
+      alt: 'Pikachu sprite',
+    },
+  );
+  // console.log(img);
+  expect(img).toHaveProperty('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+});
 /*
 test('Testa botão proximo pokemon', () => {
   renderWithRouter(<App />);
