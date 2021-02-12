@@ -4,7 +4,7 @@ import App from '../App';
 import pokemons from '../data';
 import renderWithRouter from './renderWithRouter';
 
-describe('Requisito 4 - pagina Pokedex', () => {
+describe('Requisito 5 - Pokedex', () => {
   it('verifica se heading existe heading', () => {
     const { getByText } = renderWithRouter(<App />);
     const title = getByText(/Encountered pokémons/i);
