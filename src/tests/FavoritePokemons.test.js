@@ -1,7 +1,7 @@
 import React from 'react';
-import renderWithRouter from '../renderWithRouter';
 import { fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Teste Requisito 3', () => {
