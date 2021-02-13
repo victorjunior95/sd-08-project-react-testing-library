@@ -48,6 +48,6 @@ describe('requirement06', () => {
     const { name } = pokemonTest;
     const icon = getByAltText(`${name} is marked as favorite`);
     expect(icon).toBeInTheDocument();
-    expect(icon.src).toBe('http://localhost/star-icon.svg');
+    expect(icon.src).toContain('/star-icon.svg');
   });
 });
