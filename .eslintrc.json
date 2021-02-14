@@ -62,7 +62,7 @@
     "sonarjs/no-extra-arguments": ["error"],
     "sonarjs/no-identical-conditions": ["error"],
     "sonarjs/no-identical-expressions": ["error"],
-    "sonarjs/no-identical-functions": ["error"],
+    "sonarjs/no-identical-functions": [0],
     "sonarjs/no-inverted-boolean-check": ["error"],
     "sonarjs/no-one-iteration-loop": ["error"],
     "sonarjs/no-redundant-boolean": ["error"],
