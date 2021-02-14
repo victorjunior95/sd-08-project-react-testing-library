@@ -17,7 +17,7 @@ describe('Testes Requisito 6', () => {
     expect(alt.src).toContain('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 
-  test('Teste se o card do Pokémon indicado na Pokédex contém um link de navegação', () => {
+  test('Teste se o card do Pokémon contém um link de navegação', () => {
     const { getByText, history } = renderWithRouter(<App />);
 
     userEvent.click(getByText('More details'));
