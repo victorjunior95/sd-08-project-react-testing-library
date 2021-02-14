@@ -22,7 +22,7 @@ describe.only('Testes do requisito 7', () => {
 
     const summary = heading[1];
     expect(summary).toBeDefined();
-    expect(summary.textContent).toBe('Summary');
+    expect(summary.textContent).toBe(' Summary ');
 
     const gameLocationsPokemon = heading[2];
     expect(gameLocationsPokemon).toBeDefined();
