@@ -6,9 +6,10 @@ import { About } from '../components';
 describe('testing the <About.js /> component', () => {
   test('If the page contains information about Pokédex.', () => {
     renderWithRouter(<About />);
-    expect(screen.getByText(`This application simulates a Pokédex,
-     a digital encliclopedia containing all Pokémons`)).toBeInTheDocument();
+    expect(screen.getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
   });
+  // expect(screen.toHaveTextContent('This application simulates a Pokédex')).toBeInTheDocument();
+  // });
 
   test('If the page contains an h2 heading with the text About Pokédex.', () => {
     renderWithRouter(<About />);
