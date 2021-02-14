@@ -1,9 +1,9 @@
 import React from 'react';
-import { fireEvent, getAllByAltText } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
-import userEvent from '@testing-library/user-event';
 
 describe('Testes Requisito 7 - Teste se as informações são mostradas na tela.', () => {
   test('A página deve conter um texto <name> Details.', () => {
@@ -72,7 +72,7 @@ describe('Teste se existe na página os mapas contendo as localizações', () =>
   });
 
   test('Devem ser exibidos, o nome da localização e uma imagem do mapa', () => {
- 
+
   });
 
   test('A imagem da localização deve ter um atributo src com a URL', () => {
