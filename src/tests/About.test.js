@@ -11,9 +11,10 @@ describe('Tests <About /> component', () => {
   });
 
   it('must contain two p tags describing the `Pokédex`', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
+    const { getByText } = renderWithRouter(<About />);
 
-    expect(getAllByTestId('about-pokedex').length).toBe(2);
+    expect(getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
+    expect(getByText(/One can filter Pokémons by type/i)).toBeInTheDocument();
   });
 
   it('must contain an specific image with the corresponding source', () => {
