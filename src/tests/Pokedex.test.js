@@ -38,7 +38,11 @@ describe('Teste Requisito 5', () => {
   });
 
   test('Teste se é mostrado apenas um Pokémon por vez', () => {
+    const { getByRole } = renderWithRouter(<App />);
 
+    const img = getByRole('img');
+    expect(img.src).toContain('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(img.alt).not.toContain('Charmander sprite');
   });
 
   test('Teste se a Pokédex tem os botões de filtro', () => {
@@ -71,7 +75,7 @@ describe('Teste Requisito 5', () => {
   });
 
   test('Teste se é criado um botão de filtro para cada tipo de Pokémon', () => {
-    const { getByText, getByRole, getAllByTestId } = renderWithRouter(< App />);
+    const { getByText, getByRole, getAllByTestId } = renderWithRouter(<App />);
 
     userEvent.click(getByRole('button', { name: 'Fire' }));
     expect(getByText('Charmander')).toBeInTheDocument();
