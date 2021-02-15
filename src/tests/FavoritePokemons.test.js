@@ -1,8 +1,8 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
+// import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
-import App from '../App';
+// import App from '../App';
 
 describe('teste do componente FavoritePokemons', () => {
   test('verifica se o cabeçalho e texto aparecem caso de nenhum favorito', () => {
