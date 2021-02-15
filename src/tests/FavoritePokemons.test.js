@@ -21,11 +21,10 @@ describe('Favorite Pokemons test components', () => {
     const { getAllByTestId, getByText } = renderWithRouter(
       <FavoritePokemons pokemons={ pokemons } />,
     );
-    const NINE = 9;
 
     const pokemonsFavorites = getAllByTestId('pokemon-name');
 
-    expect(pokemonsFavorites.length).toBe(NINE);
+    expect(pokemonsFavorites.length).toBe(pokemons.length);
 
     const pikachu = getByText('Pikachu');
     const charmander = getByText('Charmander');
