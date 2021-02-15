@@ -6,6 +6,7 @@ import renderwithRouter from './renderWithRouter';
 import { Pokemon } from '../components';
 import mockPokemons from '../services/mockPokemons';
 import mockFavorite from '../services/mockFavorite';
+import pokemons from '../data';
 
 const POKEMON_NAME = 'pokemon-name';
 const POKEMON_TYPE = 'pokemonType';
@@ -50,7 +51,9 @@ describe('Teste se é renderizado um card com as informações'
       isFavorite={ mockFavorite[25] }
     />);
     const pokeImage = screen.getAllByRole('img')[0].src;
+    const pokeAltImg = screen.getByAltText(`${pokemons[0].name} sprite`);
     expect(pokeImage).toBe('https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+    expect(pokeAltImg).toBeInTheDocument();
   });
 });
 
