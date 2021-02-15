@@ -26,7 +26,6 @@ const arrOfTypes = [
   },
 ];
 
-const testid = 'data-testid';
 const pokeNameStr = 'pokemon-name';
 
 describe('Pokedex.js tests', () => {
@@ -49,9 +48,7 @@ describe('Pokedex.js tests', () => {
       isPokemonFavoriteById={ mockFavorites }
     />);
 
-    let firstPokemonName = screen.getByText((content, element) => (
-      element.getAttribute(testid) === pokeNameStr
-    ));
+    let firstPokemonName = screen.getByTestId(pokeNameStr);
     expect(firstPokemonName.textContent).toBe(data[0].name);
 
     const allButton = screen.getByRole('button', { name: 'All' });
@@ -60,17 +57,13 @@ describe('Pokedex.js tests', () => {
     const nextPokeButton = screen.getByRole('button', { name: 'Próximo pokémon' });
 
     data.forEach(({ name }) => {
-      const pokeCardName = screen.getByText((content, element) => (
-        element.getAttribute(testid) === pokeNameStr
-      ));
+      const pokeCardName = screen.getByTestId(pokeNameStr);
       expect(pokeCardName.textContent).toBe(name);
 
       userEvent.click(nextPokeButton);
     });
 
-    firstPokemonName = screen.getByText((content, element) => (
-      element.getAttribute(testid) === pokeNameStr
-    ));
+    firstPokemonName = screen.getByTestId(pokeNameStr);
     expect(firstPokemonName.textContent).toBe(data[0].name);
   });
 
@@ -92,9 +85,7 @@ describe('Pokedex.js tests', () => {
       const typeButton = screen.getByRole('button', { name: groupType });
       userEvent.click(typeButton);
 
-      const pokeCardType = screen.getByText((content, element) => (
-        element.getAttribute(testid) === 'pokemonType'
-      ));
+      const pokeCardType = screen.getByTestId('pokemonType');
       expect(pokeCardType.textContent).toBe(groupType);
 
       const nextPokeButton = screen.getByRole('button', { name: 'Próximo pokémon' });
