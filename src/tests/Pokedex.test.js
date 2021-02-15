@@ -189,7 +189,6 @@ describe('Teste se é criado, dinamicamente,'
     const screenBtn = screen.getAllByTestId(POKE_TYPE_BUTTONS);
     const allBtn = screen.getByRole('button', { name: 'All' });
     const textScreenBtn = screenBtn.map((btn) => btn.textContent);
-    // const textScreenBtnWithoutAll = textScreenBtn.slice(1, textScreenBtn.length - 1);
     expect(mockPokeBtn.entries === textScreenBtn.entries).toBe(true);
     expect(allBtn).toBeInTheDocument();
   });
