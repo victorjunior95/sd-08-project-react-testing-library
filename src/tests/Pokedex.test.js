@@ -4,15 +4,19 @@ import renderWithRouter from './renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
 
-// const types = pokemons.reduce((acc = [], current) => [...acc, current.type], []);
-// console.log(types);
-
 const types = pokemons.reduce((acc = [], current) => {
   const currentIsNotReapeated = acc.every((type) => type !== current.type);
   if (currentIsNotReapeated) return [...acc, current.type];
   return acc;
 }, []);
-console.log(types);
+
+const testListAndClickNext = (pokemons, getByText) => {
+  pokemons.forEach((pokemon) => {
+    expect(getByText(`${pokemon.name}`)).toBeInTheDocument();
+    const nextPokemonButton = getByText(/Próximo pokémon/i);
+    userEvent.click(nextPokemonButton);
+  });
+}
 
 describe(' Pokedex.js', () => {
   it('page contains an h2 heading with the text Encountered pokémons', () => {
@@ -26,11 +30,7 @@ describe(' Pokedex.js', () => {
   it('the next Pokémon on the list when the Next Pokémon button is clicked', () => {
     const { getByText } = renderWithRouter(<App />);
 
-    pokemons.forEach((pokemon) => {
-      expect(getByText(`${pokemon.name}`)).toBeInTheDocument();
-      const nextPokemonButton = getByText(/Próximo pokémon/i);
-      userEvent.click(nextPokemonButton);
-    });
+    testListAndClickNext(pokemons, getByText);
 
     const titlePikachu = getByText(/Pikachu/i);
     expect(titlePikachu).toBeInTheDocument();
@@ -67,11 +67,8 @@ describe(' Pokedex.js', () => {
 
       const pokemonsFiltered = pokemons.filter((pokemon) => (pokemon.type === type));
 
-      pokemonsFiltered.forEach((pokemon) => {
-        expect(getByText(`${pokemon.name}`)).toBeInTheDocument();
-        const nextPokemonButton = getByText(/Próximo pokémon/i);
-        userEvent.click(nextPokemonButton);
-      });
+      testListAndClickNext(pokemonsFiltered, getByText);
+
       const firstPokemon = getByText(pokemonsFiltered[0].name);
       expect(firstPokemon).toBeInTheDocument();
     });
@@ -86,11 +83,8 @@ describe(' Pokedex.js', () => {
     expect(buttonAll).toBeInTheDocument();
     userEvent.click(buttonAll);
 
-    pokemons.forEach((pokemon) => {
-      expect(getByText(`${pokemon.name}`)).toBeInTheDocument();
-      const nextPokemonButton = getByText(/Próximo pokémon/i);
-      userEvent.click(nextPokemonButton);
-    });
+    testListAndClickNext(pokemons, getByText);
+
     const titlePikachu = getByText(/Pikachu/i);
     expect(titlePikachu).toBeInTheDocument();
   });
