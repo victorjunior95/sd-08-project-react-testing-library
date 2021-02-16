@@ -10,13 +10,13 @@ const types = pokemons.reduce((acc = [], current) => {
   return acc;
 }, []);
 
-const testListAndClickNext = (pokemons, getByText) => {
-  pokemons.forEach((pokemon) => {
+const testListAndClickNext = (pokemonsParam, getByText) => {
+  pokemonsParam.forEach((pokemon) => {
     expect(getByText(`${pokemon.name}`)).toBeInTheDocument();
     const nextPokemonButton = getByText(/Próximo pokémon/i);
     userEvent.click(nextPokemonButton);
   });
-}
+};
 
 describe(' Pokedex.js', () => {
   it('page contains an h2 heading with the text Encountered pokémons', () => {
