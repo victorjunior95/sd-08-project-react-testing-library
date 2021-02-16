@@ -25,7 +25,7 @@ describe('Teste componente About', () => {
     expect(`${paragraph.length}`).toBe('2');
   });
 
-  test('Confere se existe img <p>', () => {
+  test('Confere se existe img', () => {
     renderWithRouter(<About />);
     const img = screen.getByTestId('img');
     expect(img).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
