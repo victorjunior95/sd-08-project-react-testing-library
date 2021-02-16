@@ -1,5 +1,5 @@
 import React from 'react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
@@ -26,5 +26,24 @@ describe('teste do componente Pokemon', () => {
       src: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     });
     expect(pokeImage).toBeInTheDocument();
+  });
+  test('verifica se o link com o texto "more details" renderiza no componente', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const detailsLink = getByRole('link', { name: /more details/i });
+    expect(detailsLink).toBeInTheDocument();
+  });
+  test('verifica se a estrela de favoritado aparece na tela', () => {
+    const { getByRole } = renderWithRouter(<App />);
+    const favoriteStart = getByRole('img', {
+      altText: /pikachu is marked as favorite/i,
+    });
+    expect(favoriteStart).toBeInTheDocument();
+  });
+  test('verifica se link de detalhes funciona', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    const detailsLink = getByRole('link', { name: /more details/i });
+    userEvent.click(detailsLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/25');    
   });
 });
