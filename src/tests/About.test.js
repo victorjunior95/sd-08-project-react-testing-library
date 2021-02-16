@@ -20,9 +20,9 @@ describe('Teste componente About', () => {
   });
 
   test('Confere se existe dois <p>', () => {
-    renderWithRouter(<About />);
-    const paragraph = screen.getAllByTestId('paragraph');
-    expect(`${paragraph.length}`).toBe('2');
+    const { container } = renderWithRouter(<About />);
+    const paragraph = container.querySelectorAll('p');
+    expect(paragraph.length).toBe(2);
   });
 
   test('Confere se existe img', () => {
