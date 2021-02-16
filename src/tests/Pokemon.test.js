@@ -26,6 +26,7 @@ describe('teste do componente Pokemon', () => {
       src: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png',
     });
     expect(pokeImage).toBeInTheDocument();
+    expect(pokeImage).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
   test('verifica se o link com o texto "more details" renderiza no componente', () => {
     const { getByRole } = renderWithRouter(<App />);
@@ -34,16 +35,18 @@ describe('teste do componente Pokemon', () => {
   });
   test('verifica se a estrela de favoritado aparece na tela', () => {
     const { getByRole } = renderWithRouter(<App />);
-    const favoriteStart = getByRole('img', {
-      altText: /pikachu is marked as favorite/i,
-    });
-    expect(favoriteStart).toBeInTheDocument();
+    const detailsLink = getByRole('link', { name: /more details/i });
+    userEvent.click(detailsLink);
+    const favoriteStar = getByRole('img', { name: /pikachu is marked as favorite/i });
+    expect(favoriteStar).toBeInTheDocument();
+    expect(favoriteStar).toHaveAttribute('src', '/star-icon.svg');
+    expect(favoriteStar).toHaveAttribute('alt', /pikachu is marked as favorite/i);
   });
   test('verifica se link de detalhes funciona', () => {
     const { getByRole, history } = renderWithRouter(<App />);
     const detailsLink = getByRole('link', { name: /more details/i });
     userEvent.click(detailsLink);
     const { pathname } = history.location;
-    expect(pathname).toBe('/pokemons/25');    
+    expect(pathname).toBe('/pokemons/25');
   });
 });
