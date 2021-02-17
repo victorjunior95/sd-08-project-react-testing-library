@@ -57,11 +57,13 @@ describe('Testando Pokedex', () => {
     fireEvent.click(btfiltroPsychic);
     expect(btfiltroAll).toBeInTheDocument();
     expect(queryByText('Alakazam')).toBeInTheDocument();
+
     fireEvent.click(buttonProxPokemon);
     expect(queryByText('Alakazam')).not.toBeInTheDocument();
     expect(queryByText('Mew')).toBeInTheDocument();
     expect(btfiltroAll).toBeInTheDocument();
     fireEvent.click(btfiltroFire);
+
     expect(queryByText('Charmander')).toBeInTheDocument();
     expect(btfiltroAll).toBeInTheDocument();
     fireEvent.click(btfiltroAll);
