@@ -39,7 +39,10 @@ describe('Testando Pokedex', () => {
     const btfiltroAll = screen.getByRole('button', {
       name: /All/i,
     });
+    expect(queryByText('Pikachu')).toBeInTheDocument();
     expect(btfiltroAll).toBeInTheDocument();
+    fireEvent.click(btfiltroAll);
+    expect(queryByText('Pikachu')).toBeInTheDocument();
 
     const btfiltroPsychic = screen.getByRole('button', {
       name: /Psychic/i,
@@ -61,6 +64,10 @@ describe('Testando Pokedex', () => {
     fireEvent.click(buttonProxPokemon);
     expect(queryByText('Alakazam')).not.toBeInTheDocument();
     expect(queryByText('Mew')).toBeInTheDocument();
+    fireEvent.click(buttonProxPokemon);
+    expect(queryByText('Alakazam')).toBeInTheDocument();
+    expect(queryByText('Mew')).not.toBeInTheDocument();
+
     expect(btfiltroAll).toBeInTheDocument();
     fireEvent.click(btfiltroFire);
 
@@ -69,5 +76,12 @@ describe('Testando Pokedex', () => {
     fireEvent.click(btfiltroAll);
     expect(queryByText('Mew')).not.toBeInTheDocument();
     expect(queryByText('Pikachu')).toBeInTheDocument();
+  });
+
+  test('Verificando todos botoes de filtros', () => {
+    const { getAllByTestId } = renderWithRouter(<App />);
+    const nBtt = 7;
+    const allBtt = getAllByTestId('pokemon-type-button');
+    expect(allBtt.length).toBe(nBtt);
   });
 });
