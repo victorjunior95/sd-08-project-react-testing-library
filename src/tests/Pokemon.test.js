@@ -3,7 +3,6 @@ import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
-import { PokemonDetails } from '../components';
 
 const Pikachu = pokemons[0];
 // const POKEMON_NAME = 'pokemon-name';
