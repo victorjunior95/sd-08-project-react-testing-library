@@ -1,7 +1,6 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
-import pokemon from '../data';
 
 test('No favorite pokemon found', () => {
   const { getByText } = renderWithRouter(<FavoritePokemons />);
