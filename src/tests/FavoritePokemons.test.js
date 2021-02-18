@@ -7,8 +7,8 @@ describe('test the Favorite Pokemons component', () => {
   it('tests if the message is displayed', () => {
     const { getByText } = render(
       <MemoryRouter initialEntries={ ['/favorites'] }>
-      <App />
-    </MemoryRouter>,
+        <App />
+      </MemoryRouter>,
     );
     const message = getByText(/No favorite pokemon found/i);
     expect(message).toBeInTheDocument();
