@@ -64,4 +64,11 @@ describe('teste do componente PokemonDetails', () => {
     const pokeSummary = getByText(/this intelligent pokémon roasts/i);
     expect(pokeSummary).toBeInTheDocument();
   });
+  test('verifica se renderiza o texto "Pokemon favoritado?"', () => {
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const detailsLink = getByRole('link', { name: /more details/i });
+    userEvent.click(detailsLink);
+    const isPokemonFavoriteText = getByText(/pokémon favoritado\?/i);
+    expect(isPokemonFavoriteText).toBeInTheDocument();
+  });
 });
