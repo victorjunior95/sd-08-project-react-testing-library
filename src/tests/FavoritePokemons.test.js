@@ -7,5 +7,5 @@ describe('checks if the favorite pokemons page loads correctly', () => {
     const { getByText } = renderWithRouter(<FavoritePokemons />);
     const noFavorites = getByText(/No favorite pokemon found/i);
     expect(noFavorites).toBeInTheDocument();
-  })
-})
+  });
+});
