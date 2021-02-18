@@ -22,6 +22,7 @@ describe('Teste o componente `<Pokedex.js />', () => {
       name: /Próximo pokémon/,
     })).toBeInTheDocument();
 
+    // eslint-disable-next-line sonarjs/no-duplicate-string
     const paragraph = getByTestId('pokemon-name');
     expect(paragraph).toBeInTheDocument();
     expect(paragraph).toHaveTextContent(/Charmander/i);
@@ -46,9 +47,9 @@ describe('Teste o componente `<Pokedex.js />', () => {
       name: /Próximo pokémon/,
     })).toBeInTheDocument();
 
-    const paragraph = getByTestId('pokemon-name');
-    expect(paragraph).toBeInTheDocument();
-    expect(paragraph).toHaveTextContent(/Charmander/i);
+    const paragraph1 = getByTestId('pokemon-name');
+    expect(paragraph1).toBeInTheDocument();
+    expect(paragraph1).toHaveTextContent(/Charmander/i);
 
     fireEvent.click(button);
     const paragraph2 = getByTestId('pokemon-name');
