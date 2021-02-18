@@ -1,7 +1,9 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
+import pokemons from '../data';
 import App from '../App';
+import Pokemon from '../components/Pokemon';
 
 describe('teste do componente Pokemon', () => {
   test('verifica se o nome do pokemon renderiza na pagina', () => {
@@ -33,20 +35,19 @@ describe('teste do componente Pokemon', () => {
     const detailsLink = getByRole('link', { name: /more details/i });
     expect(detailsLink).toBeInTheDocument();
   });
-  test('verifica se a estrela de favoritado aparece na tela', () => {
-    const { getByRole } = renderWithRouter(<App />);
-    const detailsLink = getByRole('link', { name: /more details/i });
-    userEvent.click(detailsLink);
-    const favoriteStar = getByRole('img', { name: /pikachu is marked as favorite/i });
-    expect(favoriteStar).toBeInTheDocument();
-    expect(favoriteStar).toHaveAttribute('src', '/star-icon.svg');
-    expect(favoriteStar).toHaveAttribute('alt', /pikachu is marked as favorite/i);
-  });
   test('verifica se link de detalhes funciona', () => {
     const { getByRole, history } = renderWithRouter(<App />);
     const detailsLink = getByRole('link', { name: /more details/i });
     userEvent.click(detailsLink);
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
+  });
+  test('verifica se a estrela de favoritado aparece na tela', () => {
+    const pokemon = pokemons[0];
+    const { getByRole } = renderWithRouter(<Pokemon pokemon={ pokemon } isFavorite />);
+    const favoriteStar = getByRole('img', { name: /pikachu is marked as favorite/i });
+    expect(favoriteStar).toBeInTheDocument();
+    expect(favoriteStar).toHaveAttribute('src', '/star-icon.svg');
+    expect(favoriteStar).toHaveAttribute('alt', 'Pikachu is marked as favorite');
   });
 });
