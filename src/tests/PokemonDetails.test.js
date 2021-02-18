@@ -60,7 +60,7 @@ describe('Teste se as informações detalhadas do Pokémon '
       name: 'Summary' });
     const section = heading.parentNode;
     const filho = [...section.children].filter((element) => element.tagName === 'P');
-    expect(filho.length).toBe(1);
+    expect(filho[0].textContent).toBe(mockPokemons[0].summary);
   });
 });
 
