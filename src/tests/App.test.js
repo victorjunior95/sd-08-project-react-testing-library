@@ -43,8 +43,8 @@ describe('Shows the components,', () => {
 
   it('When the route is `/favorite` show <FavoritePokemons /> component', () => {
     const { history } = renderWithRouter(<App />);
-    const home = screen.getByRole('link', { name: /favorite pokémons/i });
-    userEvent.click(home);
+    const favoriteLink = screen.getByRole('link', { name: /favorite pokémons/i });
+    userEvent.click(favoriteLink);
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
