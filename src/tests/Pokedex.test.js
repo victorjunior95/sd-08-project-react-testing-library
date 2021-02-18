@@ -5,7 +5,6 @@ import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
 import renderWithRouter from './renderWithRouter';
 import { isPokemonFavoriteByIdType } from '../types';
-import Button from '../components/Button';
 
 describe('Testes componente Pokedex.js', () => {
   it('Se página contém um heading h2 com o texto Encountered pokémons.', () => {
