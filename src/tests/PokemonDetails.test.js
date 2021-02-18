@@ -57,4 +57,11 @@ describe('teste do componente PokemonDetails', () => {
     expect(locationMaps[1]).toHaveAttribute('alt', 'Pikachu location');
     expect(locationMaps[1]).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
   });
+  test('verifica se o resumo renderiza corretamente', () => {
+    const { getByRole, getByText } = renderWithRouter(<App />);
+    const detailsLink = getByRole('link', { name: /more details/i });
+    userEvent.click(detailsLink);
+    const pokeSummary = getByText(/this intelligent pokémon roasts/i);
+    expect(pokeSummary).toBeInTheDocument();
+  });
 });
