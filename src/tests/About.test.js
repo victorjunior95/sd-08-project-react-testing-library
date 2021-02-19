@@ -14,25 +14,11 @@ test('Teste se a página contém um heading `h2` com o texto `About Pokédex`.',
 
 describe('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
   it('Teste se a página contém dois parágrafos com texto sobre a Pokédex.', () => {
-    const { getByTestId } = renderWithRouter(<About />);
+    const { container } = renderWithRouter(<About />);
 
-    const inf1 = 'This application simulates a Pokédex,';
-    const inf2 = ' a digital encliclopedia containing all Pokémons';
+    const xablau = container.querySelectorAll('p');
 
-    const paragraph1 = getByTestId('paragraph-about-1');
-    expect(paragraph1).toBeInTheDocument();
-    expect(paragraph1).toHaveTextContent(inf1 + inf2);
-  });
-
-  it('testando o segundo paragrafo', () => {
-    const { getByTestId } = renderWithRouter(<About />);
-
-    const paragraph2 = getByTestId('paragraph-about-2');
-    expect(paragraph2).toBeInTheDocument();
-    expect(paragraph2)
-      .toHaveTextContent(
-        'One can filter Pokémons by type, and see more details for each one of them',
-      );
+    expect(xablau.length).toBe(2);
   });
 });
 
