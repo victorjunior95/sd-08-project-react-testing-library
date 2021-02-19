@@ -38,7 +38,7 @@ describe('Teste o componente `<Pokedex.js />', () => {
       name: /Próximo pokémon/,
     })).toBeInTheDocument();
   });
-  it('próximo Pokémon da lista um a um', () => {
+  it('próximo Pokémon da lista um a um, e se dps do ultimo vem pikachu', () => {
     const { getByRole, getByTestId, getByText } = renderWithRouter(<App />);
 
     const button = getByText(/Próximo Pokémon/i);
@@ -66,5 +66,67 @@ describe('Teste o componente `<Pokedex.js />', () => {
     const paragraph4 = getByTestId(POKEMON_NAME);
     expect(paragraph4).toBeInTheDocument();
     expect(paragraph4).toHaveTextContent(/Alakazam/i);
+
+    fireEvent.click(button);
+    const paragraph5 = getByTestId(POKEMON_NAME);
+    expect(paragraph5).toBeInTheDocument();
+    expect(paragraph5).toHaveTextContent(/Mew/i);
+
+    fireEvent.click(button);
+    const paragraph6 = getByTestId(POKEMON_NAME);
+    expect(paragraph6).toBeInTheDocument();
+    expect(paragraph6).toHaveTextContent(/Rapidash/i);
+
+    fireEvent.click(button);
+    const paragraph7 = getByTestId(POKEMON_NAME);
+    expect(paragraph7).toBeInTheDocument();
+    expect(paragraph7).toHaveTextContent(/Snorlax/i);
+
+    fireEvent.click(button);
+    const paragraph8 = getByTestId(POKEMON_NAME);
+    expect(paragraph8).toBeInTheDocument();
+    expect(paragraph8).toHaveTextContent(/Dragonair/i);
+
+    fireEvent.click(button);
+    const paragraph9 = getByTestId(POKEMON_NAME);
+    expect(paragraph9).toBeInTheDocument();
+    expect(paragraph9).toHaveTextContent(/Pikachu/i);
+  });
+  it('Pokédex tem os botões de filtro', () => {
+    const { getByRole, getAllByTestId, getByText } = renderWithRouter(<App />);
+
+    const SEVEN = 7;
+
+    const buttonFilter = getAllByTestId('pokemon-type-button');
+
+    expect(buttonFilter.length).toBe(SEVEN);
+
+    expect(getByRole('button', {
+      name: /Electric/i,
+    })).toBeInTheDocument();
+
+    const All = getByText('All');
+    const Fire = getByText('Fire');
+    const bug = getByText('Bug');
+    const poison = getByText('Poison');
+    const psychic = getByText('Psychic');
+    const normal = getByText('Normal');
+    const dragon = getByText('Dragon');
+
+    expect(All).toBeInTheDocument();
+    expect(Fire).toBeInTheDocument();
+    expect(bug).toBeInTheDocument();
+    expect(poison).toBeInTheDocument();
+    expect(psychic).toBeInTheDocument();
+    expect(normal).toBeInTheDocument();
+    expect(dragon).toBeInTheDocument();
+
+    fireEvent.click(All);
+    fireEvent.click(Fire);
+    fireEvent.click(bug);
+    fireEvent.click(poison);
+    fireEvent.click(psychic);
+    fireEvent.click(normal);
+    fireEvent.click(dragon);
   });
 });
