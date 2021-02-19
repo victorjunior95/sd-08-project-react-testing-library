@@ -7,7 +7,7 @@ import pokemons from '../data';
 
 test('se é renderizado um card com as informações de um pokémon', () => {
   const { getByText, getByRole } = renderWithRouter(<Pokemon
-    pokemon={ pokemons[0] } //Pikachu
+    pokemon={ pokemons[0] } // Pikachu
     isFavorite={ false }
   />);
   const namePokemon = getByText(/Pikachu/i);
@@ -25,7 +25,7 @@ test('se é renderizado um card com as informações de um pokémon', () => {
 
 test('se o card do Pokémon indicado contém link para exibir detalhes', () => {
   const { getByRole } = renderWithRouter(<Pokemon
-    pokemon={ pokemons[0] } //Pikachu
+    pokemon={ pokemons[0] }
     isFavorite={ false }
   />);
   const moreDetails = getByRole('link', { name: /more details/i });
@@ -45,9 +45,9 @@ test('se ao clicar no link de navegação do Pokémon, é redirecionado', () => 
 });
 
 test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
-  const { getByRole, getByText } = renderWithRouter(<Pokemon
-    pokemon={ pokemons[0] } //Pikachu
-    isFavorite={ true }
+  const { getByRole } = renderWithRouter(<Pokemon
+    pokemon={ pokemons[0] }
+    isFavorite
   />);
   const favoritePokemon = getByRole('img', { name: /pikachu is marked as favorite/i });
   const imageStar = '/star-icon.svg';
