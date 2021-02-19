@@ -1,8 +1,9 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
-// inicio
+import renderWithRouter from './renderWithRouter';
+
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
     <MemoryRouter>
@@ -11,4 +12,14 @@ test('renders a reading with the text `Pokédex`', () => {
   );
   const heading = getByText(/Pokédex/i);
   expect(heading).toBeInTheDocument();
+});
+
+describe('req01 conjunto fixo de links de navegação.', () => {
+  test('link "Home" da barra de navegação.', () => {
+    renderWithRouter(<App />);
+    const linkHome = screen.getByRole('link', {
+      name: /Home/i,
+    });
+    expect(linkHome).toBeInTheDocument();
+  });
 });
