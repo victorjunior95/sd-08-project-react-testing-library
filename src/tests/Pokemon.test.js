@@ -5,9 +5,8 @@ import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
 const Pikachu = pokemons[0];
-// const POKEMON_NAME = 'pokemon-name';
 
-describe('Favorite Pokemons page', () => {
+describe('Pokemons page', () => {
   it('should display a card with the pokemon information`', () => {
     const { getByTestId, getAllByRole } = renderWithRouter(
       <Pokemon pokemon={ Pikachu } isFavorite={ false } />,

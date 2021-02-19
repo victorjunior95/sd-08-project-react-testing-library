@@ -12,7 +12,7 @@ const noFavorites = pokemons.reduce((acc, pokemon) => {
 const POKEMON_NAME = 'pokemon-name';
 const NEXT_POKEMON = 'next-pokemon';
 
-describe('Favorite Pokemons page', () => {
+describe('Pokedex page', () => {
   it('should have a h2 with the text `Encountered pokémons`', () => {
     const { getByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ noFavorites } />,
