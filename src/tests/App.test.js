@@ -21,10 +21,12 @@ test('shows the Pokédex when the route is `/`', () => {
 });
 
 test('O topo da aplicação contém um conjunto fixo de links de navegação', () => {
-  const { getByText } = renderWithRouter(<App />);
+  const { getByText, getByRole } = renderWithRouter(<App />);
   const linkHome = getByText('Home');
   const linkAbout = getByText('About');
-  const linkFavorite = getByText('Favorite Pokémons');
+  const linkFavorite = getByRole('link', {
+    name: /favorite pokémons/i,
+  });
   expect(linkHome).toBeInTheDocument();
   expect(linkAbout).toBeInTheDocument();
   expect(linkFavorite).toBeInTheDocument();
