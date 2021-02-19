@@ -19,4 +19,9 @@ test('Teste se a página contém dois parágrafos com texto sobre a Pokédex', (
   const paragraph = screen.getByText(/One can filter Pokémons by type, and see more details for each one of them/i);
   expect(paragraph).toBeInTheDocument();
 });
-// blablabla
+test('Teste se a página contém a seguinte imagem de uma Pokédex', () => {
+  renderWithRouter(<About />);
+  const imgLink = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+  const img = screen.getByAltText(/Pokédex/i);
+  expect(img.src).toBe(imgLink);
+});
