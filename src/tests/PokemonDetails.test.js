@@ -17,7 +17,7 @@ describe('Pokemon Detail page', () => {
     const pokemonDetail = screen.getByText('Pikachu Details');
     expect(pokemonDetail).toBeInTheDocument();
     const summary = screen.getAllByRole('heading', { level: 2 })[1];
-    expect(summary.textContent).toBe('Summary');
+    expect(summary.textContent).toBe(' Summary ');
     const pokemonSummary = container.querySelectorAll('p')[3];
     expect(pokemonSummary.textContent).toBe('This intelligent Pokémon roasts hard berries'
     + ' with electricity to make them tender enough to eat.');
