@@ -1,9 +1,9 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
-import userEvent from '@testing-library/user-event';
 
 test('renders a reading with the text `Pokédex`', () => {
   const { getByText } = render(
