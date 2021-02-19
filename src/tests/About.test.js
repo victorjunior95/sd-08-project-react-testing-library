@@ -10,8 +10,9 @@ describe('Testes About.js', () => {
   });
 
   test('Testando o cumprimento dos parágrafos', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const paragraphs = getAllByTestId('paragraphs');
+    const { getAllByText } = renderWithRouter(<About />);
+    const paragraphs = getAllByText(/p/);
+    console.log(paragraphs);
     expect(paragraphs.length).toBe(2);
   });
 
