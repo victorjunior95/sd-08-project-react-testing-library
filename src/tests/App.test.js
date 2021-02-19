@@ -14,7 +14,7 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-describe('req01 conjunto fixo de links de navegação.', () => {
+describe('req01 Teste conjunto fixo de links de navegação.', () => {
   test('link "Home" da barra de navegação.', () => {
     renderWithRouter(<App />);
     const linkHome = screen.getByRole('link', {
