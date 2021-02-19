@@ -22,4 +22,18 @@ describe('req01 conjunto fixo de links de navegação.', () => {
     });
     expect(linkHome).toBeInTheDocument();
   });
+  test('link "About" da barra de navegação.', () => {
+    renderWithRouter(<App />);
+    const linkAbout = screen.getByRole('link', {
+      name: /About/i,
+    });
+    expect(linkAbout).toBeInTheDocument();
+  });
+  test('link "Favorite Pokémons" da barra de navegação.', () => {
+    renderWithRouter(<App />);
+    const linkFavorite = screen.getByRole('link', {
+      name: /Favorite Pokémons/i,
+    });
+    expect(linkFavorite).toBeInTheDocument();
+  });
 });
