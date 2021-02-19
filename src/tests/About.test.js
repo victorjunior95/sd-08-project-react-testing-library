@@ -13,5 +13,10 @@ describe('req02 Teste e a página contém as informações sobre a Pokédex', ()
     });
     expect(headingH2).toBeInTheDocument();
   });
-  })
-test
+});
+test('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
+  renderWithRouter(<About />);
+  const paragraph = screen.getByText(/One can filter Pokémons by type, and see more details for each one of them/i);
+  expect(paragraph).toBeInTheDocument();
+});
+// blablabla
