@@ -35,7 +35,7 @@ describe('Req05 Teste botão "Próximo pokémon" é clicado', () => {
     const caterpie = screen.getByText(/Caterpie/i);
     expect(caterpie).toBeInTheDocument();
   });
-  test('Teste botões de filtro', () => {
+  test('Teste filtrar pelos botões', () => {
     renderWithRouter(<App />);
     const btnFire = screen.getByRole('button', {
       name: /Fire/i,
@@ -45,5 +45,21 @@ describe('Req05 Teste botão "Próximo pokémon" é clicado', () => {
     const fireFilter = screen.getByText('Charmander');
     expect(fireFilter).toBeInTheDocument();
   });
+  test('Teste se os botões de filtro existem', () => {
+    renderWithRouter(<App />);
+    const btnTypes = screen.getAllByTestId('pokemon-type-button');
+    // console.log(btnTypes);
+    const totalTypes = 7;
+    expect(btnTypes.length).toBe(totalTypes);
+  });
 
+  test('Teste botão limpar filtro', () => {
+    renderWithRouter(<App />);
+    const btnAll = screen.getByRole('button', {
+      name: /All/i,
+    });
+    userEvent.click(btnAll);
+    const pikachu = screen.getByText(/Pikachu/i);
+    expect(pikachu).toBeInTheDocument();
+  });
 });
