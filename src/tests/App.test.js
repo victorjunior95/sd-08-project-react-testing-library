@@ -57,6 +57,7 @@ test('click About link in the navbar, redirect the app to About, in URL /about',
   expect(screen.getByText(/About Pokédex/i)).toBeInTheDocument();
 });
 
+// TODO: this test will break when the user favorite a Poké
 test('click Favorite Pokémons link, redirect the app to URL /favorites', () => {
   render(
     <MemoryRouter>
@@ -70,15 +71,7 @@ test('click Favorite Pokémons link, redirect the app to URL /favorites', () => 
   expect(screen.getByText(/No favorite pokemon found/i)).toBeInTheDocument();
 });
 
-// TODO: test doesn't pass
 test('insert unknown URL, redirect the application to Not Found page', () => {
-  // render(
-  //   <MemoryRouter>
-  //     <App />
-  //   </MemoryRouter>, {
-  //     route: '/something-that-does-not-match',
-  //   },
-  // );
   const history = createMemoryHistory();
   history.push('/something-that-does-not-match');
   render(
