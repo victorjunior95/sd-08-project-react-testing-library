@@ -4,12 +4,12 @@ import renderWithRouter from './renderWithRouter';
 import App from '../App';
 
 describe('App.js', () => {
-  test('renders a reading with the text `Pokédex`', () => {
+  test('se a página principal da Pokédex é renderizada no caminho de URL /', () => {
     const { getByText } = renderWithRouter(<App />);
     const heading = getByText(/Pokédex/i);
     expect(heading).toBeInTheDocument();
   });
-  test('there are links on the page', () => {
+  test('se contém um conjunto fixo de links de navegação', () => {
     const { getByRole } = renderWithRouter(<App />);
     const linkHome = getByRole('link', {
       name: 'Home',
@@ -24,7 +24,7 @@ describe('App.js', () => {
     expect(linkAbout).toBeInTheDocument();
     expect(linkFavoritePokemons).toBeInTheDocument();
   });
-  test('must be redirected to the link Home', () => {
+  test('se é redirecionado ao link Home', () => {
     const { getByRole, history } = renderWithRouter(<App />);
 
     const linkHome = getByRole('link', {
@@ -34,7 +34,7 @@ describe('App.js', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
-  test('must be redirected to the link About', () => {
+  test('se é redirecionado ao link About', () => {
     const { getByRole, history } = renderWithRouter(<App />);
 
     const linkAbout = getByRole('link', {
@@ -45,7 +45,7 @@ describe('App.js', () => {
     expect(pathname).toBe('/about');
   });
 
-  test('must be redirected to the link Favorite Pokémons', () => {
+  test('se é redirecionado ao link Favorite Pokémons', () => {
     const { getByRole, history } = renderWithRouter(<App />);
 
     const linkFavoritePokemons = getByRole('link', {
@@ -56,10 +56,11 @@ describe('App.js', () => {
 
     expect(pathname).toBe('/favorites');
   });
-  test('should be directed to the Not Found page when entering an unknown URL', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    history.push('/trybe');
-    const noMatch = getByText('Page requested not found');
-    expect(noMatch).toBeInTheDocument();
-  });
+  test('se é redirecionada para a página Not Found ao entrar em uma URL desconhecida',
+    () => {
+      const { getByText, history } = renderWithRouter(<App />);
+      history.push('/trybe');
+      const noMatch = getByText('Page requested not found');
+      expect(noMatch).toBeInTheDocument();
+    });
 });
