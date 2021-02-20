@@ -42,7 +42,7 @@ describe('Pokemon.js ', () => {
       </Router>,
     );
     const PokemonWeight = screen.getByTestId('pokemon-weight');
-    console.log(PokemonWeight);
+    // console.log(PokemonWeight);
     expect(PokemonWeight).toHaveTextContent(
       `Average weight: ${P.averageWeight.value} ${P.averageWeight.measurementUnit}`,
     );
