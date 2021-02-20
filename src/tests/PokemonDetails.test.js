@@ -45,6 +45,10 @@ describe('PokemonDetails.js ', () => {
         name: 'Summary',
       });
       expect(pokemonSummary).toBeInTheDocument();
+      const pokemonSummaryText = screen.getByText(
+        'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+      );
+      expect(pokemonSummaryText).toBeInTheDocument();
       // const PokemonLink = screen.getByText('More details');
       // expect(PokemonLink.closest('a')).toHaveAttribute(
       //   'href', `/pokemons/${PokemonStandart.id}`,
