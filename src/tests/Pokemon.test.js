@@ -2,7 +2,6 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import { PokemonDetails } from '../components';
 
 export default
 describe('Teste o componente `<Pokemon.js />', () => {
