@@ -13,7 +13,7 @@ describe('tests the NotFound component', () => {
   it('contains a specific image', () => {
     const { getByAltText } = render(<NotFound />);
     const altImage = getByAltText(
-      'Pikachu crying because the page requested was not found'
+      'Pikachu crying because the page requested was not found',
     );
     expect(altImage).toBeInTheDocument();
 
