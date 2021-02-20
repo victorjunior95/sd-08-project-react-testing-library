@@ -1,7 +1,8 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Router } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { createMemoryHistory } from 'history';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -70,15 +71,21 @@ test('click Favorite Pokémons link, redirect the app to URL /favorites', () => 
 });
 
 // TODO: test doesn't pass
-test.skip('insert unknown URL, redirect the application to Not Found page', () => {
+test('insert unknown URL, redirect the application to Not Found page', () => {
+  // render(
+  //   <MemoryRouter>
+  //     <App />
+  //   </MemoryRouter>, {
+  //     route: '/something-that-does-not-match',
+  //   },
+  // );
+  const history = createMemoryHistory();
+  history.push('/something-that-does-not-match');
   render(
-    <MemoryRouter>
+    <Router history={ history }>
       <App />
-    </MemoryRouter>, {
-      route: '/something-that-does-not-match',
-    },
+    </Router>,
   );
 
-  const heading = getByText(/Page requested not found 😭/i);
-  expect(heading).toBeInTheDocument();
+  expect(screen.getByText(/Page requested not found/i)).toBeInTheDocument();
 });
