@@ -16,15 +16,18 @@ test('renders a reading with the text `Pokédex`', () => {
 
 describe('contains a fixed set of navigation links', () => {
   it('contains home link', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText(/home/i)).toBeInTheDocument();
+    const { getByRole } = renderWithRouter(<App />);
+    const homeLink = getByRole('link', { name: /home/i });
+    expect(homeLink).toBeInTheDocument();
   });
   it('contains about link', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText(/about/i)).toBeInTheDocument();
+    const { getByRole } = renderWithRouter(<App />);
+    const aboutLink = getByRole('link', { name: /about/i });
+    expect(aboutLink).toBeInTheDocument();
   });
   it('contains favorite pokémons link', () => {
-    const { getByText } = renderWithRouter(<App />);
-    expect(getByText(/favorite pokémons/i)).toBeInTheDocument();
+    const { getByRole } = renderWithRouter(<App />);
+    const favoritePokemonsLink = getByRole('link', { name: /favorite pokémons/i });
+    expect(favoritePokemonsLink).toBeInTheDocument();
   });
 });
