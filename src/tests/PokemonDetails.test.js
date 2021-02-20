@@ -44,4 +44,23 @@ describe('Req07 Teste se existe os mapas contendo as localizações do pokémon'
     });
     expect(headingH2).toBeInTheDocument();
   });
+  test('Teste dois mapas de localicação pokemon', () => {
+    renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/more detail/i));
+    const map = screen.queryAllByAltText(/pikachu location/i);
+    expect(map.length).toEqual(2);
+    expect(map[0]).toHaveAttribute(
+      'src',
+      'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
+    );
+  });
+});
+
+describe('Req07 Teste se o usuário pode favoritar um pokémon', () => {
+  test('O label do checkbox deve conter o texto "Pokémon favoritado?"', () => {
+    renderWithRouter(<App />);
+    userEvent.click(screen.getByText(/more detail/i));
+    const checkbox = (screen.getByText(/Pokémon favoritado?/i));
+    expect(checkbox).toBeInTheDocument();
+  });
 });
