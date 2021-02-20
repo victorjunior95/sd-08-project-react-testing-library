@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-import { MemoryRouter } from 'react-router-dom';
 
 describe('Req05 Teste Pokedex', () => {
   test('Teste se página contém um heading h2 com o texto "Encountered pokémons"', () => {
@@ -24,16 +23,27 @@ describe('Req05 Teste botão "Próximo pokémon" é clicado', () => {
     });
     expect(btnNext).toBeInTheDocument();
   });
-  // test('próximos Pokémons da lista devem ser mostrados, um a um, ao clicar', () => {
-  //   renderWithRouter(<App />);
-  //   const btnNext = screen.getByRole('button', {
-  //     name: /Próximo pokémon/i,
-  //   });
-  //   userEvent.click(btnNext);
-  //   const charmander = screen.getByText(/Charmander/i);
-  //   expect(charmander).toBeInTheDocument();
-  //   userEvent.click(btnNext);
-  //   const caterpie = screen.getByText(/Caterpie/i);
-  //   expect(caterpie).toBeInTheDocument();
-  // });
+  test('próximos Pokémons da lista devem ser mostrados, um a um, ao clicar', () => {
+    renderWithRouter(<App />);
+    const btnNext = screen.getByRole('button', {
+      name: /Próximo pokémon/i,
+    });
+    userEvent.click(btnNext);
+    const charmander = screen.getByText(/Charmander/i);
+    expect(charmander).toBeInTheDocument();
+    userEvent.click(btnNext);
+    const caterpie = screen.getByText(/Caterpie/i);
+    expect(caterpie).toBeInTheDocument();
+  });
+  test('Teste botões de filtro', () => {
+    renderWithRouter(<App />);
+    const btnFire = screen.getByRole('button', {
+      name: /Fire/i,
+    });
+    expect(btnFire).toBeInTheDocument();
+    userEvent.click(btnFire);
+    const fireFilter = screen.getByText('Charmander');
+    expect(fireFilter).toBeInTheDocument();
+  });
+
 });
