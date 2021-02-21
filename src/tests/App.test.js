@@ -50,4 +50,10 @@ describe('Requisito 1, App.js', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
+  test('Should be redirect to the not found page', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    history.push('/not-found');
+    const textHeading = getByRole('heading', { name: /not found/i, level: 2 });
+    expect(textHeading).toBeInTheDocument();
+  });
 });
