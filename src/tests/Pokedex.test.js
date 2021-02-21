@@ -1,5 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable no-tabs */
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 
@@ -33,20 +31,20 @@ test('test if the Pokédex has the filter buttons', () => {
     const pokemonType = typeButton.textContent;
     const nextButton = getByTestId('next-pokemon');
     userEvent.click(typeButton);
-		expect(getByTestId('pokemonType').textContent).toBe(pokemonType);
+    expect(getByTestId('pokemonType').textContent).toBe(pokemonType);
     userEvent.click(nextButton);
-	});
+  });
 });
 
 test('test if the Pokédex contains a button to reset the filter', () => {
   const { getByText } = renderWithRouter(<App />);
-	const AllButton = getByText('All');
-	expect(AllButton).toBeInTheDocument();
+  const AllButton = getByText('All');
+  expect(AllButton).toBeInTheDocument();
 });
 
 test('test if a filter button is created for each type of Pokémon', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
-	const AllButton = getByText('All');
-	userEvent.click(AllButton);
-	expect(getByTestId('pokemon-name').textContent).toBe(pokemons[0].name);
+  const AllButton = getByText('All');
+  userEvent.click(AllButton);
+  expect(getByTestId('pokemon-name').textContent).toBe(pokemons[0].name);
 });
