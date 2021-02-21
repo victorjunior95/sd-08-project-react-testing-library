@@ -43,4 +43,11 @@ describe('teste do componente Pokedex', () => {
     expect(allButtons[7]).toHaveTextContent(/dragon/i);
     expect(allButtons[8]).toHaveTextContent(/próximo pokémon/i);
   });
+  test('verifica se o botao de proximo pokemon funciona', () => {
+    const { getAllByRole, getByText } = renderWithRouter(<App />);
+    const allButtons = getAllByRole('button');
+    userEvent.click(allButtons[0]);
+    userEvent.click(allButtons[8]);
+    expect(getByText(/charmander/i)).toBeInTheDocument();
+  });
 });
