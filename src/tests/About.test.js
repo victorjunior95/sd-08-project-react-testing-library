@@ -3,28 +3,28 @@ import { render, screen } from '@testing-library/react';
 import About from '../components/About';
 
 describe('test if the component About contains', () => {
-  it('Pokédex information', () => {
+  it('should render Pokédex information', () => {
     const { getByText } = render(<About />);
     const aboutAll = getByText(/This application simulates a Pokédex/i);
 
     expect(aboutAll).toBeInTheDocument();
   });
 
-  it('heading h2 with text "About Pokédex"', () => {
+  it('should render heading h2 with text "About Pokédex"', () => {
     render(<About />);
 
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/About Pokédex/i);
   });
 
   // TODO: I would like something that test have two paragraphs and the content within.
-  it('two paragraphs with text about Pokédex', () => {
+  it('should render two paragraphs with text about Pokédex', () => {
     const { getByText } = render(<About />);
 
     expect(getByText(/This application simulates a Pokédex/i)).toBeInTheDocument();
     expect(getByText(/One can filter Pokémons by type/i)).toBeInTheDocument();
   });
 
-  it('an specific image of a Pokédex', () => {
+  it('should render an specific image of a Pokédex', () => {
     const { getByAltText } = render(<About />);
     const altImage = getByAltText('Pokédex');
     expect(altImage).toBeInTheDocument();
