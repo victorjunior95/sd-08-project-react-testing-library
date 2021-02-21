@@ -20,4 +20,13 @@ describe('teste do componente Pokedex', () => {
     const charmander = getByText(/charmander/i);
     expect(charmander).toBeInTheDocument();
   });
+  test('verifica quantidade de botoes na pokedex', () => {
+    const { getAllByRole, getAllByTestId } = renderWithRouter(<App />);
+    const allButtons = getAllByRole('button');
+    const NINE = 9;
+    const SEVEN = 7;
+    expect(allButtons.length).toBe(NINE);
+    const typeButtons = getAllByTestId('pokemon-type-button');
+    expect(typeButtons.length).toBe(SEVEN);
+  });
 });
