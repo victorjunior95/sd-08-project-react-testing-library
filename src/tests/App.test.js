@@ -1,14 +1,29 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import renderWithRouter from './renderWithRouter';
+// import screen from '@testing-library/react';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
+describe('Testa Component App', () => {
+  test('É renderizada ao carregar a app no caminho de URL /?.',
+    () => {
+      const { getByText } = renderWithRouter(
+        <App />,
+      );
+      const heading = getByText(/Pokédex/i);
+      expect(heading).toBeInTheDocument();
+    });
+  test('Contem um conjunto fixo de links de navegação?',
+    () => {
+      const { getByRole } = renderWithRouter(
+        <App />,
+      );
+      const homeLink = getByRole('link', { name: 'Home' });
+      expect(homeLink).toBeInTheDocument();
+
+      const about = getByRole('link', { name: 'About' });
+      expect(about).toBeInTheDocument();
+
+      const favoritePokemons = getByRole('link', { name: 'Favorite Pokémons' });
+      expect(favoritePokemons).toBeInTheDocument();
+    });
 });
