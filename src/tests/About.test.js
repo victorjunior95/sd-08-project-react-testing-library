@@ -1,3 +1,1 @@
 test('', () => {});
-
-// Commit inicial
