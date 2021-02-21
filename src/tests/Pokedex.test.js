@@ -1,11 +1,8 @@
 import React from 'react';
-import Pokédex from '../components/Pokedex';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
 import App from '../App';
-import { render } from 'react-dom';
 import pokemons from '../data';
-import userEvent from '@testing-library/user-event';
-import { getAllByText } from '@testing-library/react';
 
 test('if the page contains a heading h2 with the text "Encountered pokémons" ', () => {
   const { getByText } = renderWithRouter(<App />);

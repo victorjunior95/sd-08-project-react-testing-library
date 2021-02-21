@@ -18,4 +18,4 @@ test('if it shows all the cards of favorite pokemons', () => {
 test('if there is no favorite pokemon, there is no card', () => {
   const { queryAllByTestId } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
   expect(queryAllByTestId('pokemon-name').length).toBe(0);
-})
+});
