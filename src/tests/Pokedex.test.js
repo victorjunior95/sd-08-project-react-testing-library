@@ -28,5 +28,19 @@ describe('teste do componente Pokedex', () => {
     expect(allButtons.length).toBe(NINE);
     const typeButtons = getAllByTestId('pokemon-type-button');
     expect(typeButtons.length).toBe(SEVEN);
+    expect(allButtons[0]).toHaveTextContent(/all/i);
+  });
+  test('verifica se os botoes possuem o texto correto', () => {
+    const { getAllByRole } = renderWithRouter(<App />);
+    const allButtons = getAllByRole('button');
+    expect(allButtons[0]).toHaveTextContent(/all/i);
+    expect(allButtons[1]).toHaveTextContent(/electric/i);
+    expect(allButtons[2]).toHaveTextContent(/fire/i);
+    expect(allButtons[3]).toHaveTextContent(/bug/i);
+    expect(allButtons[4]).toHaveTextContent(/poison/i);
+    expect(allButtons[5]).toHaveTextContent(/psychic/i);
+    expect(allButtons[6]).toHaveTextContent(/normal/i);
+    expect(allButtons[7]).toHaveTextContent(/dragon/i);
+    expect(allButtons[8]).toHaveTextContent(/próximo pokémon/i);
   });
 });
