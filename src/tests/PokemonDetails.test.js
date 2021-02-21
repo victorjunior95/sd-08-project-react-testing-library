@@ -45,15 +45,14 @@ describe('PokemonDetails.js ', () => {
         name: 'Summary',
       });
       expect(pokemonSummary).toBeInTheDocument();
-      const pokemonSummaryText = screen.getByText(
-        'This intelligent Pokémon roasts hard berries with electricity to make them tender enough to eat.',
+      const pokemonSummaryText1 = screen.getByText(
+        /This intelligent Pokémon roasts hard berries/i,
       );
-      expect(pokemonSummaryText).toBeInTheDocument();
-      // const PokemonLink = screen.getByText('More details');
-      // expect(PokemonLink.closest('a')).toHaveAttribute(
-      //   'href', `/pokemons/${PokemonStandart.id}`,
-      // );
-      // expect(PokemonLink.closest('a')).toBeNull();
+      expect(pokemonSummaryText1).toBeInTheDocument();
+      const pokemonSummaryText2 = screen.getByText(
+        /with electricity to make them tender enough to eat./i,
+      );
+      expect(pokemonSummaryText2).toBeInTheDocument();
     },
   );
   test(
@@ -113,45 +112,4 @@ describe('PokemonDetails.js ', () => {
       expect(PokemonImage[0]).toBeInTheDocument();
     },
   );
-  // test('O nome correto do Pokémon deve ser mostrado na tela;', () => {
-  //   const history = createMemoryHistory();
-  //   render(
-  //     <Router history={ history }>
-  //       <PokemonDetails pokemon={ PokemonStandart } isPokemonFavoriteById match onUpdateFavoritePokemons params />
-  //     </Router>,
-  //   );
-  //   const PokemonName = screen.getByTestId('pokemon-weight');
-  //   // console.log(PokemonName);
-  //   expect(PokemonName).toHaveTextContent(
-  //     `Game Locations of ${PokemonStandart.name}`,
-  //   );
-  //   expect(PokemonName).toBeInTheDocument();
-  // });
-  // test('A imagem do Pokémon deve ser exibida;', () => {
-  //   const history = createMemoryHistory();
-  //   render(
-  //     <Router history={ history }>
-  //       <PokemonDetails pokemon={ [PokemonStandart] } isPokemonFavoriteById match={ {} } onUpdateFavoritePokemons params />
-  //     </Router>,
-  //   );
-  //   const PokemonImage = screen.getAllByRole('img');
-  //   // https://dev.to/raphaelchaula/a-simple-image-test-in-react-3p6f
-  //   expect(PokemonImage[0]).toHaveAttribute('src', 'PokemonImage');
-  //   expect(PokemonImage[0]).toHaveAttribute('alt', 'PokemonName sprite');
-  //   expect(PokemonImage[0]).toBeInTheDocument();
-  // });
-//   test('Teste se o card do Pokémon indicado na Pokédex contém um link;', () => {
-//     const history = createMemoryHistory();
-//     render(
-//       <Router history={ history }>
-//         <Pokemon pokemon={ PokemonStandart } showDetailsLink isFavorite />
-//       </Router>,
-//     );
-//     // https://stackoverflow.com/questions/57827126/how-to-test-anchors-href-with-react-testing-library
-//     const PokemonLink = screen.getByText('More details');
-//     expect(PokemonLink.closest('a')).toHaveAttribute(
-//       'href', `/pokemons/${PokemonStandart.id}`,
-//     );
-//     expect(PokemonLink.closest('a')).toBeNull();
-//   });
 });
