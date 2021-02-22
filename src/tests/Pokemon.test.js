@@ -23,7 +23,7 @@ describe('Pokemons.js', () => {
   it('deve conter um link de navegação que leve aos detalhes desse pokémon', () => {
     const { history } = renderWithRouter(<App />);
 
-    const linkMoreDetails = screen.getByText('More details');
+    const linkMoreDetails = screen.getByText(/More details/i);
 
     fireEvent.click(linkMoreDetails);
 
