@@ -54,6 +54,7 @@ class PokemonDetails extends React.Component {
           <input
             type="checkbox"
             id="favorite"
+            data-testid="checkbox-favorite-pokemon"
             checked={ isFavorite }
             onChange={
               ({ target: { checked } }) => onUpdateFavoritePokemons(pokemonId, checked)
