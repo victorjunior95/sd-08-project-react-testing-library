@@ -26,7 +26,7 @@ it('check if the card has a link to show the pokemons details', () => {
     pokemon={ POKEMON }
     isFavorite={ false }
   />);
- 
+
   const detailsLink = getByRole('link', { name: /more details/i });
   expect(detailsLink).toBeInTheDocument();
   expect(detailsLink.href).toContain('/pokemons/25');
