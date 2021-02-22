@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
-test('shows the Not Found page with route /', () => {
+test('Testando a renderização do comp NotFound na rota /', () => {
   const { getByRole } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -19,7 +19,7 @@ test('shows the Not Found page with route /', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('next pokemon was showed', () => {
+test('Testando se o próximo pokemon aparece', () => {
   const { getByTestId, getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -69,7 +69,7 @@ test('next pokemon was showed', () => {
   expect(actuallyPokemon).toBeInTheDocument();
 });
 
-test('shows only one pokemon', () => {
+test('Testando se apenas um pokemon é exibido', () => {
   const { getByRole } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -80,7 +80,7 @@ test('shows only one pokemon', () => {
   expect(image).toBeInTheDocument();
 });
 
-test('show Eletric pokemons', () => {
+test('Testando se apenas pokemons elétricos aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -93,7 +93,7 @@ test('show Eletric pokemons', () => {
   expect(containText).toHaveTextContent('Electric');
 });
 
-test('show Fire pokemons', () => {
+test('Testando se apenas pokemons de fogo aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -106,7 +106,7 @@ test('show Fire pokemons', () => {
   expect(containText).toHaveTextContent('Fire');
 });
 
-test('show Bug pokemons', () => {
+test('Testando se apenas pokemons insetos aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -119,7 +119,7 @@ test('show Bug pokemons', () => {
   expect(containText).toHaveTextContent('Bug');
 });
 
-test('show Poison pokemons', () => {
+test('Testando se apenas pokemons venenosos aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -132,7 +132,7 @@ test('show Poison pokemons', () => {
   expect(containText).toHaveTextContent('Poison');
 });
 
-test('show Psychic pokemons', () => {
+test('Testando se apenas pokemons psíquicos aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -145,7 +145,7 @@ test('show Psychic pokemons', () => {
   expect(containText).toHaveTextContent('Psychic');
 });
 
-test('show Normal pokemons', () => {
+test('Testando se apenas pokemons normais aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -158,7 +158,7 @@ test('show Normal pokemons', () => {
   expect(containText).toHaveTextContent('Normal');
 });
 
-test('show Dragon pokemons', () => {
+test('Testando se apenas pokemons dragões aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -171,7 +171,7 @@ test('show Dragon pokemons', () => {
   expect(containText).toHaveTextContent('Dragon');
 });
 
-test('show all button', () => {
+test('Testando se todos pokemons aparecem', () => {
   const { getByRole, getByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -186,7 +186,7 @@ test('show all button', () => {
   expect(allButton).toBeInTheDocument();
 });
 
-test('show all filters buttons in screen', () => {
+test('Testando se todos os filtros aparecem', () => {
   const { getAllByTestId } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
