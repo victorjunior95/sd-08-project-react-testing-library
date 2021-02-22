@@ -13,6 +13,7 @@ it('check if a pokemon card is rendered', () => {
       pokemon={ POKEMON }
       isFavorite={ false }
     />);
+
   const imageURL = 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
   expect(getByText(/pikachu/i)).toBeInTheDocument();
   expect(getByText(/electric/i)).toBeInTheDocument();
@@ -27,6 +28,7 @@ it('check if the card has a link to show the pokemons details', () => {
       pokemon={ POKEMON }
       isFavorite={ false }
     />);
+    
   const detailsLink = getByRole('link', { name: /more details/i });
   expect(detailsLink).toBeInTheDocument();
   expect(detailsLink.href).toContain('/pokemons/25');
