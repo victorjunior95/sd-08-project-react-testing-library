@@ -64,7 +64,7 @@ describe('There must be a section containing location Pokémon map', () => {
   });
 
   it('Must be shown each name location and its image map', () => {
-    const { getByText, history, getByAltText } = renderWithRouter(<App />);
+    const { history, getByAltText } = renderWithRouter(<App />);
     history.push('/pokemons/78');
     // const linkDetails = getByText(/More details/i);
     // userEvent.click(linkDetails);
