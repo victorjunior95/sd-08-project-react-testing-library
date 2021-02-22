@@ -1,6 +1,6 @@
 import React from 'react';
 import About from '../components/About';
-import renderWithRouter from '../renderwhtRoute/renderWithRouter';
+import renderWithRouter from '../components/route/renderWithRouter';
 
 const firstParagraph = /This application simulates a Pokédex/i;
 const paragraphTwo = /One can filter Pokémons by type/i;
