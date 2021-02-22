@@ -15,5 +15,3 @@ it('check if the SCR from image to equal', () => {
   });
   expect(img.src).toBe('https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
 });
-
-
