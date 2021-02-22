@@ -1,11 +1,11 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import PokemonDetails from '../components/PokemonDetails';
-import renderWithRouter from '../components/route/renderWithRouter'
+import renderWithRouter from '../components/route/renderWithRouter';
 import data from '../data';
 
 const pokeTest = data[0];
-const onUpdateFavoritePokemonsMock = jest.fn(() => {});
+const mockFavorite = jest.fn(() => {});
 
 const renderPokemonDetails = ({
   isPokemonFavoriteById = {},
