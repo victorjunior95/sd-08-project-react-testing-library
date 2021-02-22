@@ -72,7 +72,21 @@ describe('Testing if Pokédex has filter buttons', () => {
     expect(buttonFilter).toBe(magical);
   });
 
-  // test('If button text type is corresponding', () => {
+  test('if button text is "All"', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+    );
+    expect(getByText(/All/i)).toBeInTheDocument();
+    fireEvent.click(getByText(/All/i));
+    expect(pokemons.length.toString()).toBe('9');
+  });
 
-  // });
+  test('Next pokémon button disables when there is just one Pokemon', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
+    );
+    const btn = getByText('Dragon', { selector: 'button' });
+    fireEvent.click(btn);
+    expect(getByText(/Próximo pokémon/i)).toBeDisabled();
+  });
 });
