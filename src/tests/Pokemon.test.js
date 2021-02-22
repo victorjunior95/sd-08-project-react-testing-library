@@ -8,11 +8,10 @@ import pokemons from '../data';
 const POKEMON = pokemons[0];
 
 it('check if a pokemon card is rendered', () => {
-  const { getByText, getByRole, getByAltText } = renderWithRouter(
-    <Pokemon
-      pokemon={ POKEMON }
-      isFavorite={ false }
-    />);
+  const { getByText, getByRole, getByAltText } = renderWithRouter(<Pokemon
+    pokemon={ POKEMON }
+    isFavorite={ false }
+  />);
 
   const imageURL = 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png';
   expect(getByText(/pikachu/i)).toBeInTheDocument();
@@ -23,12 +22,11 @@ it('check if a pokemon card is rendered', () => {
 });
 
 it('check if the card has a link to show the pokemons details', () => {
-  const { getByRole } = renderWithRouter(
-    <Pokemon
-      pokemon={ POKEMON }
-      isFavorite={ false }
-    />);
-    
+  const { getByRole } = renderWithRouter(<Pokemon
+    pokemon={ POKEMON }
+    isFavorite={ false }
+  />);
+ 
   const detailsLink = getByRole('link', { name: /more details/i });
   expect(detailsLink).toBeInTheDocument();
   expect(detailsLink.href).toContain('/pokemons/25');
