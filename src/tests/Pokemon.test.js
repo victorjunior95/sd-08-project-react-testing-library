@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { Pokemon } from '../components';
-import renderWithRouter from '../components/route/renderWithRouter'
+import renderWithRouter from '../components/route/renderWithRouter';
 import data from '../data';
 
 const testIds = {
