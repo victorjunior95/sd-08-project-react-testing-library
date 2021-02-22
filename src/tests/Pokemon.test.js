@@ -37,7 +37,7 @@ describe('Pokemons.js', () => {
   it('deve conter um link direcionando para uma página com detalhes', () => {
     renderWithRouter(<App />);
 
-    const linkMoreDetails = screen.getByText('More details');
+    const linkMoreDetails = screen.getByText(/More details/i);
 
     expect(linkMoreDetails.href).toBe('http://localhost/pokemons/25');
   });
@@ -45,7 +45,7 @@ describe('Pokemons.js', () => {
   it('o link deve direcionar para a página de detalhes do pokémon', () => {
     renderWithRouter(<App />);
 
-    const linkMoreDetails = screen.getByText('More details');
+    const linkMoreDetails = screen.getByText(/More details/i);
     fireEvent.click(linkMoreDetails);
 
     const pokemonDetailsTitle = screen.getByText(/pikachu details/i);
