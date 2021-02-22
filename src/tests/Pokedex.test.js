@@ -4,7 +4,6 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
-
 it('Check if the text `Encountered pokémons` exist in the document', () => {
   const { getByText } = renderWithRouter(<App />);
   const text = getByText('Encountered pokémons');
