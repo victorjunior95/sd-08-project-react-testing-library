@@ -1,8 +1,8 @@
 import React from 'react';
-import { screen, render } from '{testing-library/react';
+import { screen, render } from '{@testing-library/react';
 import About from '../components/About';
 
-describe('Test the About component'), () => {
+describe('Test the About component', () => {
   test('check if page contains a h2 heading', () => {
     render(<About />);
     const pageHeading = screen.getByRole('heading', {
