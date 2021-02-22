@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import App from '../App';
 
-test('shows the Pokédex when the route is `/`', () => {
+test('Testando se a pagína principal renderiza na url `/`', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
@@ -13,7 +13,7 @@ test('shows the Pokédex when the route is `/`', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('show links in nav bar', () => {
+test('Testando se os links aparecem na NavBar', () => {
   const { getByRole } = render(
     <MemoryRouter>
       <App />
