@@ -1,7 +1,7 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
-import { FavoritePokemons } from '../components/FavoritePokemons';
+import { FavoritePokemons } from '../components';
 
 it('ckeck if ´No favorite pokemon fount´ to be in the document', () => {
   const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
