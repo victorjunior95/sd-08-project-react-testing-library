@@ -1,84 +1,87 @@
-// import userEvent from '@testing-library/user-event';
-// import React from 'react';
-// import App from '../App';
-// import renderWithRouter from '../renderWithRouter';
+import React from 'react';
+import userEvent from '@testing-library/user-event';
+import renderWithRouter from '../renderWithRouter';
+import App from '../App';
 
-// describe('Tests the PokemonDetails component', () => {
-//   it('Should have <Pokemon Name> Details', () => {
-//     const { getByText, getByRole, history } = renderWithRouter(<App />);
-//     history.push('/pokemons/25');
-//     const linkDetails = getByText(/More details/i);
-//     userEvent.click(linkDetails);
+describe('Tests the PokemonDetails component', () => {
+  it('Should have <Pokemon Name> Details', () => {
+    const { getByRole, history } = renderWithRouter(<App />);
+    history.push('/pokemons/4');
+    // const linkDetails = queryByText(/More details/i);
+    // userEvent.click(linkDetails);
 
-//     const pokemonDetails = getByRole('heading', {
-//       level: 2,
-//       name: /Pikachu details/i,
-//     });
-//     expect(pokemonDetails).toBeInTheDocument();
-//   });
+    const pokemonDetails = getByRole('heading', {
+      level: 2,
+      name: /Charmander details/i,
+    });
+    expect(pokemonDetails).toBeInTheDocument();
+  });
 
-//   it('Should not exist the navigation link for details of the selected Pokémon', () => {
-//     const { getByText } = renderWithRouter(<App />);
-//     const linkDetails = getByText(/More details/i);
-//     userEvent.click(linkDetails);
+  it('Should not exist the navigation link for details of the selected Pokémon', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const linkDetails = getByText(/More details/i);
+    userEvent.click(linkDetails);
 
-//     expect(linkDetails).not.toBeInTheDocument();
-//   });
+    expect(linkDetails).not.toBeInTheDocument();
+  });
 
-//   it('Should contains a heading <h2>Summary</h2>', () => {
-//     const { getByText, history } = renderWithRouter(<App />);
-//     history.push('/pokemons/25');
-//     const linkDetails = getByText(/More details/i);
-//     userEvent.click(linkDetails);
+  it('Should contains a heading <h2>Summary</h2>', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/pokemons/10');
+    const linkDetails = getByText(/More details/i);
+    userEvent.click(linkDetails);
 
-//     expect(getByText(/summary/i)).toBeInTheDocument();
-//   });
+    expect(getByText(/summary/i)).toBeInTheDocument();
+  });
 
-//   it('Must contain a <p>summary of the selected Pokémon</p>', () => {
-//     const { getByText, history } = renderWithRouter(<App />);
-//     history.push('/pokemons/25');
-//     const linkDetails = getByText(/More details/i);
-//     userEvent.click(linkDetails);
+  it('Must contain a <p>summary of the selected Pokémon</p>', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/pokemons/23');
+    // const linkDetails = getByText(/More details/i);
+    // userEvent.click(linkDetails);
 
-//     expect(getByText(/This intelligent Pokémon roasts hard/i)).toBeInTheDocument();
-//   });
-// });
+    expect(getByText(/It can freely detach its jaw to swallow/i)).toBeInTheDocument();
+  });
+});
 
-// describe('There must be a section containing location Pokémon map', () => {
-//   it('Should contains a heading <h2>Game Locations of Selected Pokémon</h2>', () => {
-//     const { getByText, history } = renderWithRouter(<App />);
-//     history.push('/pokemons/25');
-//     const linkDetails = getByText(/More details/i);
-//     userEvent.click(linkDetails);
+describe('There must be a section containing location Pokémon map', () => {
+  it('Should contains a heading <h2>Game Locations of Selected Pokémon</h2>', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/pokemons/65');
+    // const linkDetails = getByText(/More details/i);
+    // userEvent.click(linkDetails);
 
-//     expect(getByText(/Game locations of Pikachu/i)).toBeInTheDocument();
-//   });
+    expect(getByText(/Game locations of Alakazam/i)).toBeInTheDocument();
+  });
 
-//   it('Must be shown all Pokémon locations', () => {
-//     const { getByText, history } = renderWithRouter(<App />);
-//     history.push('/pokemons/25');
-//     const linkDetails = getByText(/More details/i);
-//     userEvent.click(linkDetails);
+  it('Must be shown all Pokémon locations', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/pokemons/151');
+    // const linkDetails = getByText(/More details/i);
+    // userEvent.click(linkDetails);
 
-//     expect(getByText(/Pikachu location/i)).toBeInTheDocument();
-//   });
+    expect(getByText(/locations of Mew/i)).toBeInTheDocument();
+  });
 
-//   it('Must be shown each name location and its image map', () => {
-//     const { getByText, history } = renderWithRouter(<App />);
-//     history.push('/pokemons/25');
-//     const linkDetails = getByText(/More details/i);
-//     userEvent.click(linkDetails);
-//     const locationMap = getByText(/Pikachu location/i);
+  it('Must be shown each name location and its image map', () => {
+    const { getByText, history, getByAltText } = renderWithRouter(<App />);
+    history.push('/pokemons/78');
+    // const linkDetails = getByText(/More details/i);
+    // userEvent.click(linkDetails);
+    const locationMap = getByAltText(/Rapidash location/i);
 
-//     expect(locationMap.src).toBe('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
-//   });
-// });
+    expect(locationMap.src).toBe('https://cdn.bulbagarden.net/upload/5/5b/Kanto_Route_28_Map.png');
+  });
+});
 
-// test('The user can favorite a Pokémon through the details page', () => {
-//   const { getByText, history } = renderWithRouter(<App />);
-//   history.push('/pokemons/25');
-//   const linkDetails = getByText(/More details/i);
-//   userEvent.click(linkDetails);
+test('The user can favorite a Pokémon through the details page', () => {
+  const { getByText, history } = renderWithRouter(<App />);
+  history.push('/pokemons/143');
+  // const linkDetails = getByText(/More details/i);
+  // userEvent.click(linkDetails);
+  // const favoriteCheck = queryByRole('checkbox');
+  // const favoriteLabel = getByLabelText('Pokémon favoritado');
+  // expect(favoriteLabel.checked).toEqual(false);
 
-//   expect(getByText(/Pokémon favoritado/i)).toBeInTheDocument();
-// });
+  expect(getByText(/Pokémon favoritado/i)).toBeInTheDocument();
+});
