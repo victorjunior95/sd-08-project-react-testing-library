@@ -15,6 +15,6 @@ it('check if pokemons showing on the screnn to be the expected', () => {
 });
 
 it('', () => {
-  const { getAllByTestId } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
-  expect(getAllByTestId('poke-name').length).toBe(0);
+  const { queryAllByTestId } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
+  expect(queryAllByTestId('poke-name').length).toBe(0);
 });
