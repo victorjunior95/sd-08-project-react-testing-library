@@ -39,6 +39,6 @@ it('ckeck if a link Favorite exist in the document', () => {
       <App />
     </MemoryRouter>,
   );
-  const linkFavoriteElement = getAllByText(/Favorite Pokémons/i);
+  const linkFavoriteElement = getByText(/Favorite Pokémons/i);
   expect(linkFavoriteElement).toBeInTheDocument();
 });
