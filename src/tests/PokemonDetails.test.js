@@ -4,10 +4,12 @@ import renderWithRouter from '../services/renderWithRouter';
 import pokemons from '../data';
 import App from '../App';
 
+const DETAILS_TEXT = 'More details';
+
 describe('Requisito 7, PokemonDetails.js', () => {
   test('Detailed infomation should be displayed', () => {
     const { getByRole, getByText } = renderWithRouter(<App />);
-    const detailsLink = getByRole('link', { name: 'More details' });
+    const detailsLink = getByRole('link', { name: DETAILS_TEXT });
     userEvent.click(detailsLink);
     const detailsTitle = getByRole('heading', { name: /pikachu details/i, level: 2 });
     const summary = getByRole('heading', { name: 'Summary', level: 2 });
@@ -19,7 +21,7 @@ describe('Requisito 7, PokemonDetails.js', () => {
   });
   test('Location should be properly displayed', () => {
     const { getByRole, queryAllByAltText } = renderWithRouter(<App />);
-    const detailsLink = getByRole('link', { name: 'More details' });
+    const detailsLink = getByRole('link', { name: DETAILS_TEXT });
     userEvent.click(detailsLink);
     const titleLocation = getByRole('heading', {
       name: /game locations of pikachu/i,
@@ -38,7 +40,7 @@ describe('Requisito 7, PokemonDetails.js', () => {
   });
   test('The user should be able to liked a pokemon', () => {
     const { getByRole, getByLabelText } = renderWithRouter(<App />);
-    const detailsLink = getByRole('link', { name: 'More details' });
+    const detailsLink = getByRole('link', { name: DETAILS_TEXT });
     userEvent.click(detailsLink);
     const checkbox = getByRole('checkbox');
     const labelText = getByLabelText(/pokémon favoritado?/i);
@@ -48,6 +50,5 @@ describe('Requisito 7, PokemonDetails.js', () => {
     expect(checkbox.checked).toBe(true);
     userEvent.click(checkbox);
     expect(checkbox.checked).toBe(false);
-
   });
 });
