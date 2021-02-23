@@ -1,6 +1,6 @@
 import React from 'react';
 import renderWithRouter from '../renderWithRouter';
-import { Not Found } from '../components';
+import { NotFound } from '../components';
 
 test('test if the page has h2 with not found text', () => {
   const { getByText } = renderWithRouter(<NotFound />);
