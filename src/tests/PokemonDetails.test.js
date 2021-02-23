@@ -7,8 +7,6 @@ describe('Tests the PokemonDetails component', () => {
   it('Should have <Pokemon Name> Details', () => {
     const { getByRole, history } = renderWithRouter(<App />);
     history.push('/pokemons/4');
-    // const linkDetails = queryByText(/More details/i);
-    // userEvent.click(linkDetails);
 
     const pokemonDetails = getByRole('heading', {
       level: 2,
@@ -26,10 +24,9 @@ describe('Tests the PokemonDetails component', () => {
   });
 
   it('Should contains a heading <h2>Summary</h2>', () => {
-    const { getByText, history } = renderWithRouter(<App />);
-    history.push('/pokemons/10');
-    // const linkDetails = getByText(/More details/i);
-    // userEvent.click(linkDetails);
+    const { getByText } = renderWithRouter(<App />);
+    const linkDetails = getByText(/More details/i);
+    userEvent.click(linkDetails);
 
     expect(getByText(/summary/i)).toBeInTheDocument();
   });
@@ -37,8 +34,6 @@ describe('Tests the PokemonDetails component', () => {
   it('Must contain a <p>summary of the selected Pokémon</p>', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pokemons/23');
-    // const linkDetails = getByText(/More details/i);
-    // userEvent.click(linkDetails);
 
     expect(getByText(/It can freely detach its jaw to swallow/i)).toBeInTheDocument();
   });
@@ -48,8 +43,6 @@ describe('There must be a section containing location Pokémon map', () => {
   it('Should contains a heading <h2>Game Locations of Selected Pokémon</h2>', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pokemons/65');
-    // const linkDetails = getByText(/More details/i);
-    // userEvent.click(linkDetails);
 
     expect(getByText(/Game locations of Alakazam/i)).toBeInTheDocument();
   });
@@ -57,18 +50,16 @@ describe('There must be a section containing location Pokémon map', () => {
   it('Must be shown all Pokémon locations', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pokemons/151');
-    // const linkDetails = getByText(/More details/i);
-    // userEvent.click(linkDetails);
 
     expect(getByText(/locations of Mew/i)).toBeInTheDocument();
   });
 
   it('Must be shown each name location and its image map', () => {
-    const { history, getByAllByText } = renderWithRouter(<App />);
+    const { history, getAllByText } = renderWithRouter(<App />);
     history.push('/pokemons/78');
     // const linkDetails = getByText(/More details/i);
     // userEvent.click(linkDetails);
-    const locationMap = getByAllByText(/Rapidash location/i);
+    const locationMap = getAllByText(/Rapidash location/i);
 
     expect(locationMap.src).toBe('https://cdn.bulbagarden.net/upload/5/5b/Kanto_Route_28_Map.png');
   });
