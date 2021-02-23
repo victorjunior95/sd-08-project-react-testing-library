@@ -18,26 +18,26 @@ describe('Requirement 05', () => {
     expect(screen.getByRole('img').alt).toBe('Pikachu sprite');
   });
 
-  it('Card do Pokémon indicado na Pokédex contém um link de navegação', () => {
+  it('Teste o card do Pokémon indicado na Pokédex', () => {
     renderWithRouter(<App pokemons={ pokemons } />);
     expect(screen.getByRole('link', { name: /More details/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /More details/i }).href)
       .toContain('/pokemons/25');
   });
 
-  it('Teste 03 - Ao clicar no link feito o redirecionamento da aplicação', () => {
+  it('Clicar no link de navegação do Pokémon é feito o redirecionamento', () => {
     renderWithRouter(<App pokemons={ pokemons } />);
     userEvent.click(screen.getByRole('link', { name: /More details/i }));
     expect(screen.getByRole('heading', { name: /Pikachu Details/i })).toBeInTheDocument();
   });
 
-  it('Teste 04 - A URL exibida no navegador muda para /pokemon/<id>', () => {
+  it('A URL exibida no navegador muda para /pokemon/<id>', () => {
     const { history } = renderWithRouter(<App pokemons={ pokemons } />);
     userEvent.click(screen.getByRole('link', { name: /More details/i }));
     expect(history.location.pathname).toBe('/pokemons/25');
   });
 
-  it('Teste 05 - Existe um ícone de estrela nos Pokémons favoritados', () => {
+  it('Existe um ícone de estrela nos Pokémons favoritados', () => {
     renderWithRouter(<Pokemon pokemon={ pokemons[0] } isFavorite />);
     expect(screen.getByAltText('Pikachu is marked as favorite').src)
       .toContain('/star-icon.svg');
