@@ -23,7 +23,7 @@ describe('Must shown the correct Pokémon information', () => {
   });
   it('Image', () => {
     const { getByRole } = renderWithRouter(<App />);
-    const imgPokemon = getByRole('img');
+    const imgPokemon = getByRole('img', { name: 'Pikachu sprite' });
 
     expect(imgPokemon).toHaveAttribute(
       'src',

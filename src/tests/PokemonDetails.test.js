@@ -28,8 +28,8 @@ describe('Tests the PokemonDetails component', () => {
   it('Should contains a heading <h2>Summary</h2>', () => {
     const { getByText, history } = renderWithRouter(<App />);
     history.push('/pokemons/10');
-    const linkDetails = getByText(/More details/i);
-    userEvent.click(linkDetails);
+    // const linkDetails = getByText(/More details/i);
+    // userEvent.click(linkDetails);
 
     expect(getByText(/summary/i)).toBeInTheDocument();
   });
@@ -64,11 +64,11 @@ describe('There must be a section containing location Pokémon map', () => {
   });
 
   it('Must be shown each name location and its image map', () => {
-    const { history, getByAltText } = renderWithRouter(<App />);
+    const { history, getByAllByText } = renderWithRouter(<App />);
     history.push('/pokemons/78');
     // const linkDetails = getByText(/More details/i);
     // userEvent.click(linkDetails);
-    const locationMap = getByAltText(/Rapidash location/i);
+    const locationMap = getByAllByText(/Rapidash location/i);
 
     expect(locationMap.src).toBe('https://cdn.bulbagarden.net/upload/5/5b/Kanto_Route_28_Map.png');
   });
