@@ -5,7 +5,7 @@ import { Router } from 'react-router-dom';
 import App from '../App';
 
 describe('test the NotFound component', () => {
-  it('tests if the page contains a heading reporting an error', () => {
+  it('tests if the page contains a heading and an image reporting an error', () => {
     const history = createMemoryHistory();
     history.push('/some/bad/route');
     const { getByRole, getByAltText } = render(
