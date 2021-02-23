@@ -14,18 +14,24 @@ describe('Req 01', () => {
     expect(getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
-  test('The first link must have the text `Home`', () => {
+  test('Primeira pagina tem o texto `Home`', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText(/Home/i)).toBeInTheDocument();
   });
 
-  test('The second link must have the text `About`', () => {
+  test('Segunda pagina tem o texto `About`', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText(/About/i)).toBeInTheDocument();
   });
 
-  test('The third link must have the text `Favorite Pokémons`', () => {
+  test('Terceira pagina tem o texto `Favorite Pokémons`', () => {
     const { getByText } = renderWithRouter(<App />);
     expect(getByText(/Favorite Pokémons/i)).toBeInTheDocument();
+  });
+
+  test('Redireciona para `/about`', () => {
+    const { getByText, history } = renderWithRouter(<App />);
+    history.push('/about');
+    expect(getByText('About Pokédex')).toBeInTheDocument();
   });
 });
