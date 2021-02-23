@@ -1,0 +1,134 @@
+10:19:14 (31695) INFO ConfigReader No config file specified. Running with command line arguments.
+10:19:15 (31695) DEBUG BroadcastReporter Broadcasting to reporters ["clear-text","progress","html"]
+10:19:14 (31695) INFO ConfigReader Use `stryker init` command to generate your config file.
+10:19:14 (31695) DEBUG ConfigReader Loaded config: {
+  "allowConsoleColors": true,
+  "commandRunner": {
+    "command": "npm test"
+  },
+  "coverageAnalysis": "off",
+  "clearTextReporter": {
+    "allowColor": true,
+    "logTests": true,
+    "maxTestsToLog": 3
+  },
+  "dashboard": {
+    "baseUrl": "https://dashboard.stryker-mutator.io/api/reports",
+    "reportType": "full"
+  },
+  "eventReporter": {
+    "baseDir": "reports/mutation/events"
+  },
+  "fileLogLevel": "trace",
+  "logLevel": "debug",
+  "maxConcurrentTestRunners": 9007199254740991,
+  "mutate": [
+    "{src,lib}/**/*.js?(x)",
+    "!{src,lib}/**/__tests__/**/*.js?(x)",
+    "!{src,lib}/**/?(*.)+(spec|test).js?(x)",
+    "!{src,lib}/**/*+(Spec|Test).js?(x)"
+  ],
+  "mutator": "javascript",
+  "plugins": [
+    "@stryker-mutator/*"
+  ],
+  "reporters": [
+    "clear-text",
+    "progress",
+    "html"
+  ],
+  "symlinkNodeModules": true,
+  "tempDirName": ".stryker-tmp",
+  "testRunner": "command",
+  "thresholds": {
+    "high": 80,
+    "low": 60,
+    "break": null
+  },
+  "timeoutFactor": 1.5,
+  "timeoutMS": 5000,
+  "transpilers": [],
+  "warnings": true
+}
+10:19:14 (31695) DEBUG PluginLoader Loading @stryker-mutator/* from /home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator
+10:19:14 (31695) DEBUG PluginLoader Loading plugin "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator" (matched with expression @stryker-mutator/*)
+10:19:14 (31695) DEBUG PluginLoader Loading plugin "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator/jest-runner" (matched with expression @stryker-mutator/*)
+10:19:14 (31695) DEBUG PluginLoader Loading plugins /home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator/javascript-mutator
+10:19:14 (31695) DEBUG PluginLoader Loading plugins /home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator/jest-runner
+10:19:15 (31695) DEBUG PluginLoader Loading plugins /home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator/core/src/reporters/index.js
+10:19:15 (31695) DEBUG buildSchemaWithPluginContributions Contributing 1 schemas from plugins to options validation.
+10:19:15 (31695) WARN InputFileResolver No files marked to be mutated, Stryker will perform a dry-run without actually mutating anything. You can configure the `mutate` property in your config file (or use `--mutate` via command line).
+10:19:15 (31695) DEBUG InputFileResolver All input files: [
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/stryker.log",
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/About.conf.json",
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/App.conf.json",
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/FavoritePokemons.conf.json",
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/NotFound.conf.json",
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/Pokedex.conf.json",
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/Pokemon.conf.json",
+  "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/PokemonDetails.conf.json"
+]
+10:19:15 (31695) DEBUG InputFileResolver Files to mutate: []
+10:19:15 (31695) DEBUG TemporaryDirectory Using temp directory "/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/.stryker-tmp"
+10:19:15 (31695) DEBUG TestFrameworkOrchestrator The `coverageAnalysis` setting is "off", not hooking into the test framework to achieve performance benefits.
+10:19:15 (31695) INFO InitialTestExecutor Starting initial test run. This may take a while.
+10:19:15 (31695) DEBUG Sandbox Creating a sandbox for files in /home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/.stryker-tmp/sandbox6332936
+10:19:15 (31695) DEBUG Sandbox Creating test runner 0
+10:19:15 (31695) DEBUG TimeoutDecorator Starting timeout timer (300000 ms) for a test run
+10:19:16 (31695) ERROR InitialTestExecutor One or more tests failed in the initial test run:
+	All tests
+		npm
+ WARN npm npm does not support Node.js v10.23.1
+
+npm
+ 
+WARN 
+npm You should probably upgrade to a newer version of node as we
+
+npm 
+WARN npm
+ can't make any promises that npm will work with this version.
+
+npm 
+WARN npm
+ Supported releases of Node.js are the latest release of 4, 6, 7, 8, 9.
+
+npm WARN
+ npm You can find the latest version at https://nodejs.org/
+
+npm 
+ERR! path /home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/.stryker-tmp/sandbox6332936/package.json
+npm ERR! 
+code ENOENT
+
+npm 
+ERR! errno
+ -2
+npm
+ ERR!
+ 
+syscall open
+
+npm
+ ERR! enoent ENOENT: no such file or directory, open '/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/stryker/.stryker-tmp/sandbox6332936/package.json'
+
+npm ERR!
+ 
+enoent This is related to npm not being able to find a file.
+npm
+ ERR!
+ enoent
+ 
+
+
+
+npm
+ ERR!
+ A complete log of this run can be found in:
+npm 
+ERR!     /home/davous/.npm/_logs/2021-02-23T13_19_16_635Z-debug.log
+
+10:19:16 (31695) ERROR StrykerCli an error occurred Error: There were failed tests in the initial test run.
+    at InitialTestExecutor.validateResult (/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:69:27)
+    at InitialTestExecutor.run (/home/davous/gitRepos/trybe/projects/sd-08-project-react-testing-library/node_modules/@stryker-mutator/core/src/process/InitialTestExecutor.js:41:14)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
