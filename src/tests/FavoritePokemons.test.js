@@ -3,7 +3,7 @@ import { FavoritePokemons } from '../components';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
-test('Test if shows a message when the person has no favorite pokemon', () => {
+test('test if shows a message when the person has no favorite pokemon', () => {
   const { getByText } = renderWithRouter(<FavoritePokemons pokemons={ [] } />);
   const message = getByText('No favorite pokemon found');
   expect(message).toBeInTheDocument();
