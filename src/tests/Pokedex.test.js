@@ -86,7 +86,8 @@ const mockedPokemons = [{
       map: 'https://cdn.bulbagarden.net/upload/4/4e/Johto_National_Park_Map.png',
     },
   ],
-  summary: 'For protection, it releases a horrible stench from the antennae on its head to drive away enemies.',
+  summary: `For protection, it releases a horrible
+  stench from the antennae on its head to drive away enemies.`,
 }];
 
 describe('Teste componenente Pokedex.js', () => {
