@@ -149,7 +149,14 @@ describe('Teste componenente Pokedex.js', () => {
     expect(filterTypePoke2).toBeInTheDocument();
 
     userEvent.click(filterTypePoke0);
-    const allOneTypePokemon = screen.getByRole('button', { name: /Próximo pokémon/i });
-    expect(allOneTypePokemon.disabled).toBeTruthy();
+    const nextPokemon = screen.getByRole('button', { name: /Próximo pokémon/i });
+    expect(nextPokemon.disabled).toBeTruthy();
+
+    userEvent.click(filterAll);
+    const pokemon1 = screen.getByText(mockedPokemons[0].name);
+    expect(pokemon1).toBeInTheDocument();
+    userEvent.click(nextPokemon);
+    const pokemon2 = screen.getByText(mockedPokemons[1].name);
+    expect(pokemon2).toBeInTheDocument();
   });
 });
