@@ -7,7 +7,7 @@ import PokemonDetails from '../components/PokemonDetails';
 
 import pokemonsData from '../data';
 
-const defaultPokemon = data[0];
+const defaultPokemon = pokemonsData[0];
 
 const onUpdateFavoritePokemonsMock = jest.fn(() => {});
 
@@ -124,16 +124,17 @@ describe('Tests <PokemonDetails /> component', () => {
 
   describe(`Tests if there is a section on the page with the maps containing the
   Pokémon locations.`, () => {
-    it(`should display a checkbox that allows you to favor the
+    it(`should display a checkbox that allows you to favorite the
     Pokémon in the page.`, () => {
       const { getByLabelText } = renderPokemonDetailsWithRouter();
-      expect(onUpdateFavoritePokemonsMock).toBeCalledTimes(0);
 
+      const checkboxState = !getByLabelText(/Pokémon favoritado?/).checked;
+
+      expect(onUpdateFavoritePokemonsMock).toBeCalledTimes(0);
       userEvent.click(getByLabelText(/Pokémon favoritado?/));
       expect(onUpdateFavoritePokemonsMock).toBeCalledTimes(1);
       expect(onUpdateFavoritePokemonsMock)
-        .toHaveBeenLastCalledWith(defaultPokemon.id,
-          !getByLabelText(/Pokémon favoritado?/).checked);
+        .toHaveBeenLastCalledWith(defaultPokemon.id, checkboxState);
     });
 
     it(`must add and remove - respectively - the Pokémon from the favorites list
