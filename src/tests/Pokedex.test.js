@@ -32,13 +32,13 @@ describe('Teste o componente <Pokedex.js />', () => {
     );
     fireEvent.click(getByText(/All/i));
   });
-  it('Teste se a Pokédex tem os botões de filtro', () => {
-    const { getAllByTestId, getAllByRole } = renderWithRouter(
+  it('Testa se a Pokédex tem os botões de filtro.', () => {
+    const { getAllByTestId, getAllByRole, getByRole } = renderWithRouter(
       <App />,
     );
-    const tiposNomes = 7;
-    const botao = getAllByTestId('pokemon-type-button');
-    expect(botao).toHaveLength(tiposNomes);
+    const typesLength = 7;
+    const button = getAllByTestId('pokemon-type-button');
+    expect(button).toHaveLength(typesLength);
     const fire = getAllByRole('button', {
       name: /fire/i,
     });
@@ -55,9 +55,9 @@ describe('Teste o componente <Pokedex.js />', () => {
     expect(psychic).toHaveLength(1);
     expect(electric).toHaveLength(1);
     expect(normal).toHaveLength(1);
+    const buttonAll = getByRole('button', {
+      name: /all/i,
+    });
+    expect(buttonAll).toBeInTheDocument();
   });
-  const botaoAll = getByRole('button', {
-    name: /all/i,
-  });
-  expect(botaoAll).toBeInTheDocument();
 });
