@@ -13,14 +13,11 @@ describe('test the content of about favorite', () => {
   });
   test('test if every favorite pokemon car exist ', () => {
     const selectedPokemons = [pokemons[0], pokemons[1]]; // Pikachu and Charmander on data.js.
-    const { getByTestId, getByText } = renderWithRouter(
+    const { container } = renderWithRouter(
       <FavoritePokemons pokemons={ selectedPokemons } />,
     );
-    const favoriteDiv = getByTestId('favorite-div');
-    const favoritePokemonOne = getByText('Pikachu');
-    const favoritePokemonTwo = getByText('Charmander');
-    expect(favoriteDiv).toContainElement(favoritePokemonOne);
-    expect(favoriteDiv).toContainElement(favoritePokemonTwo);
+    const favoritePokemons = container.getElementsByClassName('favorite-pokemon').length;
+    expect(favoritePokemons).toBe(selectedPokemons.length);
   });
   test('tests if no pokemon is displayed if no pokemon is selected', () => {
     const ZERO = 0;
