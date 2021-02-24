@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import About from '../components/About';
 import renderWithRouter from '../helper/renderWithRouter';
 
-it('Teste se a página contém as informações sobre a Pokédex.', () => {
+test('Teste se a página contém as informações sobre a Pokédex.', () => {
   const { container } = renderWithRouter(<About />);
   const textAbout = screen.getByRole('heading', {
     level: 2,
