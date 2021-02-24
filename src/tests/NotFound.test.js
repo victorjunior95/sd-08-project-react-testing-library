@@ -14,11 +14,13 @@ describe('Testing the NotFound.js component if the page contains', () => {
     expect(h2).toBeInTheDocument();
   });
 
-  it('an h2 heading with the text "Page requested not found Crying emoji"', () => {
-    const { getByRole } = renderWithRouter(<NotFound />);
+  it('shows the image https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif.', () => {
+    const { getByAltText } = renderWithRouter(<NotFound />);
 
-    const image = getByRole('img');
+    const img = getByAltText('Pikachu crying because the page requested was not found');
+    const imageURL = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
 
-    expect(image).toBeInTheDocument();
+    expect(img).toBeInTheDocument();
+    expect(img.src).toBe(imageURL);
   });
 });
