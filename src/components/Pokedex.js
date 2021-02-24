@@ -22,10 +22,10 @@ class Pokedex extends React.Component {
     ));
   }
 
-  fetchFilteredPokemons() {
-    const { pokemons } = this.props;
+  fetchFilteredPokemons(pokemons) {
     const { filteredType } = this.state;
-
+    // const { pokemons } = this.props;
+    
     return pokemons.filter((pokemon) => {
       if (filteredType === 'all') return true;
       return pokemon.type === filteredType;
@@ -64,8 +64,8 @@ class Pokedex extends React.Component {
   }
 
   render() {
-    const { isPokemonFavoriteById } = this.props;
-    const filteredPokemons = this.fetchFilteredPokemons();
+    const { isPokemonFavoriteById, pokemons } = this.props;
+    const filteredPokemons = this.fetchFilteredPokemons(pokemons);
     const { pokemonIndex } = this.state;
     const pokemon = filteredPokemons[pokemonIndex];
 
