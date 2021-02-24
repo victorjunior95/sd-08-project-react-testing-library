@@ -6,10 +6,12 @@ import pokemons from '../data';
 
 describe('test the content of about favorite', () => {
   test('test case has not favorite pokémons ', () => {
-    const { getByTestId, getByText } = render(<FavoritePokemons />);
-    const favoriteDiv = getByTestId('favorite-div');
+    const ZERO = 0;
+    const { getByText, container } = render(<FavoritePokemons />);
     const noFavorite = getByText('No favorite pokemon found');
-    expect(favoriteDiv).toContainElement(noFavorite);
+    const favoritePokemons = container.getElementsByClassName('favorite-pokemons').length;
+    expect(favoritePokemons).toBe(ZERO);
+    expect(noFavorite).toBeInTheDocument();
   });
   test('test if every favorite pokemon car exist ', () => {
     const selectedPokemons = [pokemons[0], pokemons[1]]; // Pikachu and Charmander on data.js.
