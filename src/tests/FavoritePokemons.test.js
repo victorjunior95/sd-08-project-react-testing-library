@@ -9,4 +9,7 @@ describe('teste requisito 3# ', () => {
     const getTextNotFound = getByText(/No favorite pokemon found/i);
     expect(getTextNotFound).toBeInTheDocument();
   });
+  it('teste se todos os cards pokemon favoritos aparecem', () => {
+    
+  });
 });
