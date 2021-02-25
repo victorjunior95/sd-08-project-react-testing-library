@@ -35,10 +35,11 @@ describe('Pokedex', () => {
       userEvent.click(typeButton);
       expect(getByTestId('pokemonType')).toHaveTextContent(type);
       if (type === 'Fire' || type === 'Psychic') {
-        const firstPokemon = getByTestId('pokemon-name');
+        const pokemonName = getByTestId('pokemon-name');
+        const firstPokemon = pokemonName;
         const nextButton = getByTestId('next-pokemon');
         userEvent.click(nextButton);
-        const secondPokemon = getByTestId('pokemon-name');
+        const secondPokemon = pokemonName;
         expect(firstPokemon).not.toHaveTextContent(secondPokemon);
       }
     };
