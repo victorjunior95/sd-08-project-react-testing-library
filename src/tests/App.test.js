@@ -94,7 +94,7 @@ test('A aplicação é redirecionada ao entrar em uma URL desconhecida.', () => 
   const { getByText, history } = renderWithRouter(
     <App />,
   );
-  const route = '/xablau';
+  const route = '/notfound';
   history.push(route);
   const notFound = getByText(/Page requested not found/i);
   expect(notFound).toBeInTheDocument();
