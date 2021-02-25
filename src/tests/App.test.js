@@ -74,8 +74,8 @@ test('Teste se ao clicar no link About a página é redirecionada na URL /about'
   const { getByText, history } = renderWithRouter(
     <App />,
   );
-  const pathHome = getByText(/About/i);
-  fireEvent.click(pathHome);
+  const pathAbout = getByText(/About/i);
+  fireEvent.click(pathAbout);
   const { pathname } = history.location;
   expect(pathname).toBe('/about');
 });
@@ -84,8 +84,8 @@ test('Ao clicar no link Favorite Pokémons ela é redirecionada pra URL /favorit
   const { getByText, history } = renderWithRouter(
     <App />,
   );
-  const pathHome = getByText(/Favorite Pokémons/i);
-  fireEvent.click(pathHome);
+  const pathFavorite = getByText(/Favorite Pokémons/i);
+  fireEvent.click(pathFavorite);
   const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
 });
