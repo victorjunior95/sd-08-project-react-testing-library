@@ -3,18 +3,24 @@ import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
-
+test('renders a reading with the text `Pokédex`', () => {
+  const { getByText } = render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>,
+  );
+  const heading = getByText(/Pokédex/i);
+  expect(heading).toBeInTheDocument();
+});
 test('shows the Pokédex when the route is `/`', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
   );
-
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
-
-test('O primeiro link deve possuir o texto `Home`', () => {
+test('O primeiro link deve possuir o texto Home', () => {
   const { getByRole } = render(
     <MemoryRouter>
       <App />
@@ -25,8 +31,7 @@ test('O primeiro link deve possuir o texto `Home`', () => {
   });
   expect(home).toBeInTheDocument();
 });
-
-test('O segundo link deve possuir o texto `About`', () => {
+test('O segundo link deve possuir o texto About', () => {
   const { getByRole } = render(
     <MemoryRouter>
       <App />
@@ -37,8 +42,7 @@ test('O segundo link deve possuir o texto `About`', () => {
   });
   expect(about).toBeInTheDocument();
 });
-
-test('O terceiro link deve possuir o texto `Favorite Pokémons`', () => {
+test('O terceiro link deve possuir o texto Favorite Pokémons', () => {
   const { getByRole } = render(
     <MemoryRouter>
       <App />
@@ -49,7 +53,6 @@ test('O terceiro link deve possuir o texto `Favorite Pokémons`', () => {
   });
   expect(favorite).toBeInTheDocument();
 });
-
 test('Teste se ao clicar no link Home a página inicial é redirecionada na URL /', () => {
   const { getByText, history } = renderWithRouter(
     <App />,
@@ -59,7 +62,6 @@ test('Teste se ao clicar no link Home a página inicial é redirecionada na URL 
   const { pathname } = history.location;
   expect(pathname).toBe('/');
 });
-
 test('Teste se ao clicar no link About a página é redirecionada na URL /about', () => {
   const { getByText, history } = renderWithRouter(
     <App />,
@@ -69,22 +71,20 @@ test('Teste se ao clicar no link About a página é redirecionada na URL /about'
   const { pathname } = history.location;
   expect(pathname).toBe('/about');
 });
-
-test('Ao clicar no link Favorite Pokemons ela é redirecionada pra URL /favorites', () => {
+test('Ao clicar no link Favorite Pokémons ela é redirecionada pra URL /favorites', () => {
   const { getByText, history } = renderWithRouter(
     <App />,
   );
-  const pathFavorites = getByText(/Favorite Pokémons/i);
-  fireEvent.click(pathFavorites);
+  const pathFavorite = getByText(/Favorite Pokémons/i);
+  fireEvent.click(pathFavorite);
   const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
 });
-
-test('A aplicação é redirecionada ao entrar um uma URL desconhecida', () => {
+test('A aplicação é redirecionada ao entrar em uma URL desconhecida.', () => {
   const { getByText, history } = renderWithRouter(
     <App />,
   );
-  const route = '/404';
+  const route = '/notfound';
   history.push(route);
   const notFound = getByText(/Page requested not found/i);
   expect(notFound).toBeInTheDocument();
