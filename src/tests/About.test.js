@@ -1,13 +1,12 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import About from '../components/About';
-import renderWithRouter from '../services/renderWithRouter';
+// import renderWithRouter from '../services/renderWithRouter';
 
 describe('About component testing', () => {
   it('Checks whether to render text About Pokemon', () => {
-    const { getByText } = renderWithRouter(<About />);
+    const { getByText } = render(<About />);
     const pageTitle = getByText(/About Pokédex/i);
-
     expect(pageTitle).toBeInTheDocument();
   });
 
@@ -18,7 +17,7 @@ describe('About component testing', () => {
   });
 
   it('Checks whether to render image', () => {
-    const { getByRole } = renderWithRouter(<About />);
+    const { getByRole } = render(<About />);
     const imgURL = 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
     const img = getByRole('img');
     expect(img.src).toBe(imgURL);
