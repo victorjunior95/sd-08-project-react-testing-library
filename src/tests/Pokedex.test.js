@@ -90,7 +90,7 @@ describe('teste pokedex requisito 1#', () => {
     );
     history.push('/asdasd');
 
-    const getText = screen.getByText(/not found/i);
+    const getText = screen.getByText(/Not Found/i);
     expect(getText).toBeInTheDocument();
   });
 });
