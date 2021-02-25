@@ -13,7 +13,7 @@ test('pokemon favoritado', () => {
     </Router>,
   );
   const noFavPoke = screen.getByText(
-    /No fav/i,
+    'No favorite pokemon found',
   );
   expect(noFavPoke).toBeInTheDocument();
   const Favorites = [pokemons[0], pokemons[1]];
