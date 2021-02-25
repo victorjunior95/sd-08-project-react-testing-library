@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router';
 import FavoritePokemons from '../components/FavoritePokemons';
+import pokemons from '../data';
 
 test('pokemon favoritado', () => {
   const history = createMemoryHistory();
