@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 
-describe('teste pokedex requisito 1#', () => {
+describe('teste App.js requisito 1#', () => {
   it('teste se a pagina renderiza no path /', () => {
     const history = createMemoryHistory();
     render(
