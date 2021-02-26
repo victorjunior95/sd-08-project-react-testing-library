@@ -5,9 +5,9 @@ import App from '../App';
 import pokemons from '../data';
 
 describe('Testing PokemonDetails.js component, if', () => {
-  const detailsLink = getByRole('link', { name: 'More details' });
   it('detailed information of the selected Pokémon is shown on the screen', () => {
     const { getByRole, getByText } = renderWithRouter(<App />);
+    const detailsLink = getByRole('link', { name: /more details/i });
 
     userEvent.click(detailsLink);
     const nameDetails = getByText(`${pokemons[0].name} Details`);
@@ -28,6 +28,7 @@ describe('Testing PokemonDetails.js component, if', () => {
     const { getByRole, getByText, getAllByRole } = renderWithRouter(<App />);
 
     const pokemonFoundAt = pokemons[0].foundAt;
+    const detailsLink = getByRole('link', { name: 'More details' });
 
     userEvent.click(detailsLink);
     const h2GameLocations = getByRole('heading', {
@@ -51,6 +52,7 @@ describe('Testing PokemonDetails.js component, if', () => {
     const { getByRole, getByText } = renderWithRouter(<App />);
 
     const altFavorite = `${pokemons[0].name} is marked as favorite`;
+    const detailsLink = getByRole('link', { name: 'More details' });
 
     userEvent.click(detailsLink);
     const labelCheckbox = getByText('Pokémon favoritado?');
