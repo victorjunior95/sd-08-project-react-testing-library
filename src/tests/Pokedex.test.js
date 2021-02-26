@@ -134,6 +134,6 @@ describe('teste requisito 5#', () => {
     const buttonNext = getByRole('button', { name: /próximo pokémon/i });
 
     userEvent.click(buttonNormal);
-    expect(buttonNext.disable).toBe(true);
+    expect(buttonNext.disabled).toBe(true);
   });
 });
