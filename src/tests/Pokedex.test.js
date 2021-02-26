@@ -84,8 +84,56 @@ describe('teste requisito 5#', () => {
     expect(buttonFilter).toBe(LENGTH_FILTER);
   });
   it(' Pokédex deve circular somente pelos pokémons daquele tipo', () => {
-    // const { getByTestId } = renderWithRouter(
-    //   <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
-    // );
+    const { getByRole, getByTestId } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
+    );
+    const buttonPsychic = getByRole('button', { name: 'Psychic' });
+    const button = getByRole('button', { name: /próximo pokémon/i });
+
+    userEvent.click(buttonPsychic);
+    expect(getByTestId('pokemonType').innerHTML).toBe('Psychic');
+    userEvent.click(button);
+    expect(getByTestId('pokemonType').innerHTML).toBe('Psychic');
+  });
+  it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
+    const { getByText } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
+    );
+
+    const buttonReset = getByText('All');
+    const buttonNext = getByText(/Próximo pokémon/i);
+    const pokemonInitial = getByText('Pikachu');
+
+    expect(buttonReset).toBeInTheDocument();
+    expect(pokemonInitial).toBeInTheDocument();
+    userEvent.click(buttonNext);
+    let nextPokemon = getByText('Charmander');
+    expect(nextPokemon).toBeInTheDocument();
+    userEvent.click(buttonNext);
+    nextPokemon = getByText('Caterpie');
+    expect(nextPokemon).toBeInTheDocument();
+    userEvent.click(buttonNext);
+    nextPokemon = getByText('Ekans');
+    expect(nextPokemon).toBeInTheDocument();
+    userEvent.click(buttonReset);
+    expect(pokemonInitial).toBeInTheDocument();
+  });
+  it(' um botão de filtro para cada tipo de Pokémon', () => {
+    const { getAllByTestId } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
+    );
+    const buttonAllFilters = getAllByTestId('pokemon-type-button');
+    const NUMBER_OF_FILTER = 7;
+    expect(buttonAllFilters.length).toBe(NUMBER_OF_FILTER);
+  });
+  it('O botão de Próximo pokémon deve ser desabilitado ', () => {
+    const { getByRole } = renderWithRouter(
+      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ favorites } />,
+    );
+    const buttonNormal = getByRole('button', { name: 'Normal' });
+    const buttonNext = getByRole('button', { name: /próximo pokémon/i });
+
+    userEvent.click(buttonNormal);
+    expect(buttonNext.disable).toBe(true);
   });
 });
