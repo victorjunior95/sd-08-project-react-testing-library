@@ -115,5 +115,6 @@ describe('testing all button', () => {
     });
 
     expect(allButton).toBeInTheDocument();
+    userEvent.click(allButton);
   });
 });
