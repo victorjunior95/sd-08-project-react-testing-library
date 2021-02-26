@@ -10,6 +10,5 @@ describe('teste requisito 3# ', () => {
     expect(getTextNotFound).toBeInTheDocument();
   });
   it('teste se todos os cards pokemon favoritos aparecem', () => {
-    
   });
 });
