@@ -1,14 +1,11 @@
 import React from 'react';
-// import userEvent from '@testing-library/user-event';
-import Pokedex from '../components/Pokedex';
+import userEvent from '@testing-library/user-event';
+import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
-import pokemons from '../data';
 
 describe('test pokemon card', () => {
   it('testing pokemon details', () => {
-    const { getByText, getByTestId, getByAltText } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getByText, getByTestId, getByAltText } = renderWithRouter(<App />);
 
     const pokemonName = getByText(/pikachu/i);
     expect(pokemonName).toBeInTheDocument();
@@ -21,16 +18,39 @@ describe('test pokemon card', () => {
 
     const pokemonSprite = getByAltText(/pikachu sprite/i);
     expect(pokemonSprite).toBeInTheDocument();
+    expect(pokemonSprite).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
   });
 });
 
 describe('test pokemon card', () => {
   it('testing link to details', () => {
-    const { getByRole } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getByRole } = renderWithRouter(<App />);
 
-    const detailsLink = getByRole('link');
+    const detailsLink = getByRole('link', { name: /more details/i });
     expect(detailsLink).toHaveAttribute('href', '/pokemons/25');
+  });
+});
+
+describe('test favorite mark', () => {
+  it('test alt and src attributes of star', () => {
+    const { getByAltText, getByRole } = renderWithRouter(<App />);
+
+    const detailsLink = getByRole('link', { name: /more details/i });
+    expect(detailsLink).toBeInTheDocument();
+
+    const homeLink = getByRole('link', { name: /home/i });
+    expect(homeLink).toBeInTheDocument();
+
+    userEvent.click(detailsLink);
+
+    const favoriteCheckbox = getByRole('checkbox');
+    expect(favoriteCheckbox).toBeInTheDocument();
+
+    userEvent.click(favoriteCheckbox);
+    userEvent.click(homeLink);
+
+    const favoriteStar = getByAltText(/pikachu is marked as favorite/i);
+    expect(favoriteStar).toBeInTheDocument();
+    expect(favoriteStar).toHaveAttribute('src', '/star-icon.svg');
   });
 });

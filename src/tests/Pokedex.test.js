@@ -104,7 +104,6 @@ describe('testing filter buttons', () => {
 });
 
 describe('testing all button', () => {
-  /* TODO */
   it('show all button', () => {
     const { getByRole } = renderWithRouter(
       <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
