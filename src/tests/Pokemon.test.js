@@ -13,7 +13,7 @@ describe('test pokemon card', () => {
     const pokemonType = getByTestId('pokemonType');
     expect(pokemonType).toHaveTextContent(/electric/i);
 
-    const pokemonWeight = getByText(/6.0 kg/i);
+    const pokemonWeight = getByText(/average weight: 6.0 kg/i);
     expect(pokemonWeight).toBeInTheDocument();
 
     const pokemonSprite = getByAltText(/pikachu sprite/i);

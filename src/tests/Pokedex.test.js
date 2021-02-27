@@ -1,14 +1,11 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
-import Pokedex from '../components/Pokedex';
-import pokemons from '../data';
+import App from '../App';
 
 describe('Tests for Pokedex component', () => {
   it('contains a heading h2 with text Encountered pokémons', async () => {
-    const { getByRole } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getByRole } = renderWithRouter(<App />);
 
     const heading = getByRole('heading', {
       level: 2,
@@ -21,9 +18,7 @@ describe('Tests for Pokedex component', () => {
 
 describe('testing next button', () => {
   it('next button exists and works', () => {
-    const { getByTestId, getByRole } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getByTestId, getByRole } = renderWithRouter(<App />);
 
     const POKEMON_NAME = 'pokemon-name';
     const nextPokemonButton = getByRole('button', { name: /próximo pokémon/i });
@@ -71,9 +66,7 @@ describe('testing next button', () => {
 
 describe('show pokémon', () => {
   it('show only one pokémon per time', () => {
-    const { getAllByRole } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getAllByRole } = renderWithRouter(<App />);
 
     const allPokemons = getAllByRole('img');
     expect(allPokemons.length).toBe(1);
@@ -82,9 +75,7 @@ describe('show pokémon', () => {
 
 describe('testing filter buttons', () => {
   it('show all type buttons', () => {
-    const { getAllByTestId } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getAllByTestId } = renderWithRouter(<App />);
     const NUMBER_OF_TYPES = 7;
 
     const allTypeButtons = getAllByTestId('pokemon-type-button');
@@ -92,9 +83,7 @@ describe('testing filter buttons', () => {
   });
 
   it('show electric button', () => {
-    const { getByRole } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getByRole } = renderWithRouter(<App />);
 
     const electricButton = getByRole('button', {
       name: /electric/i,
@@ -105,9 +94,7 @@ describe('testing filter buttons', () => {
 
 describe('testing all button', () => {
   it('show all button', () => {
-    const { getByRole } = renderWithRouter(
-      <Pokedex pokemons={ pokemons } isPokemonFavoriteById={ {} } />,
-    );
+    const { getByRole } = renderWithRouter(<App />);
 
     const allButton = getByRole('button', {
       name: /all/i,
