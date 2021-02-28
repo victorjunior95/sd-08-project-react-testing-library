@@ -71,13 +71,13 @@ describe('Test the <Pokedex.js /> component', () => {
   });
 
   it('should create the type buttons dynamically', () => {
-    const { getByRole, getAllByTestId } = renderWithRouter(<App />);
+    const { getByRole, getAllByTestId, queryByTestId } = renderWithRouter(<App />);
 
     const types = ['Fire', 'Psychic', 'Electric', 'Bug', 'Poison', 'Dragon', 'Normal'];
     const typesNumber = types.length;
     expect(getByRole('button', { name: 'All' })).toBeInTheDocument();
     expect(getAllByTestId('pokemon-type-button')).toHaveLength(typesNumber);
-    expect(getAllByTestId('')).toHaveLength(1);
+    expect(queryByTestId('')).toBeNull();
   });
 
   it('should disable the "Next Pokémon" button when there is only one pokémon', () => {
