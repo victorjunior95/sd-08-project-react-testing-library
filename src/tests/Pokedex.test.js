@@ -71,10 +71,11 @@ describe('Test the <Pokedex.js /> component', () => {
   });
 
   it('should create the type buttons dynamically', () => {
-    const { getByTestId, getByRole, getAllByTestId } = renderWithRouter(<App />);
+    const { getByRole, getAllByTestId } = renderWithRouter(<App />);
 
     expect(getByRole('button', { name: 'All' })).toBeInTheDocument();
-    expect(getAllByTestId('pokemon-type-button')).toHaveLength(7);
+    const elements = ['Fire', 'Psychic', 'Electric', 'Bug', 'Poison', 'Dragon', 'Normal'];
+    expect(getAllByTestId('pokemon-type-button')).toHaveLength(elements.length());
     expect(getAllByTestId('')).toHaveLength(1);
   });
 
