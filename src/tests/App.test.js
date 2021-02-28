@@ -1,24 +1,21 @@
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
-test('renders a reading with the text `Pokédex`', () => {
-  const { getByText } = render(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>,
-  );
-  const heading = getByText(/Pokédex/i);
-  expect(heading).toBeInTheDocument();
-});
+describe('Testa componente App.js', () => {
+  it('Teste para verificar se o componente renderiza', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const textOnScreen = getByText(/Pokédex/i);
+    expect(textOnScreen).toBeInTheDocument();
+  });
 
-test('shows the Pokédex when the route is `/`', () => {
-  const { getByText } = render(
-    <MemoryRouter initialEntries={ ['/'] }>
-      <App />
-    </MemoryRouter>,
-  );
-
-  expect(getByText('Encountered pokémons')).toBeInTheDocument();
+  it('Teste se os Botões renderizam corretamente', () => {
+    const { getByText } = renderWithRouter(<App />);
+    const homeButton = getByText(/Home/i);
+    const aboutButton = getByText(/About/i);
+    const favPokemonButton = getByText(/Favorite Pokémon/i);
+    expect(homeButton).toBeInTheDocument();
+    expect(aboutButton).toBeInTheDocument();
+    expect(favPokemonButton).toBeInTheDocument();
+  });
 });
