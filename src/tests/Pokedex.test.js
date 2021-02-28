@@ -75,7 +75,7 @@ describe('Test the <Pokedex.js /> component', () => {
 
     expect(getByRole('button', { name: 'All' })).toBeInTheDocument();
     const elements = ['Fire', 'Psychic', 'Electric', 'Bug', 'Poison', 'Dragon', 'Normal'];
-    expect(getAllByTestId('pokemon-type-button')).toHaveLength(elements.length());
+    expect(getAllByTestId('pokemon-type-button')).toHaveLength(elements.length);
     expect(getAllByTestId('')).toHaveLength(1);
   });
 
