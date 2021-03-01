@@ -14,8 +14,11 @@ describe('teste da página /About', () => {
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex', () => {
     renderWithRouter(<About />);
 
-    const paragraphs = screen.getAllByTestId('about-p');
-    expect(paragraphs.length).toBe(2);
+    const paragraph1 = screen.getByText(/application simulates/i);
+    expect(paragraph1).toBeInTheDocument();
+
+    const paragraph2 = screen.getByText(/One can filter Pokémons/i);
+    expect(paragraph2).toBeInTheDocument();
   });
 
   test('Teste se a página contém a seguinte imagem de uma Pokédex:', () => {
