@@ -4,7 +4,7 @@ import Pokedex from '../components/Pokedex';
 import renderWithRouter from '../renderWithRouter';
 import pokemons from '../data';
 
-const isFavorite = {
+const favPokemons = {
   4: false,
   10: true,
   23: false,
@@ -20,7 +20,7 @@ describe('Testa Componente <Pokedex />', () => {
   it('Testa se a mensagem "Encountered pokémons" renderiza', () => {
     const { getByText } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavorite }
+      isPokemonFavoriteById={ favPokemons }
     />);
 
     const textOnScreen = getByText('Encountered pokémons');
@@ -31,7 +31,7 @@ describe('Testa Componente <Pokedex />', () => {
   it('Testa se o próximo Pokemon Renderiza ao clicar "Próximo Pokemon"', () => {
     const { getByRole, queryByText } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavorite }
+      isPokemonFavoriteById={ favPokemons }
     />);
 
     const THIRD_POKEMON_INDEX = 3;
@@ -59,7 +59,7 @@ describe('Testa Componente <Pokedex />', () => {
   it('Testa se somente um pokemon renderiza por vez', () => {
     const { getAllByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavorite }
+      isPokemonFavoriteById={ favPokemons }
     />);
 
     const pokemon = getAllByTestId('pokemon-name');
@@ -69,7 +69,7 @@ describe('Testa Componente <Pokedex />', () => {
   it('Testa se o filtro por tipo Funciona/renderiza corretamente', () => {
     const { getByRole, getByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavorite }
+      isPokemonFavoriteById={ favPokemons }
     />);
 
     userEvent.click(getByRole('button', { name: /bug/i }));
@@ -84,7 +84,7 @@ describe('Testa Componente <Pokedex />', () => {
   it('Testa se o Botão "All" reseta o filtro', () => {
     const { getByRole, getByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavorite }
+      isPokemonFavoriteById={ favPokemons }
     />);
 
     const nextButton = getByRole('button', { name: /próximo pokémon/i });
@@ -106,7 +106,7 @@ describe('Testa Componente <Pokedex />', () => {
   it('Testa se os Filtros por tipos são gerados dinâmicamente', () => {
     const { getAllByTestId } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavorite }
+      isPokemonFavoriteById={ favPokemons }
     />);
 
     const TYPES_QUANTITY = 7;
@@ -118,7 +118,7 @@ describe('Testa Componente <Pokedex />', () => {
   it('Testa se o botão próximo é desabilitado caso só tenha um pokemon no filtro', () => {
     const { getByRole } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
-      isPokemonFavoriteById={ isFavorite }
+      isPokemonFavoriteById={ favPokemons }
     />);
 
     const nextButton = getByRole('button', { name: /próximo pokémon/i });
