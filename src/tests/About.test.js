@@ -11,9 +11,6 @@ test('Deve verificar o que está contido em About', () => {
   });
   expect(aboutHeading).toHaveTextContent('About Pokédex');
 
-  const aboutParagraph = getAllByTestId('about-paragraph');
-  expect(aboutParagraph.length).toBe(2);
-
   const aboutImg = getByAltText(/Pokédex/i);
   expect(aboutImg).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
 });
