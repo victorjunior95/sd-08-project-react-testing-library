@@ -4,7 +4,7 @@ import renderWithRouter from '../helper/renderWithRouter';
 import About from '../components/About';
 
 test('Deve verificar o que está contido em About', () => {
-  const { getByRole, getAllByTestId, getByAltText } = renderWithRouter(<About />);
+  const { getByRole, getByAltText } = renderWithRouter(<About />);
 
   const aboutHeading = getByRole('heading', {
     level: 2,
