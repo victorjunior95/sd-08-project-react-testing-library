@@ -16,11 +16,13 @@ describe('Test the <FavoritePokemons.js /> component', () => {
       getByRole,
       getByText,
       getByAltText,
+      queryByAltText,
     } = renderWithRouter(<App />);
 
     fireEvent.click(getByText(/More details/));
     fireEvent.click(getByRole('checkbox'));
     fireEvent.click(getByText(/Favorite Pokémons/));
     expect(getByAltText(/Pikachu sprite/)).toBeInTheDocument();
+    expect(queryByAltText(/Dragonair sprite/)).toBeNull();
   });
 });
