@@ -5,7 +5,7 @@ import App from '../App';
 
 describe('Testing component Favorite Pokémons', () => {
   it('Test: no favorite pokemon found', () => {
-    const { getAllByTestId, getByText } = renderWithRouter(<App />);
+    const { getByText } = renderWithRouter(<App />);
 
     const favoriteBtn = getByText('Favorite Pokémons');
     fireEvent.click(favoriteBtn);
