@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from '../helper/renderWithRouter';
 
@@ -25,10 +25,9 @@ describe('Testing component Pokemon', () => {
   });
 
   it('Test: favorite icon', () => {
-    const { getByLabelText, getByText } = renderWithRouter(<App />);
-    const { getByAltText, history } = renderWithRouter(<App />);
+    const { getByLabelText, getByAltText, history } = renderWithRouter(<App />);
 
-    fireEvent.click(getByText('More details'));
+    fireEvent.click(screen.getByText('More details'));
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
 
