@@ -25,7 +25,8 @@ describe('Testing component Pokemon', () => {
   });
 
   it('Test: favorite icon', () => {
-    const { getByLabelText, getByText, getByAltText, history } = renderWithRouter(<App />);
+    const { getByLabelText, getByText } = renderWithRouter(<App />);
+    const { getByAltText, history } = renderWithRouter(<App />);
 
     fireEvent.click(getByText('More details'));
     const { pathname } = history.location;
