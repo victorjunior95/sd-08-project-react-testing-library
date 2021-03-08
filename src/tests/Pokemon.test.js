@@ -7,16 +7,6 @@ import Pokemon from '../components/Pokemon';
 import pokemons from '../data';
 
 describe('É renderizado um card com as informações de determinado pokémon', () => {
-  test('O nome correto do Pokémon deve ser mostrado na tela', () => {
-    const { getByText } = renderWithRouter(<App />);
-    let name = getByText(/Pikachu/i);
-    expect(name).toBeInTheDocument();
-    const next = getByText(/Próximo pokémon/i);
-    userEvent.click(next);
-    name = getByText(/Charmander/i);
-    expect(name).toBeInTheDocument();
-  });
-
   test('O tipo correto do pokémon deve ser mostrado na tela', () => {
     const { getByText } = renderWithRouter(<App />);
     let name = getByText(/Pikachu/i);
@@ -29,14 +19,6 @@ describe('É renderizado um card com as informações de determinado pokémon', 
     gender = screen.getByTestId('pokemonType');
     expect(name).toBeInTheDocument();
     expect(gender).toHaveTextContent('Fire');
-  });
-
-  test('O peso médio do pokémon deve ser exibido com um texto...', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const weight = screen.getByTestId('pokemon-weight');
-    const measurement = getByText(/kg/i);
-    expect(weight).toBeInTheDocument();
-    expect(measurement).toBeInTheDocument();
   });
 
   test('é feito o redirecionamento da aplicação para a página de detalhes', () => {
