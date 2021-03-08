@@ -35,19 +35,23 @@ describe('Pokedex Test', () => {
     expect(text).toBeInTheDocument();
   });
   it('Verifies if the button /Proximo Pokémon/ is working well', () => {
-    const { getByTestId, getByText } = render(
+    const { getByText, getByRole } = render(
       <MemoryRouter initialEntries={ ['/'] }>
         <App />
       </MemoryRouter>,
     );
-    const button = getByTestId('next-pokemon');
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveTextContent('Próximo pokémon');
+    const nextButton = getByRole('button', {
+      name: nextPokemon,
+    });
+    expect(nextButton).toBeInTheDocument();
 
-    fireEvent.click(button);
-
-    const pokemon = getByText('Charmander');
-    expect(pokemon).toBeInTheDocument();
+    pokemons.forEach((pokemon) => {
+      const pokemonName = getByText(pokemon.name);
+      expect(pokemonName).toBeInTheDocument();
+      fireEvent.click(nextButton);
+    });
+    const firstpokemonName = getByText(pokemons[0].name);
+    expect(firstpokemonName).toBeInTheDocument();
   });
 
   it('verifies if only one pokemon is being rendered at time', () => {
