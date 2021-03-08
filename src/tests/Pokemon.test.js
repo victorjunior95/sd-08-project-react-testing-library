@@ -1,5 +1,5 @@
 import React from 'react';
-import { getByRole, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
@@ -46,16 +46,16 @@ describe('É renderizado um card com as informações de determinado pokémon', 
     const { pathname } = history.location;
     expect(getByText('Pikachu Details')).toBeInTheDocument();
     expect(pathname).toBe('/pokemons/25');
-  }); 
+  });
 
   test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
     const { getByRole } = renderWithRouter(<Pokemon
       pokemon={ pokemons[0] }
-      isFavorite 
+      isFavorite
     />);
 
     const favorite = getByRole('img', { name: /pikachu is marked as favorite/i });
     expect(favorite).toBeInTheDocument();
     expect(favorite).toHaveAttribute('src', '/star-icon.svg');
-  })
+  });
 });
