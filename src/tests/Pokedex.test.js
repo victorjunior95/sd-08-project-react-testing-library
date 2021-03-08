@@ -86,4 +86,22 @@ describe('Pokedex Test', () => {
     nextPokemonName = getByText('Alakazam');
     expect(nextPokemonName).toBeInTheDocument();
   });
+
+  it('verifies if the button is disabled', () => {
+    const { getByRole } = renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ favoritePokemon }
+    />);
+
+    const dragonButton = getByRole('button', {
+      name: 'Dragon',
+    });
+    fireEvent.click(dragonButton);
+
+    const nextButton = getByRole('button', {
+      name: nextPokemon,
+    });
+    expect(nextButton).toBeInTheDocument();
+    expect(nextButton).toBeDisabled();
+  });
 });
