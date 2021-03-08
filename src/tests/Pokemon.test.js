@@ -1,8 +1,10 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { getByRole, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import Pokemon from '../components/Pokemon';
+import pokemons from '../data';
 
 describe('É renderizado um card com as informações de determinado pokémon', () => {
   test('O nome correto do Pokémon deve ser mostrado na tela', () => {
@@ -37,9 +39,23 @@ describe('É renderizado um card com as informações de determinado pokémon', 
     expect(measurement).toBeInTheDocument();
   });
 
-  test('O card do Pokémon indicado na Pokédex contém um link de navegação', () => {
-    const { getByText } = renderWithRouter(<App />);
-    const moreDetails = getByText(/More details/i);
-    expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
-  });
+  test('é feito o redirecionamento da aplicação para a página de detalhes', () => {
+    const { getByRole, getByText, history } = renderWithRouter(<App />);
+    const moreDetails = getByRole('link', { name: /more details/i });
+    userEvent.click(moreDetails);
+    const { pathname } = history.location;
+    expect(getByText('Pikachu Details')).toBeInTheDocument();
+    expect(pathname).toBe('/pokemons/25');
+  }); 
+
+  test('Teste se existe um ícone de estrela nos Pokémons favoritados', () => {
+    const { getByRole } = renderWithRouter(<Pokemon
+      pokemon={ pokemons[0] }
+      isFavorite 
+    />);
+
+    const favorite = getByRole('img', { name: /pikachu is marked as favorite/i });
+    expect(favorite).toBeInTheDocument();
+    expect(favorite).toHaveAttribute('src', '/star-icon.svg');
+  })
 });
