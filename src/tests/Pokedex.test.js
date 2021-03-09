@@ -67,6 +67,7 @@ describe('Se a Pokédex contém um botão para resetar o filtro', () => {
   test('Se é criado, dinamicamente, um btn de filtro para cada tipo de Pokémon.', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const btnText = getByText('All');
+    const pokemonName = 'pokemon-name';
     fireEvent.click(btnText);
     expect(getByTestId(pokemonName).textContent).toBe(pokemons[0].name);
   });
