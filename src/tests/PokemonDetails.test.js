@@ -53,5 +53,8 @@ describe('Testes no component Pokedex.js', () => {
     userEvent.click(favorite);
     const imgFavorite = screen.getAllByRole('img');
     expect(imgFavorite[1].src).toContain('/star-icon.svg');
+    expect(favorite.checked).toBeTruthy();
+    userEvent.click(favorite);
+    expect(favorite.checked).toBeFalsy();
   });
 });
