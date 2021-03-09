@@ -19,6 +19,7 @@ import pokemons from './data';
 import './App.css';
 
 class App extends Component {
+  //test
   static setIsPokemonFavoriteById() {
     const favoritePokemonIds = readFavoritePokemonIds();
     const isPokemonFavorite = pokemons.reduce((acc, pokemon) => {
