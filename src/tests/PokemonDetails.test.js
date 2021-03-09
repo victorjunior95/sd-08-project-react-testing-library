@@ -39,8 +39,8 @@ describe('Testes no component Pokedex.js', () => {
     const images = screen.getAllByRole('img');
     expect(images[1].src).toBe('https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
     expect(images[2].src).toBe('https://cdn.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
-    expect(images[1]).toContainHTML('location');
-    expect(images[2]).toContainHTML('location');
+    expect(images[1].alt).toBe('Pikachu location');
+    expect(images[2].alt).toBe('Pikachu location');
   });
 
   test('O usuário pode favoritar um pokémon através da página de detalhes.', () => {
