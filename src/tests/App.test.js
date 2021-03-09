@@ -1,7 +1,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import renderWithRouter from '../renderWithRouter';
 import { render, fireEvent } from '@testing-library/react';
+import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 test('renders a reading with the text `Pokédex`', () => {
@@ -14,12 +14,12 @@ test('renders a reading with the text `Pokédex`', () => {
   expect(heading).toBeInTheDocument();
 });
 
-test('Verifica se o topo da aplicação contém um conjunto fixo de links de navegação', () => {
+test('Verifica links de navegação', () => {
   const { getByText } = render(
     <MemoryRouter initialEntries={ ['/'] }>
       <App />
     </MemoryRouter>,
-    );
+  );
   const linkHome = getByText('Home');
   const linkAbout = getByText('About');
   const linkFavorite = getByText('Favorite Pokémons');
@@ -49,7 +49,7 @@ test('Verifica se a aplicação é redirecionada para a página do link "About"'
   expect(pathname).toBe('/about');
 });
 
-test('Verifica se a aplicação é redirecionada para a página do link "Favorite pokémons"', () => {
+test('Verifica link "Favorite pokémons"', () => {
   const { getByText, history } = renderWithRouter(<App />);
   const linkFavorite = getByText('Favorite Pokémons');
 
@@ -62,8 +62,7 @@ test('Verifica se a aplicação é redirecionada para a página do link "Favorit
 test('Verifica se a aplicação é redirecionada para a página do link "NotFound"', () => {
   const { getByText, history } = renderWithRouter(<App />);
   history.push('/page-not-found');
-  const NotFound = getByText('Page requested not found')
+  const NotFound = getByText('Page requested not found');
   
-
   expect(NotFound).toBeInTheDocument();
 });
