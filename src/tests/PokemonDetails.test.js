@@ -28,7 +28,7 @@ describe('Testes no component Pokedex.js', () => {
     const pokemonDetails = screen.getByRole('link', { name: /more details/i });
     userEvent.click(pokemonDetails);
     const gameLocations = screen.getByRole('heading', {
-      name: /Game locations/i,
+      name: 'Game Locations of Pikachu',
       level: 2,
     });
     expect(gameLocations).toBeInTheDocument();
