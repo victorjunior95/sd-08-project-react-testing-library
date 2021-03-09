@@ -28,21 +28,23 @@ describe('Teste o componente `<Pokedex.js', () => {
     const btnPokemon = getByText(namebtn);
     expect(btnPokemon).toBeInTheDocument();
   });
+  const pokemonName = 'pokemon-name';
   test('Se os Pokémons são mostrados um a um, ao clicar sucessivamente no botão', () => {
     const { getAllByTestId, getByText } = renderWithRouter(<App />);
     const btnPokemon = getByText(namebtn);
     pokemons.forEach((current) => {
       expect(getByText(current.name)).toBeInTheDocument();
       fireEvent.click(btnPokemon);
-      const numberPokemons = getAllByTestId('pokemon-name');
+      const numberPokemons = getAllByTestId(pokemonName);
       expect(numberPokemons.length).toBe(1);
     });
   });
   test('Se é mostrado apenas um Pokémon por vez.', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
-    expect(getAllByTestId('pokemon-name').length).toBe(1);
+    expect(getAllByTestId(pokemonName).length).toBe(1);
   });
 });
+
 describe('Teste se a Pokédex tem os botões de filtro.', () => {
   test('Se selecionado de um botão de tipo, mostrar só pokemom do mesmo tipo', () => {
     const { getAllByTestId, getByTestId } = renderWithRouter(<App />);
@@ -66,6 +68,6 @@ describe('Se a Pokédex contém um botão para resetar o filtro', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const btnText = getByText('All');
     fireEvent.click(btnText);
-    expect(getByTestId('pokemon-name').textContent).toBe(pokemons[0].name);
+    expect(getByTestId(pokemonName).textContent).toBe(pokemons[0].name);
   });
 });
