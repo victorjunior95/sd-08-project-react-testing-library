@@ -34,12 +34,12 @@ test('Verifica se a página contém 2 parágrafos', () => {
   fireEvent.click(linkAbout);
 
   const paragrafoUm = getByText(
-    'This application simulates a Pokédex, a digital encyclopedia containing all Pokémons'
-    );
+    'This application simulates a Pokédex, a digital encyclopedia containing all Pokémons',
+  );
 
   const paragrafoDois = getByText(
-    'One can filter Pokémons by type, and see more details for each one of them'
-    );
+    'One can filter Pokémons by type, and see more details for each one of them',
+  );
   expect(paragrafoUm).toBeInTheDocument();
   expect(paragrafoDois).toBeInTheDocument();
 });

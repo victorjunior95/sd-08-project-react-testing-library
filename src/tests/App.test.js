@@ -63,6 +63,6 @@ test('Verifica se a aplicação é redirecionada para a página do link "NotFoun
   const { getByText, history } = renderWithRouter(<App />);
   history.push('/page-not-found');
   const NotFound = getByText('Page requested not found');
-  
+
   expect(NotFound).toBeInTheDocument();
 });
