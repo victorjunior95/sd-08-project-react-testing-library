@@ -182,7 +182,7 @@ ATENTE-SE PARA RESOLVÊ-LAS ANTES DE FINALIZAR O DESENVOLVIMENTO!** ⚠️
     - Passo 3: _"Agora vou rodar o comando para o requisito com `npx stryker run ./stryker/Pokedex.conf.json`!"_
     * Com o comando acima ele vai executar o stryker e verificar se os seus testes unitários estão corretos.
 
-  - Quando o comando `npx stryker run ./stryker/PokemonDetails.conf.json` for executado, com todos os testes passando, o avaliador apresentará uma saída semelhante à abaixo.
+  - Quando o comando `w` for executado, com todos os testes passando, o avaliador apresentará uma saída semelhante à abaixo.
 
 
     ![image](testepassando.png)
