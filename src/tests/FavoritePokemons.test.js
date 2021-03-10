@@ -22,7 +22,9 @@ describe('Testes no componente About', () => {
         image: 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png' },
     ];
 
-    const { getAllByTestId } = renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
+    const { getAllByTestId } = renderWithRouter(
+      <FavoritePokemons pokemons={ pokemons } />,
+    );
     const testId = getAllByTestId('pokemon-name');
     expect(testId.length).toBe(pokemons.length);
   });
