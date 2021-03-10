@@ -5,6 +5,17 @@ import userEvent from "@testing-library/user-event";
 import { createMemoryHistory } from "history";
 import App from "../App";
 
+test("the main page is rendered at the path '/'", () => {
+  const history = createMemoryHistory();
+  render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+  const { pathname } = history.location;
+  expect(pathname).toBe('/');
+});
+
 test("the navigation links are available", () => {
   const history = createMemoryHistory();
   render(
@@ -76,4 +87,18 @@ test("the Favorite Pokémons link redirects to the right path", () => {
   userEvent.click(favoritePokemonsLink);
   const { pathname } = history.location;
   expect(pathname).toBe('/favorites');
+});
+
+test("when a unknow URL is accessed it leads to the Not Found page", () => {
+  const history = createMemoryHistory();
+  render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
+  
+  history.push('/paginainexistente');
+  const notFoundContent = screen.getByText(/page requested not found/i);
+  const { pathname } = history.location;
+  expect(notFoundContent).toBeInTheDocument();
 });
