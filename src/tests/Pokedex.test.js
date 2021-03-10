@@ -20,20 +20,20 @@ test('Verifica mensagem "Encounteres pokémons"', () => {
 test('Verifica ação "Próximo pokémon "', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
 
-  const pokemonAnterior = { ...getByTestId('pokemon-name') };
-  const btn = getByText('Próximo pokémon');
+  const pokeAnterior = { ...getByTestId('pokemon-name') };
+  const btnN = getByText('Próximo pokémon');
 
-  fireEvent.click(btn);
+  fireEvent.click(btnN);
 
   const pokemonAtual = { ...getByTestId('pokemon-name') };
 
-  for(let index = 0; index < OITO; index += 1) {
+  for (let index = 0; index < OITO; index += 1) {
     fireEvent.click(btn);
   }
 
   const pokemonAfterLoop = getByText('Pikachu');
 
-  expect(pokemonAnterior).not.toBe(pokemonAtual);
+  expect(pokeAnterior).not.toBe(pokemonAtual);
   expect(pokemonAfterLoop).toBeInTheDocument();
 });
 
@@ -62,7 +62,7 @@ test('Verifica se tem os btn de filtro', () => {
 
   expect(pokemonType.innerHTML).toBe('Fire');
 
-  const btn = getByRole('button',{
+  const btn = getByRole('button', {
     name: 'Próximo pokémon',
   });
 
@@ -100,7 +100,7 @@ test('Verifica filtro para cada tipo', () => {
   const { getAllByTestId } = renderWithRouter(<App />);
 
   const filterPokemon = getAllByTestId('pokemon-type-button');
-  
+
   expect(filterPokemon.length).toBe(SETE);
 });
 

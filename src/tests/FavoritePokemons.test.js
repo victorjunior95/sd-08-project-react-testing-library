@@ -26,11 +26,16 @@ test('Verifica mensagem "No favorite pokemon found"', () => {
 
 test('Verifica os cards favoritados', () => {
   const { getByText, history, getAllByText } = renderWithRouter(<App />);
-  pokemonsWillFavorite.map((element) => { history.push(`/pokemons/${element.id}`);
-    const favorited = getByText('Pokémon favoritado?');
 
-    fireEvent.click(favorited);
-  });
+  history.push('/pokemons/25');
+  const favorited = getByText('Pokémon favoritado?');
+
+  fireEvent.click(favorited);
+
+  history.push('/pokemons/4');
+  const favoriteded = getByText('Pokémon favoritado?');
+
+  fireEvent.click(favoriteded);
 
   const linkFavorite = getByText('Favorite Pokémons');
 
