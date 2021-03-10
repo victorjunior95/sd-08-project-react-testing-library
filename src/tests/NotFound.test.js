@@ -14,8 +14,8 @@ describe('Testes no componente NotFound', () => {
     });
 
   it('Teste se a página contém a seguinte imagem', () => {
-    const { getByRole } = render(<NotFound />);
-    const img = getByRole('img');
+    const { getByAltText } = render(<NotFound />);
+    const img = getByAltText(/Pikachu crying because the page requested was not found/);
     expect(img).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
   });
 });
