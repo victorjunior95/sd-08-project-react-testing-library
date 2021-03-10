@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react'; // render,
+import { render } from '@testing-library/react';
 import About from '../components/About';
 
 // Será avaliado se o arquivo teste About.test.js contemplam 100% dos casos de uso criados pelo Stryker.
