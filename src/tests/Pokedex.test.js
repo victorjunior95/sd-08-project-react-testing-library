@@ -5,6 +5,8 @@ import App from '../App';
 
 const OITO = 8;
 const SETE = 7;
+const pokemonName = 'pokemon-name';
+const nextPoke = 'Próximo pokémon';
 
 test('Verifica mensagem "Encounteres pokémons"', () => {
   const { getByRole } = renderWithRouter(<App />);
@@ -20,12 +22,12 @@ test('Verifica mensagem "Encounteres pokémons"', () => {
 test('Verifica ação "Próximo pokémon "', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
 
-  const pokeAnterioro = { ...getByTestId('pokemon-name') };
-  const btnNo = getByText('Próximo pokémon');
+  const pokeAnterioro = { ...getByTestId(pokemonName) };
+  const btnNo = getByText(nextPoke);
 
   fireEvent.click(btnNo);
 
-  const pokemonAtual = { ...getByTestId('pokemon-name') };
+  const pokemonAtual = { ...getByTestId(pokemonName) };
 
   for (let index = 0; index < OITO; index += 1) {
     fireEvent.click(btnNo);
