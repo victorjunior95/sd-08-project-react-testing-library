@@ -99,6 +99,5 @@ test("when a unknow URL is accessed it leads to the Not Found page", () => {
   
   history.push('/paginainexistente');
   const notFoundContent = screen.getByText(/page requested not found/i);
-  const { pathname } = history.location;
   expect(notFoundContent).toBeInTheDocument();
 });
