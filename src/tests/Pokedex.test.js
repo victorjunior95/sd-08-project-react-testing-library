@@ -65,7 +65,7 @@ test('Verifica se tem os btn de filtro', () => {
   expect(pokemonType.innerHTML).toBe('Fire');
 
   const btn = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: nextPoke,
   });
 
   fireEvent.click(btn);
@@ -116,7 +116,7 @@ test('Verifica o desabilite do botão próximo', () => {
   fireEvent.click(btnNormal);
 
   const btnNext = getByRole('button', {
-    name: 'Próximo pokémon',
+    name: nextPoke,
   });
 
   expect(btnNext.disabled).toBe(true);
