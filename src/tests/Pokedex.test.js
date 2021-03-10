@@ -20,20 +20,20 @@ test('Verifica mensagem "Encounteres pokémons"', () => {
 test('Verifica ação "Próximo pokémon "', () => {
   const { getByText, getByTestId } = renderWithRouter(<App />);
 
-  const pokeAnterior = { ...getByTestId('pokemon-name') };
-  const btnN = getByText('Próximo pokémon');
+  const pokeAnterioro = { ...getByTestId('pokemon-name') };
+  const btnNo = getByText('Próximo pokémon');
 
-  fireEvent.click(btnN);
+  fireEvent.click(btnNo);
 
   const pokemonAtual = { ...getByTestId('pokemon-name') };
 
   for (let index = 0; index < OITO; index += 1) {
-    fireEvent.click(btn);
+    fireEvent.click(btnNo);
   }
 
   const pokemonAfterLoop = getByText('Pikachu');
 
-  expect(pokeAnterior).not.toBe(pokemonAtual);
+  expect(pokeAnterioro).not.toBe(pokemonAtual);
   expect(pokemonAfterLoop).toBeInTheDocument();
 });
 
