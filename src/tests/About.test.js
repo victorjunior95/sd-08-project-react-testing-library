@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import About from '../components/About';
-import renderWithRouter from './renderWithRouter';
 
 describe('Testes no componente About', () => {
   it('Teste se a página contém as informações sobre a Pokédex', () => {
