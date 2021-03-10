@@ -32,16 +32,9 @@ test('Verifica se a página contém 2 parágrafos', () => {
   const linkAbout = getByText('About');
 
   fireEvent.click(linkAbout);
+  const paragraph = document.querySelectorAll('p');
 
-  const paragrafoUm = getByText(
-    'This application simulates a Pokédex, a digital encyclopedia containing all Pokémons',
-  );
-
-  const paragrafoDois = getByText(
-    'One can filter Pokémons by type, and see more details for each one of them',
-  );
-  expect(paragrafoUm).toBeInTheDocument();
-  expect(paragrafoDois).toBeInTheDocument();
+  expect(paragraph.length).toBe(2);
 });
 
 test('Verifica se a página contém uma imagem', () => {
