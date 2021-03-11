@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import pokemons from '../data';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../components/renderWithRouter';
 
 // Será avaliado se o arquivo teste FavoritePokemons.test.js contemplam 100% dos casos de uso criados pelo Stryker.
 describe('FavoritePokemons.js - is displayed on the screen:', () => {

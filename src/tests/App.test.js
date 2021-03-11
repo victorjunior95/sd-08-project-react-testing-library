@@ -1,26 +1,23 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderWithRouter from './renderWithRouter';
 
-// Teste se a aplicação é redirecionada para a página de About, na URL /about, ao clicar no link About da barra de navegação.
-
-// Teste se a aplicação é redirecionada para a página de Pokémons Favoritados, na URL /favorites, ao clicar no link Favorite Pokémons da barra de navegação.
-
-// Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida.
-
-describe('App.js ', () => {
+// Será avaliado se o arquivo teste App.test.js contemplam 100% dos casos de uso criados pelo Stryker.
+describe('App.js:', () => {
   //  'renderiza uma leitura com o texto `Pokédex`'
-  test('renders a reading with the text `Pokédex`', () => {
-    const { history } = renderWithRouter(<App />);
-    // const { getByText } = render(
-    //   <MemoryRouter>
-    //     <App />
-    //   </MemoryRouter>,
-    // );
+  test('Renders a reading with the text `Pokédex`', () => {
+    const history = createMemoryHistory();
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
 
     // Teste se a aplicação é redirecionada para a página inicial, na URL / ao clicar no link Home da barra de navegação.
+    // O primeiro link deve possuir o texto Home.
     const homeLink = screen.getByRole('link', {
       name: /Home/i,
     });
@@ -37,23 +34,26 @@ describe('App.js ', () => {
   });
 
   // Teste se a página principal da Pokédex é renderizada ao carregar a aplicação no caminho de URL /.
-  //     'mostra a Pokédex quando a rota é `/`'
-  test('shows the Pokédex when the route is `/`', () => {
-    const { history } = renderWithRouter(<App />);
-
-    const { pathname } = history.location;
-    expect(pathname).toBe('/');
+  test(`The main page of Pokédex is rendered
+  when loading the application in the URL path /`, () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
 
     expect(screen.getByText('Encountered pokémons')).toBeInTheDocument();
   });
 
   // Teste se o topo da aplicação contém um conjunto fixo de links de navegação.
-  // O primeiro link deve possuir o texto Home.
-  // O segundo link deve possuir o texto About.
-  // O terceiro link deve possuir o texto Favorite Pokémons.
-  test('the header application contains a fixed set of navigation links', () => {
-    const { history } = renderWithRouter(<App />);
+  test('The header application contains a fixed set of navigation links', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
 
+    // O segundo link deve possuir o texto About.
     const aboutLink = screen.getByRole('link', {
       name: /About/i,
     });
@@ -64,14 +64,16 @@ describe('App.js ', () => {
       name: 'About Pokédex',
     });
     expect(heading).toBeInTheDocument();
-
-    const { pathname } = history.location;
-    expect(pathname).toBe('/about');
   });
 
-  test('the header application contains a fixed set of navigation links', () => {
-    const { history } = renderWithRouter(<App />);
+  test('The header application contains a fixed set of navigation links', () => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>,
+    );
 
+    // O terceiro link deve possuir o texto Favorite Pokémons.
     const favoritesLink = screen.getByRole('link', {
       name: /Favorite Pokémons/i,
     });
@@ -82,8 +84,5 @@ describe('App.js ', () => {
       name: 'Favorite pokémons',
     });
     expect(heading).toBeInTheDocument();
-
-    const { pathname } = history.location;
-    expect(pathname).toBe('/favorites');
   });
 });

@@ -1,8 +1,9 @@
 import React from 'react';
 // import { render } from '@testing-library/react';
-import renderWithRouter from './renderWithRouter';
+import renderWithRouter from '../components/renderWithRouter';
 import NotFound from '../components/NotFound';
 
+// Será avaliado se o arquivo teste NotFound.test.js contemplam 100% dos casos de uso criados pelo Stryker.
 describe('NotFound.js - the page:', () => {
   // Teste se página contém um heading h2 com o texto Page requested not found;
   test('Contains an h2 heading with the text Page request not found', () => {
