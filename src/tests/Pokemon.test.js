@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Pokemon } from '../components';
 import pokemons from '../data';
+import App from '../App';
 
 test('the contains a heading with the text Encountered pokémons', () => {
   const history = createMemoryHistory();
@@ -37,7 +38,43 @@ test('the card has a link to the pokemon details', () => {
   const navLink = container.getByRole('link', {
     name: /more details/i,
   });
-  userEvent.click(navLink);
-  const { pathname } = history.location;
-  expect(pathname).toBe('/pokemons/25');
+	expect(navLink).toBeInTheDocument();
+	expect(navLink.href).toContain('/pokemons/25')
+});
+
+test('the details page contains the corret URL', () => {
+  const history = createMemoryHistory();
+  const container = render(
+    <Router history={ history }>
+      <App />
+    </Router>,
+  );
+
+	const navLink = container.getByRole('link', {
+    name: /more details/i,
+  });
+	expect(navLink.href).toContain('/pokemons/25');
+	userEvent.click(navLink);
+	expect(history.location.pathname).toBe('/pokemons/25');
+
+});
+
+test('the star image is shown at favorited pokemons', () => {
+  const history = createMemoryHistory();
+  const container = render(
+    <Router history={ history }>
+      <App />
+    </Router>,
+  );
+
+	const navLink = container.getByRole('link', {
+    name: /more details/i,
+  });
+	userEvent.click(navLink);
+
+	const favButton = container.getByRole('checkbox');
+	userEvent.click(favButton);
+  const favImg = container.getByAltText('Pikachu is marked as favorite');
+	expect(favImg).toBeInTheDocument();
+	expect(favImg.src).toContain('/star-icon.svg');
 });
