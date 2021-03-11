@@ -27,8 +27,8 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
       <App />
     </Router>,
   );
-  
-  const initialPokemon = screen.getByTestId('pokemon-name').textContent;
+  const pokemonId = 'pokemon-name';
+  const initialPokemon = screen.getByTestId(pokemonId).textContent;
   expect(initialPokemon).toBe('Pikachu');
 
   const nextButton = screen.getByRole('button', {
@@ -36,10 +36,10 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
   });
   userEvent.click(nextButton);
 
-  const nextPokemon = screen.getByTestId('pokemon-name').textContent;
+  const nextPokemon = screen.getByTestId(pokemonId).textContent;
   expect(nextPokemon).toBe('Charmander');
 
-  const pokemonCards = screen.getAllByTestId('pokemon-name').length;
+  const pokemonCards = screen.getAllByTestId(pokemonId).length;
   expect(pokemonCards).toBe(1);
 
   const pokedexHeading = screen.getByText(/Encountered pokémons/i);
