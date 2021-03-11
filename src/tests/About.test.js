@@ -11,8 +11,8 @@ describe('Test component About', () => {
   });
 
   it('should have two paragraphs', () => {
-    const { getAllByTestId } = renderWithRouter(<About />);
-    const paragraphs = getAllByTestId('about-pokedex');
+    renderWithRouter(<About />);
+    const paragraphs = document.querySelectorAll('p');
     expect(paragraphs.length).toBe(2);
   });
 
