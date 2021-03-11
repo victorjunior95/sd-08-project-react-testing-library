@@ -1,6 +1,7 @@
 import React from 'react';
-import About from '../components/About';
 import renderWithRouter from '../renderWithRouter';
+
+import About from '../components/About';
 
 describe('Test component About', () => {
   it('should have informations about the Pokedex', () => {
