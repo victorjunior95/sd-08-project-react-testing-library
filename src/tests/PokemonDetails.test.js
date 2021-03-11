@@ -48,7 +48,7 @@ test('Verifica se existe na página uma seção com os mapas', () => {
   expect(pokemonMap).toBeInTheDocument();
   expect(locationPokemon).toBeInTheDocument();
   expect(locationOnePokemon.src).toBe(
-    'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png'
+    'https://cdn.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png',
   );
 });
 
@@ -67,7 +67,7 @@ test('Verifica se o usuário pode favoritar um pokémon', () => {
   });
 
   const labelText = getByLabelText('Pokémon favoritado?');
-  
+
   expect(checkBoxView).toBeInTheDocument();
   expect(favoritedPokemon).toBeInTheDocument();
   expect(labelText).toBeInTheDocument();
