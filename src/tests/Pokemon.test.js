@@ -38,8 +38,8 @@ test('the card has a link to the pokemon details', () => {
   const navLink = container.getByRole('link', {
     name: /more details/i,
   });
-	expect(navLink).toBeInTheDocument();
-	expect(navLink.href).toContain('/pokemons/25');
+  expect(navLink).toBeInTheDocument();
+  expect(navLink.href).toContain('/pokemons/25');
 });
 
 test('the details page contains the corret URL', () => {
@@ -50,12 +50,12 @@ test('the details page contains the corret URL', () => {
     </Router>,
   );
 
-	const navLink = container.getByRole('link', {
+  const navLink = container.getByRole('link', {
     name: /more details/i,
   });
-	expect(navLink.href).toContain('/pokemons/25');
-	userEvent.click(navLink);
-	expect(history.location.pathname).toBe('/pokemons/25');
+  expect(navLink.href).toContain('/pokemons/25');
+  userEvent.click(navLink);
+  expect(history.location.pathname).toBe('/pokemons/25');
 });
 
 test('the star image is shown at favorited pokemons', () => {
@@ -66,14 +66,14 @@ test('the star image is shown at favorited pokemons', () => {
     </Router>,
   );
 
-	const navLink = container.getByRole('link', {
+  const navLink = container.getByRole('link', {
     name: /more details/i,
   });
-	userEvent.click(navLink);
+  userEvent.click(navLink);
 
-	const favButton = container.getByRole('checkbox');
-	userEvent.click(favButton);
+  const favButton = container.getByRole('checkbox');
+  userEvent.click(favButton);
   const favImg = container.getByAltText('Pikachu is marked as favorite');
-	expect(favImg).toBeInTheDocument();
-	expect(favImg.src).toContain('/star-icon.svg');
+  expect(favImg).toBeInTheDocument();
+  expect(favImg.src).toContain('/star-icon.svg');
 });
