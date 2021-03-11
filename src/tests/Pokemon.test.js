@@ -15,10 +15,11 @@ describe('Poke info', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const pikachu = getByText(/Pikachu/i);
     const eletric = getByTestId(/PokemonType/i);
-    const weight = getByTestId(/pokemon-weight/i);
+    const weight = getByText(/Average weight:/i);
     expect(pikachu).toBeInTheDocument();
     expect(eletric.textContent).toBe('Electric');
     expect(weight).toBeInTheDocument();
+    expect(weight.textContent).toBe('Average weight: 6.0 kg');
   });
   it('Existe um ícone de estrela nos Pokémons favoritados.', () => {
     const { getByRole, history, getByAltText, getByText } = renderWithRouter(<App />);
