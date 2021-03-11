@@ -14,7 +14,7 @@ test('the detailed information oh the pokemon is shown', () => {
       <App />
     </Router>,
   );
-  const buttonText =  'More details';
+  const buttonText = 'More details';
   const detailsButton = container.getByText(buttonText);
   userEvent.click(detailsButton);
 
