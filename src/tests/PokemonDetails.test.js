@@ -6,6 +6,8 @@ import userEvent from '@testing-library/user-event';
 import pokemons from '../data';
 import App from '../App';
 
+const buttonText = 'More details';
+
 test('the detailed information oh the pokemon is shown', () => {
   const history = createMemoryHistory();
   const pokemonData = pokemons;
@@ -14,7 +16,7 @@ test('the detailed information oh the pokemon is shown', () => {
       <App />
     </Router>,
   );
-  const buttonText = 'More details';
+
   const detailsButton = container.getByText(buttonText);
   userEvent.click(detailsButton);
 
@@ -35,7 +37,6 @@ test('the detailed information oh the pokemon is shown', () => {
 test('the detail page has a map with the pokemon area details', () => {
   const history = createMemoryHistory();
   const pokemonData = pokemons;
-  const buttonText = 'More details';
   const container = render(
     <Router history={ history }>
       <App />
@@ -63,7 +64,7 @@ test('the pokemon can be favorited at the details page', () => {
       <App />
     </Router>,
   );
-  const detailsButton = container.getByText(buttonText);
+
   userEvent.click(detailsButton);
 
   const favButton = container.getByRole('checkbox');
