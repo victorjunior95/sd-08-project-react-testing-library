@@ -17,7 +17,7 @@ describe('Test component About', () => {
     );
     const pTwo = getByText(
       'One can filter Pokémons by type, '
-      + 'and see more details for each one of them'
+      + 'and see more details for each one of them',
     );
     expect(pOne).toBeInTheDocument();
     expect(pTwo).toBeInTheDocument();
