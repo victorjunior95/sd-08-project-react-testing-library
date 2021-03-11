@@ -7,7 +7,7 @@ const details = 'More details';
 
 test('Verifica mensagem card com as informações', () => {
   const { getByText, getByTestId, getByRole } = renderWithRouter(<App />);
-  
+
   const btnEletric = getByRole('button', {
     name: 'Electric',
   });
@@ -19,7 +19,7 @@ test('Verifica mensagem card com as informações', () => {
   const averageWeight = getByText('Average weight: 6.0 kg');
   const pokemonImg = getByRole('img', {
     name: 'Pikachu sprite',
-  })
+  });
 
   expect(pokemonEletric.innerHTML).toBe('Pikachu');
   expect(pokemonType.innerHTML).toBe('Electric');
@@ -28,23 +28,23 @@ test('Verifica mensagem card com as informações', () => {
   expect(pokemonImg.alt).toBe('Pikachu sprite');
 });
 
-test('Verifica se o card do Pokémon indicado na Pokédex contém um link de navegação', () => {
+test('Verifica se o card do Pokémon indicado na Pokédex contém link de navegação', () => {
   const { getByText, getByRole } = renderWithRouter(<App />);
-    
+
   const btnDragon = getByRole('button', {
     name: 'Dragon',
   });
-  
+
   fireEvent.click(btnDragon);
-  
+
   const linkDetails = getByText(details);
-  
+
   expect(linkDetails.href).toBe('http://localhost/pokemons/148');
 });
 
 test('Verifica o redirecionamento da aplicação para a página de detalhes', () => {
   const { getByText, history, getByRole } = renderWithRouter(<App />);
-  
+
   const btnDragon = getByRole('button', {
     name: 'Dragon',
   });
@@ -62,11 +62,11 @@ test('Verifica o redirecionamento da aplicação para a página de detalhes', ()
 
 test('Verifica se a URL exibida no navegador muda', () => {
   const { history, getByRole, getByText } = renderWithRouter(<App />);
-  
+
   const btnPoison = getByRole('button', {
     name: 'Poison',
   });
-  
+
   fireEvent.click(btnPoison);
 
   const linkDetails = getByText(details);
@@ -80,15 +80,15 @@ test('Verifica se a URL exibida no navegador muda', () => {
 
 test('Verifica se existe um ícone de estrela nos Pokémons favoritados', () => {
   const { getByRole, getByText } = renderWithRouter(<App />);
-    
+ 
   const btnPoison = getByRole('button', {
     name: 'Poison',
   });
-    
+
   fireEvent.click(btnPoison);
-  
+
   const linkDetails = getByText(details);
-  
+
   fireEvent.click(linkDetails);
 
   const favoritedPokemon = getByText('Pokémon favoritado?');
@@ -96,8 +96,8 @@ test('Verifica se existe um ícone de estrela nos Pokémons favoritados', () => 
   fireEvent.click(favoritedPokemon);
 
   const favoritedEkans = getByRole('img', {
-    name: 'Ekans is marked as favorite'
-  })
+    name: 'Ekans is marked as favorite',
+  });
 
   expect(favoritedEkans).toBeInTheDocument();
   expect(favoritedEkans.src).toBe('http://localhost/star-icon.svg');
