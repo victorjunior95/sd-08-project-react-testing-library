@@ -38,7 +38,7 @@ test('o terceiro link possui o texto Favorite Pokemóns', () => {
 test('a aplicação é direcionada para página inicial "/" ao clicar em Home', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>,
   );
@@ -50,7 +50,7 @@ test('a aplicação é direcionada para página inicial "/" ao clicar em Home', 
 test('verifica se ao clicar em About direciona para about', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>,
   );
@@ -62,7 +62,7 @@ test('verifica se ao clicar em About direciona para about', () => {
 test('verifica se ao clicar em Favorite Pokémons direciona para favorites', () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
     </Router>,
   );
