@@ -9,7 +9,7 @@ test('the page contains a heading with the text Page requested not found 😭', 
     name: /Page requested not found Crying emoji/i,
   });
   expect(notFoundHeading).toBeInTheDocument();
-  });
+});
 
 test('the page show the not found image', () => {
   render(<NotFound />);
