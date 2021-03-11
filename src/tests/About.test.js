@@ -11,14 +11,12 @@ describe('Test component About', () => {
 
   it('should have two paragraphs', () => {
     const { getByText } = renderWithRouter(<About />);
-    const pOne = getByText(
-      'This application simulates a Pokédex, a '
-      + 'digital encyclopedia containing all Pokémons',
-    );
-    const pTwo = getByText(
-      'One can filter Pokémons by type, '
-      + 'and see more details for each one of them',
-    );
+    const pOneText = 'This application simulates a Pokédex, a '
+      + 'digital encyclopedia containing all Pokémons';
+    const pTwoText = 'One can filter Pokémons by type, '
+      + 'and see more details for each one of them';
+    const pOne = getByText(pOneText);
+    const pTwo = getByText(pTwoText);
     expect(pOne).toBeInTheDocument();
     expect(pTwo).toBeInTheDocument();
   });
