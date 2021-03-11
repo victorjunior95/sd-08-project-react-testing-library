@@ -1,6 +1,6 @@
 import React from 'react';
 import renderWithRouter from '../services/renderWithRouter';
-import { FavoritePokemons } from '../components';
+import FavoritePokemons from '../components/FavoritePokemons';
 
 describe('No Favorite', () => {
   it('Not Found', () => {
