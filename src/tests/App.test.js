@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import App from '../App';
 
-test('the main page is rendered at the path '/'', () => {
+test('the main page is rendered at the path "/"', () => {
   const history = createMemoryHistory();
   render(
     <Router history={ history }>
@@ -77,7 +77,7 @@ test('the Favorite Pokémons link redirects to the right path', () => {
   render(
     <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const favoritePokemonsLink = screen.getByRole('link', {

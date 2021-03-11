@@ -1,8 +1,8 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 
-import userEvent from '@testing-library/user-event';
 import App from '../App';
+import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
 
@@ -27,7 +27,9 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
       <App />
     </Router>,
   );
-  const initialPokemon = screen.getByTestId('pokemon-name').textContent;
+
+  const getById = screen.getByTestId('pokemon-name').textContent;
+  const initialPokemon = getById;
   expect(initialPokemon).toBe('Pikachu');
 
   const nextButton = screen.getByRole('button', {
@@ -35,7 +37,7 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
   });
   userEvent.click(nextButton);
 
-  const nextPokemon = screen.getByTestId('pokemon-name').textContent;
+  const nextPokemon = getById;
   expect(nextPokemon).toBe('Charmander');
 
   const pokemonCards = screen.getAllByTestId('pokemon-name').length;
