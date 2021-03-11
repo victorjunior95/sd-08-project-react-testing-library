@@ -20,8 +20,7 @@ describe('Pagina inicial', () => {
       level: 2,
       name: /Summary/i,
     });
-    const sumaryText = getByText(`This intelligent Pokémon roasts hard berries
-     with electricity to make them tender enough to eat.`);
+    const sumaryText = getByText(/This intelligent Pokémon/i);
     expect(pikachuDetails).toBeInTheDocument();
     expect(sumary).toBeInTheDocument();
     expect(sumaryText).toBeInTheDocument();
