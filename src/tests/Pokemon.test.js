@@ -15,7 +15,7 @@ describe('Poke info', () => {
     const { getByText, getByTestId } = renderWithRouter(<App />);
     const pikachu = getByText(/Pikachu/i);
     const eletric = getByTestId(/PokemonType/i);
-    const weight = getByText(/Average weight:/i);
+    const weight = getByTestId(/pokemon-weight/i);
     expect(pikachu).toBeInTheDocument();
     expect(eletric.textContent).toBe('Electric');
     expect(weight).toBeInTheDocument();
