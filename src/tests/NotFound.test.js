@@ -7,11 +7,12 @@ import NotFound from '../components/NotFound';
 describe('NotFound.js - the page:', () => {
   // Teste se página contém um heading h2 com o texto Page requested not found;
   test('Contains an h2 heading with the text Page request not found', () => {
-    const { getByText } = renderWithRouter(<NotFound />);
-    const text = getByText('Page request not found', {
+    const { getByRole } = renderWithRouter(<NotFound />);
+    const regex = new RegExp('Page requested not found', 'i');
+    expect(getByRole('heading', {
       level: 2,
-    });
-    expect(text).toBeInTheDocument();
+      name: regex,
+    })).toBeInTheDocument();
   });
 
   // Teste se a página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif.
