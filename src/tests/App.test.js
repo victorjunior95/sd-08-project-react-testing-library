@@ -11,16 +11,15 @@ test('Testando se a aplicação renderiza o App.js na rota \'/\'', () => {
   expect(getByText('Encountered pokémons')).toBeInTheDocument();
 });
 
-test('Testando o numero fixo de links do navegador', () => {
-  const { getByTestId } = renderWithRouter(<App />);
-  const navegador = getByTestId('navegador');
-  const links = within(navegador).getAllByRole('link');
-  const num = 3;
+test('Testando os links do navegador', () => {
+  const { getByText } = renderWithRouter(<App />);
+  const home = getByText('Home');
+  const about = getByText('About');
+  const favorite = getByText('Favorite Pokémons');
 
-  expect(links.length).toBe(num);
-  expect(links[0].innerHTML).toBe('Home');
-  expect(links[1].innerHTML).toBe('About');
-  expect(links[2].innerHTML).toBe('Favorite Pokémons');
+  expect(home).toBeInTheDocument();
+  expect(about).toBeInTheDocument();
+  expect(favorite).toBeInTheDocument();
 });
 
 test('Testando o link Home', () => {
