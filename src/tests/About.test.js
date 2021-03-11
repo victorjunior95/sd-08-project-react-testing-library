@@ -11,11 +11,11 @@ describe('Testando componente ´<About>´', () => {
   });
   test('se a página contém um heading `h2` com o texto `About Pokédex`.', () => {
     const { getByRole } = render(<About />);
-    const selectHeading = getByRole('heading', {
+    const selectHead = getByRole('heading', {
       level: 2,
       name: 'About Pokédex',
     });
-    expect(selectHeading).toBeInTheDocument();
+    expect(selectHead).toBeInTheDocument();
   });
   test('Se a página contém dois parágrafos com texto sobre a Pokédex', () => {
     const { container } = renderWithRouter(<About />);
