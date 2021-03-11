@@ -11,11 +11,9 @@ describe('Test component About', () => {
   });
 
   it('should have two paragraphs', () => {
-    const { getByText } = renderWithRouter(<About />);
-    const pOne = getByText(/digital encyclopedia/gi);
-    const pTwo = getByText(/see more details/gi);
-    expect(pOne).toBeInTheDocument();
-    expect(pTwo).toBeInTheDocument();
+    const { getAllByTestId } = renderWithRouter(<About />);
+    const paragraphs = getAllByTestId('about-pokedex');
+    expect(paragraphs.length).toBe(2);
   });
 
   it('should have an image of a Pokedex', () => {
