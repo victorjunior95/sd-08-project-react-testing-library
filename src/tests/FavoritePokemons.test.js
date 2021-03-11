@@ -1,25 +1,24 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from "@testing-library/user-event";
-import { createMemoryHistory } from "history";
+import userEvent from '@testing-library/user-event';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router';
 
 import App from '../App';
 import FavoritePokemons from '../components/FavoritePokemons';
-import { Router } from 'react-router';
 
-
-test('the message No favorite pokemon found is shown if there is no favorite pokemons', () => {
-  render(<FavoritePokemons />)
+test('shows the message No favorite pokemon found if no pokemons are found', () => {
+  render(<FavoritePokemons />);
   const noPokemons = screen.getByText(/No favorite pokemon found/i);
   expect(noPokemons).toBeInTheDocument();
 });
 
-test('the message No favorite pokemon found is shown if there is no favorite pokemons', () => {
+test('the favorite pokemons cards are shown', () => {
   const history = createMemoryHistory();
   render(
-    <Router history={history}>
+    <Router history={ history }>
       <App />
-    </Router>
+    </Router>,
   );
 
   const detailsButton = screen.getByText(/more details/i);
@@ -28,10 +27,9 @@ test('the message No favorite pokemon found is shown if there is no favorite pok
   const favoriteButton = screen.getByRole('checkbox');
   userEvent.click(favoriteButton);
 
-  const favoritePage = screen.getByText(/favorite pokémons/i)
+  const favoritePage = screen.getByText(/favorite pokémons/i);
   userEvent.click(favoritePage);
 
   const favoritedPokemons = screen.getAllByTestId('pokemon-name').length;
   expect(favoritedPokemons).toBe(1);
-
 });
