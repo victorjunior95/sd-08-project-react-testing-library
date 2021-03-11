@@ -20,10 +20,8 @@ describe('Teste se é renderizado um card com as inf. de determinado pokémon.',
   });
   test('Se o peso médio do pokémon deve ser exibido', () => {
     const { getByTestId } = renderWithRouter(<App />);
-    const { value, measurementUnit } = pokemons;
     const averageWeight = getByTestId('pokemon-weight');
-    const textAverageWeight = `Average weight: ${value} ${measurementUnit}`;
-    expect(averageWeight).toBeInTheDocument(textAverageWeight);
+    expect(averageWeight.textContent).toBe('Average weight: 6.0 kg');
   });
   test('Se a imagem do Pokémon deve ser exibida corretamente', () => {
     const { getByAltText } = renderWithRouter(<App />);
@@ -57,5 +55,15 @@ describe('Teste se existe um ícone de estrela nos Pokémons favoritados.', () =
     const img = getByAltText(`${name} is marked as favorite`);
     expect(img).toBeInTheDocument();
     expect(img.src).toBe('http://localhost/star-icon.svg');
+  });
+  test('a página de detalhes deve conter a URL com o id do pokémon', () => {
+    const { history, getByText } = renderWithRouter(<App />);
+
+    const linkMoreDetails = getByText('More details');
+    fireEvent.click(linkMoreDetails);
+
+    const { pathname } = history.location;
+
+    expect(pathname).toBe('/pokemons/25');
   });
 });
