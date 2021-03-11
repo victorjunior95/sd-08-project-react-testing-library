@@ -48,8 +48,8 @@ describe('Test component Pokedex', () => {
   });
 
   it('should have a button to reset the filters', () => {
-    const { getByTestId } = renderWithRouter(<App />);
-    const btnResetFilter = getByTestId('');
+    const { getByTestId, getByText } = renderWithRouter(<App />);
+    const btnResetFilter = getByText('All');
     expect(btnResetFilter).toHaveTextContent('All');
     const btnNextPokemon = getByTestId(TESTID_NEXT_POKEMON);
     const pokemon1 = getByTestId('pokemonType').innerHTML;
