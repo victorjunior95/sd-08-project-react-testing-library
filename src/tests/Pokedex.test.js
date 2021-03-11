@@ -1,10 +1,10 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 
+import App from '../App';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
-import App from '../App';
 
 test('the page contains a heading with the text Encountered pokémons', () => {
   const history = createMemoryHistory();
@@ -27,9 +27,8 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
       <App />
     </Router>,
   );
-
-  const getById = screen.getByTestId('pokemon-name').textContent;
-  const initialPokemon = getById;
+  
+  const initialPokemon = screen.getByTestId('pokemon-name').textContent;
   expect(initialPokemon).toBe('Pikachu');
 
   const nextButton = screen.getByRole('button', {
@@ -37,7 +36,7 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
   });
   userEvent.click(nextButton);
 
-  const nextPokemon = getById;
+  const nextPokemon = screen.getByTestId('pokemon-name').textContent;
   expect(nextPokemon).toBe('Charmander');
 
   const pokemonCards = screen.getAllByTestId('pokemon-name').length;
