@@ -12,6 +12,8 @@ test('Testando se as informações sobra a pokedex estão presentes', () => {
 
   // expect(par1).toBeInTheDocument();
   // expect(par2).toBeInTheDocument();
+  // Tirei inspiração para a utilização do container no site:
+  // https://stackoverflow.com/questions/54593369/unable-to-find-an-element-with-the-text-mytext-error-when-using-react-testing
   const { container } = renderWithRouter(<About />);
   const paragrafos = container.querySelectorAll('p');
   const text1 = 'This application simulates a Pokédex, a';
