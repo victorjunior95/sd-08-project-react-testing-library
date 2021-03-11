@@ -1,9 +1,10 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../services/renderWithRouter';
+
 import App from '../App';
 
-const FavoritePokemons = 'Favorite Pokémons';
+const favoritePokemons = 'Favorite Pokémons';
 
 describe('App.js', () => {
   test('should show the Pokédex when the route is `/`', () => {
@@ -18,7 +19,7 @@ describe('App.js', () => {
 
     expect(navigationLinks[0]).toHaveTextContent('Home');
     expect(navigationLinks[1]).toHaveTextContent('About');
-    expect(navigationLinks[2]).toHaveTextContent(FavoritePokemons);
+    expect(navigationLinks[2]).toHaveTextContent(favoritePokemons);
   });
 
   test('should redirect to `/` when Home Navigation Link is clicked', () => {
@@ -41,7 +42,7 @@ describe('App.js', () => {
 
   test('should redirect to `/favorites` when Favorite PokémonsNavLink is clicked', () => {
     const { getByText, history } = renderWithRouter(<App />);
-    const favoritePokemonLink = getByText(FavoritePokemons);
+    const favoritePokemonLink = getByText(favoritePokemons);
 
     userEvent.click(favoritePokemonLink);
     const { pathname } = history.location;
