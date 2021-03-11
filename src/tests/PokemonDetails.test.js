@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import pokemons from '../data';
 import App from '../App';
+
 const buttonText = 'More details';
 
 test('the detailed information oh the pokemon is shown', () => {
