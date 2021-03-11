@@ -19,7 +19,7 @@ const favoritou = 'Pokémon favoritado?';
 
 test('Verifica mensagem "No favorite pokemon found"', () => {
   const { getByText } = renderWithRouter(<App />);
-  const linkFavoritoso = getByText(favotitado);
+  const linkFavoritoso = getByText(favoritado);
 
   fireEvent.click(linkFavoritoso);
 
@@ -41,7 +41,7 @@ test('Verifica os cards favoritados', () => {
 
   fireEvent.click(favoriteded);
 
-  const linkFavorite = getByText(favotitado);
+  const linkFavorite = getByText(favoritado);
 
   fireEvent.click(linkFavorite);
 
