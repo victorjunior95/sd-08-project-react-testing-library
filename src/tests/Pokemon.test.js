@@ -80,7 +80,7 @@ test('Verifica se a URL exibida no navegador muda', () => {
 
 test('Verifica se existe um ícone de estrela nos Pokémons favoritados', () => {
   const { getByRole, getByText } = renderWithRouter(<App />);
- 
+
   const btnPoison = getByRole('button', {
     name: 'Poison',
   });
