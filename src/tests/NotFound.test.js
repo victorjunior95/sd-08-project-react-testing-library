@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
-test('Teste se a página contém um heading h2 com o texto About Pokédex.', () => {
+test('Contém um heading h2 com o texto Page requested not found 😭', () => {
   const { getByRole } = render(<NotFound />);
   const info = getByRole('heading', {
     level: 2,
@@ -11,7 +11,7 @@ test('Teste se a página contém um heading h2 com o texto About Pokédex.', () 
   expect(info.textContent).toBe('Page requested not found 😭');
 });
 
-test('Teste se a página contém a seguinte imagem de uma Pokédex', () => {
+test('Teste se página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif', () => {
   const SRC = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
   const { getAllByRole } = render(<NotFound />);
   const imagemPokedex = getAllByRole('img');
