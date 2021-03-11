@@ -38,8 +38,9 @@ test('the card has a link to the pokemon details', () => {
   const navLink = container.getByRole('link', {
     name: /more details/i,
   });
+  const urlPokemon = '/pokemons/25';
   expect(navLink).toBeInTheDocument();
-  expect(navLink.href).toContain('/pokemons/25');
+  expect(navLink.href).toContain(urlPokemon);
 });
 
 test('the details page contains the corret URL', () => {
@@ -53,9 +54,9 @@ test('the details page contains the corret URL', () => {
   const navLink = container.getByRole('link', {
     name: /more details/i,
   });
-  expect(navLink.href).toContain('/pokemons/25');
+  expect(navLink.href).toContain(urlPokemon);
   userEvent.click(navLink);
-  expect(history.location.pathname).toBe('/pokemons/25');
+  expect(history.location.pathname).toBe(urlPokemon);
 });
 
 test('the star image is shown at favorited pokemons', () => {
