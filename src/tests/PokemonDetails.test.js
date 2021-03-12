@@ -27,13 +27,12 @@ describe('Pokemon Details component tests', () => {
     const detailsH2 = getByText(/details/i);
     const detailsH2check = detailsH2.innerHTML;
     const detailsSummary = getByText(/summary/i);
-    const detailsSummaryCheck = detailsSummary.innerHTML;
     expect(detailscheck)
       .not.toBeInTheDocument();
     expect(detailsH2check)
       .toBe(`${pokeInfo.name} Details`);
-    expect(detailsSummaryCheck.toString())
-      .toBe('Summary');
+    expect(detailsSummary)
+      .toBeInTheDocument();
     expect(getByText(`${pokeInfo.summary}`))
       .toBeInTheDocument();
   });
