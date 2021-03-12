@@ -25,12 +25,14 @@ describe('Pokemon Details component tests', () => {
     const favoriteInput = getByLabelText(/Pokémon favoritado?/i);
     userEvent.click(favoriteInput);
     const detailsH2 = getByText(/details/i);
+    const detailsH2check = detailsH2.innerHTML;
     const detailsSummary = getByText(/summary/i);
+    const detailsSummaryCheck = detailsSummary.innerHTML;
     expect(detailscheck)
       .not.toBeInTheDocument();
-    expect(detailsH2.innerHTML)
+    expect(detailsH2check)
       .toBe(`${pokeInfo.name} Details`);
-    expect(detailsSummary.innerHTML)
+    expect(detailsSummaryCheck)
       .toBe('Summary');
     expect(getByText(`${pokeInfo.summary}`))
       .toBeInTheDocument();
