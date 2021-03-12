@@ -78,4 +78,6 @@ test('the star image is shown at favorited pokemons', () => {
   const favImg = container.getByAltText('Pikachu is marked as favorite');
   expect(favImg).toBeInTheDocument();
   expect(favImg.src).toContain('/star-icon.svg');
+  const pokemonDetails = container.getByText(/Pikachu Details/i);
+  expect(pokemonDetails).toBeInTheDocument();
 });
