@@ -1,7 +1,7 @@
 import React from 'react';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Pokemon } from '../components';
 import pokemons from '../data';
@@ -12,16 +12,16 @@ const urlPokemon = '/pokemons/25';
 test('the contains a heading with the text Encountered pokémons', () => {
   const history = createMemoryHistory();
   const pokemonData = pokemons;
-  const container = render(
+  const screen = render(
     <Router history={ history }>
       <Pokemon pokemon={ pokemonData[0] } isFavorite={ false } />
     </Router>,
   );
 
-  const pokemonName = container.getByText(/pikachu/i);
-  const pokemonType = container.getByText(/electric/i);
-  const pokemonWeight = container.getByText(/average weight: 6.0 kg/i);
-  const pokemonImg = container.getByAltText(/pikachu sprite/i);
+  const pokemonName = screen.getByText(/pikachu/i);
+  const pokemonType = screen.getByText(/electric/i);
+  const pokemonWeight = screen.getByText(/average weight: 6.0 kg/i);
+  const pokemonImg = screen.getByAltText(/pikachu sprite/i);
   expect(pokemonName).toBeInTheDocument();
   expect(pokemonType).toBeInTheDocument();
   expect(pokemonWeight).toBeInTheDocument();
@@ -31,53 +31,29 @@ test('the contains a heading with the text Encountered pokémons', () => {
 test('the card has a link to the pokemon details', () => {
   const history = createMemoryHistory();
   const pokemonData = pokemons;
-  const container = render(
+  render(
     <Router history={ history }>
-      <Pokemon pokemon={ pokemonData[0] } isFavorite={ false } />
+      <App />
     </Router>,
   );
-
-  const navLink = container.getByRole('link', {
-    name: /more details/i,
-  });
+  
+  const navLink = screen.getByRole('link', {
+      name: /more details/i,
+    });
+  
   expect(navLink).toBeInTheDocument();
   expect(navLink).toHaveAttribute('href', '/pokemons/25');
-});
-
-test('the details page contains the corret URL', () => {
-  const history = createMemoryHistory();
-  const container = render(
-    <Router history={ history }>
-      <App />
-    </Router>,
-  );
-
-  const navLink = container.getByRole('link', {
-    name: /more details/i,
-  });
-  expect(navLink.href).toContain(urlPokemon);
   userEvent.click(navLink);
-  expect(history.location.pathname).toContain(urlPokemon);
-});
+  expect(history.location.pathname).toBe(urlPokemon);
 
-test('the star image is shown at favorited pokemons', () => {
-  const history = createMemoryHistory();
-  const container = render(
-    <Router history={ history }>
-      <App />
-    </Router>,
-  );
+  const favoriteButton = screen.getByRole('checkbox');
+  userEvent.click(favoriteButton);
 
-  const navLink = container.getByRole('link', {
-    name: /more details/i,
-  });
-  userEvent.click(navLink);
+  const favoriteAltText = 'Pikachu is marked as favorite';
 
-  const favButton = container.getByRole('checkbox');
-  userEvent.click(favButton);
-  const favImg = container.getByAltText('Pikachu is marked as favorite');
-  expect(favImg).toBeInTheDocument();
-  expect(favImg.src).toContain('/star-icon.svg');
-  const pokemonDetails = container.getByText(/Pikachu Details/i);
-  expect(pokemonDetails).toBeInTheDocument();
+  history.push('/');
+  const favoritedPokemon = screen.getByAltText(favoriteAltText);
+  expect(favoritedPokemon).toBeInTheDocument();
+  expect(favoritedPokemon).toHaveAttribute('src', '/star-icon.svg');
+  expect(favoritedPokemon).toHaveAttribute('alt', 'Pikachu is marked as favorite');
 });
