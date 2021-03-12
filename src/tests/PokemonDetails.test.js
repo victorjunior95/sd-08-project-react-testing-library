@@ -6,6 +6,8 @@ import { createMemoryHistory } from 'history';
 import App from '../App';
 import pokemons from '../data';
 
+// Details Test
+
 describe('Pokemon Details component tests', () => {
   it('renders Pokemon Details component, Components detais', () => {
     const history = createMemoryHistory();
