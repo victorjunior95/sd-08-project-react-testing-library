@@ -53,7 +53,6 @@ test('The page contains an h2 heading with the text Encountered pokémons', () =
 
 describe(`The page displays the next Pokémon
 on the list when the Next Pokémon button is clicked`, () => {
-  // O botão deve conter o texto Próximo pokémon;
   test('The button should contain the text Next pokémon', () => {
     const { getByRole, getByTestId } = renderPokedex();
     const firstPokemon = getByTestId(testIds.pokemonName).textContent;
