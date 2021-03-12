@@ -21,7 +21,6 @@ describe('tests the component App.js', () => {
   it('contains two paragraphs with text about Pokédex', () => {
     const { getAllByText } = renderWithRouter(<About />);
     const text = getAllByText(/Pokémons/i);
-    console.log(text);
     expect(text.length.toString()).toBe('2');
   });
 
