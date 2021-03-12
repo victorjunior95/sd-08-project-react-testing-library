@@ -33,7 +33,7 @@ describe('Pokedex.js', () => {
       level: 2,
     });
 
-    expect(H2Tag).toBeInTheDocument('Encountered pokémons');
+    expect(H2Tag).toHaveTextContent('Encountered pokémons');
   });
 
   test('should show the next pokemon when button nextPokemonButton is clicked', () => {
@@ -135,7 +135,7 @@ describe('Pokedex.js', () => {
     expect(pokemonName).toBeInTheDocument();
   });
 
-  test('shoud show a filter button for all Pokemon available types', () => {
+  test('should show a filter button for all Pokemon available types', () => {
     const { getAllByTestId, getByText } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ favoritePokemon }
@@ -151,7 +151,7 @@ describe('Pokedex.js', () => {
     expect(allPokemonsButton).toBeInTheDocument();
   });
 
-  test('should disable the NxtPokButton if only one category is choosen', () => {
+  test('should disable the NxtPokButton if only one category is chosen', () => {
     const { getByRole } = renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ favoritePokemon }
@@ -173,3 +173,4 @@ describe('Pokedex.js', () => {
 });
 
 // https://testing-library.com/docs/ecosystem-user-event/
+// https://github.com/testing-library/jest-dom#tohavetextcontent
