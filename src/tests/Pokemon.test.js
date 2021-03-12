@@ -26,8 +26,8 @@ test('the contains a heading with the text Encountered pokémons', () => {
   expect(pokemonType).toBeInTheDocument();
   expect(pokemonWeight).toBeInTheDocument();
   expect(pokemonImg).toBeInTheDocument();
-  expect(pokemonImg).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png')
-  expect(pokemonImg).toHaveAttribute('alt', 'Pikachu sprite')
+  expect(pokemonImg).toHaveAttribute('src', 'https://cdn.bulbagarden.net/upload/b/b2/Spr_5b_025_m.png');
+  expect(pokemonImg).toHaveAttribute('alt', 'Pikachu sprite');
 });
 
 test('the card has a link to the pokemon details', () => {
@@ -54,7 +54,7 @@ test('the card has a link to the pokemon details', () => {
   const favoriteAltText = 'Pikachu is marked as favorite';
 
   history.push('/');
-  expect(screen.getByText('All')).toBeInTheDocument()
+  expect(screen.getByText('All')).toBeInTheDocument();
   const favoritedPokemon = screen.getByAltText(favoriteAltText);
   expect(favoritedPokemon).toBeInTheDocument();
   expect(favoritedPokemon).toHaveAttribute('src', '/star-icon.svg');
