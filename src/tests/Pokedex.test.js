@@ -4,11 +4,11 @@ import { Router } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+// import App from '../App';
 import { Pokedex } from '../components';
 import pokemons from '../data';
 
-const isPokemonFavoriteById= {
+const isPokemonFavoriteById = {
   25: true,
 };
 
@@ -52,10 +52,7 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
   const nextPokemon = screen.getByTestId(pokemonId).textContent;
   expect(nextPokemon).toBe('Charmander');
 
-  for (let i=1; i <= 8; i++) {
-    const nextButton = screen.getByRole('button', {
-      name: /Próximo pokémon/i,
-    });
+  for (let i = 1; i <= 8; i += 1) {
     userEvent.click(nextButton);
   };
 
@@ -74,7 +71,7 @@ test('the filter buttons are working', () => {
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
       />
-    </Router>,
+    </Router>
   );
   const filterButton = screen.getAllByTestId('pokemon-type-button');
   expect(filterButton.length).toBe(7);
@@ -100,7 +97,7 @@ test('the filter buttons are working', () => {
 //       />
 //     </Router>,
 //   );
-  
+
 //     const resetFilter = screen.getByText(/All/);
 //     expect(resetFilter).toBeInTheDocument();
 //     userEvent.click(resetFilter);
