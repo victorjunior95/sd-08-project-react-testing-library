@@ -34,13 +34,14 @@ describe('testes', () => {
     expect(linkAbout).toBeInTheDocument();
   });
 
-  test('Teste se a aplicação é redirecionada para a página de Pokémons Favoritados', () => {
-    const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
-    const linkFavorites = getByText(/Favorite Pokémons/i);
-    expect(linkFavorites).toBeInTheDocument();
-  });
+  test('Teste se a aplicação é redirecionada para a página de Pokémons Favoritados',
+    () => {
+      const { getByText } = render(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>,
+      );
+      const linkFavorites = getByText(/Favorite Pokémons/i);
+      expect(linkFavorites).toBeInTheDocument();
+    });
 });
