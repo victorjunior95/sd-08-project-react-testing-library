@@ -12,7 +12,7 @@ const urlPokemon = '/pokemons/25';
 test('the contains a heading with the text Encountered pokémons', () => {
   const history = createMemoryHistory();
   const pokemonData = pokemons;
-  const screen = render(
+  render(
     <Router history={ history }>
       <Pokemon pokemon={ pokemonData[0] } isFavorite={ false } />
     </Router>,
@@ -30,17 +30,16 @@ test('the contains a heading with the text Encountered pokémons', () => {
 
 test('the card has a link to the pokemon details', () => {
   const history = createMemoryHistory();
-  const pokemonData = pokemons;
   render(
     <Router history={ history }>
       <App />
     </Router>,
   );
-  
+
   const navLink = screen.getByRole('link', {
-      name: /more details/i,
-    });
-  
+    name: /more details/i,
+  });
+
   expect(navLink).toBeInTheDocument();
   expect(navLink).toHaveAttribute('href', '/pokemons/25');
   userEvent.click(navLink);
