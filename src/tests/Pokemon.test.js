@@ -41,7 +41,7 @@ test('the card has a link to the pokemon details', () => {
     name: /more details/i,
   });
   expect(navLink).toBeInTheDocument();
-  expect(navLink.href).toBe('http://localhost/pokemons/25');
+  expect(navLink.href).toBe('/pokemons/25');
 });
 
 test('the details page contains the corret URL', () => {
