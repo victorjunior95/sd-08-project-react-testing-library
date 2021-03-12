@@ -1,12 +1,13 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/dom';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 import pokemons from '../data';
 
 const nextPokemon = 'Próximo pokémon';
 const filteredPokemons = (array, next) => array.forEach((Pokemon) => {
-  const element = getByText(Pokemon.name);
+  const element = screen.getByText(Pokemon.name);
   expect(element).toBeInTheDocument();
   userEvent.click(next);
 });
@@ -84,7 +85,7 @@ describe('tests the component Pokedex', () => {
       name: 'Próximo pokémon',
     });
 
-    expect.assertions(pokemons.length + 1);
+    expect.assertions(10);
 
     filteredPokemons(pokemons, next);
   });
