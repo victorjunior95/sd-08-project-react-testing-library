@@ -10,8 +10,8 @@ test('Verificação 1', () => {
   const { getByTestId } = renderWithRouter(
     <Pokemon pokemon={ pokemons[7] } isFavorite={ false } />,
   );
-  const nomePokemon = getByTestId(/pokemon-name/i);
-  const tipo = getByTestId(/pokemonType/i);
+  const nomePokemon = getByTestId('pokemon-name');
+  const tipo = getByTestId('pokemonType');
   expect(nomePokemon).toBeInTheDocument();
   expect(tipo).toBeInTheDocument();
   expect(nomePokemon).toHaveTextContent(/Snorlax/i);
@@ -22,7 +22,7 @@ test('Verificação 2', () => {
     <Pokemon pokemon={ pokemons[7] } isFavorite={ false } />,
   );
   const pesoPokemon = getByTestId('pokemon-weight');
-  expect(pesoPokemon).toHaveTextContent(/Average weight:460.0kg/i);
+  expect(pesoPokemon).toHaveTextContent('Average weight: 460.0 kg');
 });
 test('Verificação 3', () => {
   const { getByRole } = renderWithRouter(
@@ -36,7 +36,7 @@ test('Verificação 4', () => {
   const { getByRole } = renderWithRouter(
     <Pokemon pokemon={ pokemons[7] } isFavorite={ false } />,
   );
-  const pokeRotas = getByRole(/link/i);
+  const pokeRotas = getByRole('link');
   expect(pokeRotas).toBeInTheDocument();
   expect(pokeRotas).toHaveAttribute(
     'href',
