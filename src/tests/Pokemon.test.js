@@ -57,7 +57,7 @@ test('the details page contains the corret URL', () => {
   });
   expect(navLink.href).toContain(urlPokemon);
   userEvent.click(navLink);
-  expect(history.location.pathname).toBe(urlPokemon);
+  expect(history.location.pathname).toContain(urlPokemon);
 });
 
 test('the star image is shown at favorited pokemons', () => {
