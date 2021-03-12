@@ -32,7 +32,7 @@ describe('Pokemon Details component tests', () => {
       .not.toBeInTheDocument();
     expect(detailsH2check)
       .toBe(`${pokeInfo.name} Details`);
-    expect(detailsSummaryCheck)
+    expect(detailsSummaryCheck.toString())
       .toBe('Summary');
     expect(getByText(`${pokeInfo.summary}`))
       .toBeInTheDocument();
