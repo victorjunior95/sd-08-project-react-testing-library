@@ -45,9 +45,12 @@ test('Teste o botão de Proximo pokemon', () => {
 });
 
 test('Testando os filtros', () => {
-  const { getByText, getByRole } = renderWithRouter(<App />);
+  const { getByText, getByRole, getAllByTestId } = renderWithRouter(<App />);
+  const num = 7;
 
   const PokemonTypes = pokemons.reduce((types, { type }) => [...types, type], []);
+  const buttons = getAllByTestId('pokemon-type-button');
+  expect(buttons.length).toBe(num);
 
   for (let index = 0; index < PokemonTypes.length; index += 1) {
     expect(getByRole('button', { name: PokemonTypes[index] })).toBeInTheDocument();
