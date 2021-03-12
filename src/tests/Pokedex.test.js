@@ -54,8 +54,8 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
 
   const pokemonQuantity = 8;
   for (let i = 1; i <= pokemonQuantity; i += 1) {
-    userEvent.click(nextButton)
-  };
+    userEvent.click(nextButton);
+  }
 
   const firstPokemon = screen.getByTestId(pokemonId).textContent;
   expect(firstPokemon).toBe('Pikachu');
