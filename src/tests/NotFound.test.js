@@ -13,8 +13,7 @@ test('the page contains a heading with the text Page requested not found 😭', 
 
 test('the page show the not found image', () => {
   render(<NotFound />);
-  const notFoundImage = screen.getAllByRole('img', {
-    src: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif',
-  })[1];
+  const altText = 'Pikachu crying because the page requested was not found'
+  const notFoundImage = screen.getByAltText(altText);
   expect(notFoundImage).toBeInTheDocument();
 });
