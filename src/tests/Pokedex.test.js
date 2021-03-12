@@ -5,12 +5,21 @@ import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
+import { Pokedex } from '../components';
+import pokemons from '../data';
+
+const isPokemonFavoriteById= {
+  25: true,
+};
 
 test('the page contains a heading with the text Encountered pokémons', () => {
   const history = createMemoryHistory();
   render(
     <Router history={ history }>
-      <App />
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />
     </Router>,
   );
   const pokedexHeading = screen.getByRole('heading', {
@@ -24,9 +33,13 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
   const history = createMemoryHistory();
   render(
     <Router history={ history }>
-      <App />
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />
     </Router>,
   );
+
   const pokemonId = 'pokemon-name';
   const initialPokemon = screen.getByTestId(pokemonId).textContent;
   expect(initialPokemon).toBe('Pikachu');
@@ -39,9 +52,57 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
   const nextPokemon = screen.getByTestId(pokemonId).textContent;
   expect(nextPokemon).toBe('Charmander');
 
+  for (let i=1; i <= 8; i++) {
+    const nextButton = screen.getByRole('button', {
+      name: /Próximo pokémon/i,
+    });
+    userEvent.click(nextButton);
+  };
+
+  const firstPokemon = screen.getByTestId(pokemonId).textContent;
+  expect(firstPokemon).toBe('Pikachu');
+
   const pokemonCards = screen.getAllByTestId(pokemonId).length;
   expect(pokemonCards).toBe(1);
-
-  const pokedexHeading = screen.getByText(/Encountered pokémons/i);
-  expect(pokedexHeading).toBeInTheDocument();
 });
+
+test('the filter buttons are working', () => {
+  const history = createMemoryHistory();
+  render(
+    <Router history={ history }>
+      <Pokedex
+        pokemons={ pokemons }
+        isPokemonFavoriteById={ isPokemonFavoriteById }
+      />
+    </Router>,
+  );
+  const filterButton = screen.getAllByTestId('pokemon-type-button');
+  expect(filterButton.length).toBe(7);
+
+  userEvent.click(filterButton[1]);
+  const pokemonTypeFiltered = screen.getByTestId('pokemonType');
+  expect(pokemonTypeFiltered.innerHTML).toBe('Fire');
+  expect(filterButton[1].innerHTML).toBe(pokemonTypeFiltered.innerHTML);
+
+  const resetFilter = screen.getByText(/All/);
+  expect(resetFilter).toBeInTheDocument();
+  userEvent.click(resetFilter);
+  expect(screen.getByTestId('pokemonType').innerHTML).toBe('Electric');
+});
+
+// test('the filter buttons are working', () => {
+//   const history = createMemoryHistory();
+//   render(
+//     <Router history={ history }>
+//       <Pokedex
+//         pokemons={ pokemons }
+//         isPokemonFavoriteById={ isPokemonFavoriteById }
+//       />
+//     </Router>,
+//   );
+  
+//     const resetFilter = screen.getByText(/All/);
+//     expect(resetFilter).toBeInTheDocument();
+//     userEvent.click(resetFilter);
+
+// });
