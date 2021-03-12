@@ -84,8 +84,8 @@ describe('tests the component Pokedex', () => {
     const next = getByRole('button', {
       name: 'Próximo pokémon',
     });
-
-    expect.assertions(10);
+    const TENASSERTIONS = 10;
+    expect.assertions(TENASSERTIONS);
 
     filteredPokemons(pokemons, next);
   });
