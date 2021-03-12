@@ -35,7 +35,7 @@ describe('Pokemon Details component tests', () => {
   });
   it('renders Pokemon Details component, Route to find Pokemon', () => {
     const history = createMemoryHistory();
-    const { getByText, getByLabelText, getByTestId, getAllByAltText, getAllByRole } = render(
+    const { getByText, getByLabelText, getByTestId, getAllByAltText } = render(
       <Router history={ history }>
         <App />
       </Router>,
@@ -45,8 +45,8 @@ describe('Pokemon Details component tests', () => {
     );
     const detailsLink = getByText(/More details/i);
     userEvent.click(detailsLink);
-    const gameLocDetail = getAllByRole('heading');
-    const gameLocDetailcheck = gameLocDetail[3];
+    const gameLocDetail = getByText(/game locations of/i);
+    const gameLocDetailcheck = gameLocDetail;
     expect(gameLocDetailcheck.innerHTML).toBe(`Game Locations of ${pokeInfo.name}`);
     const favoriteInput = getByLabelText(/Pokémon favoritado?/i);
     userEvent.click(favoriteInput);
