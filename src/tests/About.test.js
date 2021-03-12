@@ -18,7 +18,7 @@ test('Testando se as informações sobra a pokedex estão presentes', () => {
   const { container } = renderWithRouter(<About />);
   const paragrafos = container.querySelectorAll('p');
   const text1 = 'This application simulates a Pokédex, a';
-  const text2 = 'digital encliclopedia containing all Pokémons';
+  const text2 = 'digital encliclopedia containing all Pokémons ';
 
   expect(paragrafos.length).toBe(2);
   expect(paragrafos[0].innerHTML)
