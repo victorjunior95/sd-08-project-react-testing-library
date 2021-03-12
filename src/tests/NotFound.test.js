@@ -6,7 +6,7 @@ test('the page contains a heading with the text Page requested not found 😭', 
   render(<NotFound />);
   const notFoundHeading = screen.getByRole('heading', {
     level: 2,
-    name: /Page requested not found 😭/i,
+    name: /Page requested not found/i,
   });
   expect(notFoundHeading).toBeInTheDocument();
 });
