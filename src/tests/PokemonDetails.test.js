@@ -1,10 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import renderWithRouter from '../../../git/sd-08-project-react-testing-library/src/helper/renderWithRouter';
-import App from '../../../git/sd-08-project-react-testing-library/src/App';
-import data from '../../../git/sd-08-project-react-testing-library/src/data';
+import renderWithRouter from '../helper/renderWithRouter';
+import App from '../App';
+import data from '../data';
 
 describe('Teste component PokemonDetails', () => {
   it(`Teste se as informações detalhadas do Pokémon selecionado são
