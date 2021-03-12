@@ -19,32 +19,32 @@ describe('App component testing ', () => {
     expect(favoritePokemon).toBeInTheDocument();
   });
   it('Checks whether you are redirected to Home', () => {
-    const { getByRole, historyOfPokemons } = renderService(<App />);
+    const { getByRole, history } = renderService(<App />);
     const homeLink = getByRole('link', { name: 'Home' });
     userEvent.click(homeLink);
-    const { pathname } = historyOfPokemons.location;
+    const { pathname } = history.location;
     expect(pathname).toBe('/');
   });
   it('Checks whether you are redirected to About', () => {
-    const { getByRole, historyOfPokemons } = renderService(<App />);
+    const { getByRole, history } = renderService(<App />);
 
     const aboutLink = getByRole('link', { name: 'About' });
     userEvent.click(aboutLink);
-    const { pathname } = historyOfPokemons.location;
+    const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
 
   it('Checks whether you are redirected to Favorite Pokemon', () => {
-    const { getByRole, historyOfPokemons } = renderService(<App />);
+    const { getByRole, history } = renderService(<App />);
     const favoritePokemon = getByRole('link', { name: 'Favorite Pokémons' });
     userEvent.click(favoritePokemon);
-    const { pathname } = historyOfPokemons.location;
+    const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
   it('Checks whether it is redirected to Not Found when accessing unknown URL',
     () => {
-      const { getByText, historyOfPokemons } = renderService(<App />);
-      historyOfPokemons.push('/trybe');
+      const { getByText, history } = renderService(<App />);
+      history.push('/trybe');
       const unMatch = getByText('Page requested not found');
       expect(unMatch).toBeInTheDocument();
     });

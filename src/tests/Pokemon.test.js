@@ -6,7 +6,7 @@ import App from '../App';
 describe('Pokemon', () => {
   it('show information by the card is correct', () => {
     const { getByTestId,
-      getByAltText, getByText, historyOfPokemons } = renderService(<App />);
+      getByAltText, getByText, history } = renderService(<App />);
     const namePokemon = getByTestId('pokemon-name');
     const typePokemon = getByTestId('pokemonType');
     const pokemonWeight = getByTestId('pokemon-weight');
@@ -21,11 +21,11 @@ describe('Pokemon', () => {
     const moreDetails = getByText('More details');
     expect(moreDetails).toHaveAttribute('href', '/pokemons/25');
     userEvent.click(moreDetails);
-    const { pathname } = historyOfPokemons.location;
+    const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/25');
     const favorite = getByText('Pokémon favoritado?');
     userEvent.click(favorite);
-    historyOfPokemons.push('/');
+    history.push('/');
 
     const favIcon = getByAltText('Pikachu is marked as favorite');
     expect(favIcon).toHaveAttribute('src', '/star-icon.svg');

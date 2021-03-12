@@ -4,10 +4,10 @@ import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 
 const renderService = (component) => {
-  const historyOfPokemons = createMemoryHistory();
+  const history = createMemoryHistory();
   return {
     ...render(
-      <Router history={ historyOfPokemons }>
+      <Router history={ history }>
         {component}
       </Router>,
     ),
