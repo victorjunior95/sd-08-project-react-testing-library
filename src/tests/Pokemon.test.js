@@ -7,6 +7,8 @@ import { Pokemon } from '../components';
 import pokemons from '../data';
 import App from '../App';
 
+const urlPokemon = '/pokemons/25';
+
 test('the contains a heading with the text Encountered pokémons', () => {
   const history = createMemoryHistory();
   const pokemonData = pokemons;
@@ -38,9 +40,8 @@ test('the card has a link to the pokemon details', () => {
   const navLink = container.getByRole('link', {
     name: /more details/i,
   });
-  const urlPokemon = '/pokemons/25';
   expect(navLink).toBeInTheDocument();
-  expect(navLink.href).toContain(urlPokemon);
+  expect(navLink.href).toBe('http://localhost/pokemons/25');
 });
 
 test('the details page contains the corret URL', () => {
