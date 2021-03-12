@@ -14,6 +14,7 @@ describe('NotFound component tests', () => {
         <App />
       </Router>,
     );
+    // fon
     userEvent.click(getByText(/home/i));
     expect(history.location.pathname).toBe('/');
     const pokeName = getByTestId(/pokemon-name/i);
@@ -32,6 +33,8 @@ describe('NotFound component tests', () => {
     expect(pokeCheck.innerHTML).toBe(pokeInfoWeight);
     pokeCheck = pokeSprite.src;
     expect(pokeCheck).toBe(pokeInfo.image);
+    pokeCheck = pokeSprite.alt;
+    expect(pokeCheck).toBe(`${pokeInfo.name} sprite`);
   });
   it('renders Pokemon component, Have link to Pokemon Details', () => {
     const history = createMemoryHistory();

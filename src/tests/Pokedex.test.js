@@ -25,7 +25,7 @@ describe('Pokedex component tests', () => {
       </Router>,
     );
     const nextButton = getByTestId(/next-pokemon/i);
-
+    const nextButtonCheck = nextButton.innerHTML;
     const poke = getByTestId(/pokemon-name/i);
     const firstPoke = poke.innerHTML;
     expect(firstPoke).toBe(poke.innerHTML);
@@ -34,7 +34,7 @@ describe('Pokedex component tests', () => {
     userEvent.click(nextButton);
     const nextPoke = poke.innerHTML;
     expect(firstPoke).not.toBe(poke.innerHTML);
-    expect(nextButton).toBeInTheDocument();
+    expect(nextButtonCheck).toBe('Próximo pokémon');
     expect(nextPoke).toBe(poke.innerHTML);
   });
   it('renders Pokedex component, with only one PokeCard ', () => {
