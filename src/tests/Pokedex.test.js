@@ -52,8 +52,9 @@ test('the next pokemon is shown when clicking Próximo pokémon', () => {
   const nextPokemon = screen.getByTestId(pokemonId).textContent;
   expect(nextPokemon).toBe('Charmander');
 
-  for (let i = 1; i <= 8; i += 1) {
-    userEvent.click(nextButton);
+  const pokemonQuantity = 8;
+  for (let i = 1; i <= pokemonQuantity; i += 1) {
+    userEvent.click(nextButton)
   };
 
   const firstPokemon = screen.getByTestId(pokemonId).textContent;
@@ -71,10 +72,11 @@ test('the filter buttons are working', () => {
         pokemons={ pokemons }
         isPokemonFavoriteById={ isPokemonFavoriteById }
       />
-    </Router>
+    </Router>,
   );
+  const typeQuantity = 7;
   const filterButton = screen.getAllByTestId('pokemon-type-button');
-  expect(filterButton.length).toBe(7);
+  expect(filterButton.length).toBe(typeQuantity);
 
   userEvent.click(filterButton[1]);
   const pokemonTypeFiltered = screen.getByTestId('pokemonType');
