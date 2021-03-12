@@ -2,8 +2,9 @@ import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
+
+const nextBtn = 'Próximo pokémon';
 
 test('Teste se página contém um heading com o texto `Encountered pokémons`', () => {
   const { getByText } = renderWithRouter(<App />);
@@ -18,7 +19,7 @@ test('Testando o botão Próximo pokémon', () => {
 
   for (let index = 0; index < pokemons.length; index += 1) {
     expect(getByText(pokemons[index].name)).toBeInTheDocument();
-    fireEvent.click(getByText('Próximo pokémon'));
+    fireEvent.click(getByText(nextBtn));
   }
   expect(getByText('Pikachu')).toBeInTheDocument();
 });
@@ -38,7 +39,7 @@ test('Teste o botão de Proximo pokemon', () => {
 
   for (let index = 0; index < PsyPokemon.length; index += 1) {
     expect(getByText(PsyPokemon[index].name)).toBeInTheDocument();
-    fireEvent.click(getByText('Próximo pokémon'));
+    fireEvent.click(getByText(nextBtn));
   }
   expect(getByText('Alakazam')).toBeInTheDocument();
 });
@@ -54,7 +55,7 @@ test('Testando os filtros', () => {
 
     if ((pokemons.filter((pokemon) => pokemon
       .type === PokemonTypes[index])).length === 1) {
-      expect(getByText('Próximo pokémon').disabled).toBe(true);
+      expect(getByText(nextBtn).disabled).toBe(true);
     }
     expect(getByText('All')).toBeInTheDocument();
   }
