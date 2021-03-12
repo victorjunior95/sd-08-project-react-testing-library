@@ -1,8 +1,9 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { cleanup } from '@testing-library/react';
-import renderWithRouter from '../components/renderWithRouter';
 import Pokedex from '../components/Pokedex';
+import renderWithRouter from '../components/renderWithRouter';
+
 import pokemons from '../data';
 
 const isPokemonFavoriteById = {
@@ -19,7 +20,7 @@ const testIds = {
 
 const renderPokedex = () => renderWithRouter(
   <Pokedex
-    pokemon={ pokemons }
+    pokemons={ pokemons }
     isPokemonFavoriteById={ isPokemonFavoriteById }
   />,
 );
@@ -41,46 +42,45 @@ const countFilteredPokemons = (selectors) => {
   while (!result.has(pokemonName)) {
     result.add(pokemonName);
     userEvent.click(buttonNext);
-    pokemonName = getByTestId(testIds.pokemonName).testContent;
+    pokemonName = getByTestId(testIds.pokemonName).textContent;
   }
   return result.size;
 };
 
-test('The page contains an h2 heading with the text Encountered pokémons', () => {
+test(`Teste se página contém um heading h2 com o texto Encountered
+pokémons.`, () => {
   const { getByText } = renderPokedex();
   expect(getByText(/Encountered pokémons/i)).toBeInTheDocument();
 });
 
-describe(`The page displays the next Pokémon
-on the list when the Next Pokémon button is clicked`, () => {
-  test('The button should contain the text Next pokémon', () => {
+describe(`Teste se é exibido o próximo Pokémon da lista quando o botão
+Próximo pokémon é clicado.`, () => {
+  test('O botão deve conter o texto Próximo pokémon', () => {
     const { getByRole, getByTestId } = renderPokedex();
-    const firstPokemon = getByTestId(testIds.pokemonName).textContent;
+    const firstPokemonName = getByTestId(testIds.pokemonName).textContent;
     const button = getByRole('button', { name: /Próximo pokémon/i });
     expect(button).toBeInTheDocument();
     userEvent.click(button);
-    const secondPokemon = getByTestId(testIds.pokemonName).textContent;
-    expect(firstPokemon).not.toBe(secondPokemon);
+    const secondPokemonName = getByTestId(testIds.pokemonName).textContent;
+    expect(firstPokemonName).not.toBe(secondPokemonName);
   });
 
-  // Os próximos Pokémons da lista devem ser mostrados, um a um, ao clicar sucessivamente no botão;
-  test(`The next Pokémon in the list must be shown,
-  one by one, by successively clicking on the button`, () => {
+  test(`Os próximos Pokémons da lista devem ser mostrados,
+  um a um, ao clicar sucessivamente no botão`, () => {
     const { getByRole, getByTestId } = renderPokedex();
-    let previousPokemon = getByTestId(testIds.pokemonName).textContent;
+    let previous = getByTestId(testIds.pokemonName).textContent;
     const button = getByRole('button', { name: /Próximo pokémon/i });
     expect(button).toBeInTheDocument();
     for (let index = 0; index < pokemons.length; index += 1) {
       userEvent.click(button);
-      const currentPokemon = getByTestId(testIds.pokemonName).textContent;
-      expect(previousPokemon).not.toBe(currentPokemon);
-      previousPokemon = currentPokemon;
+      const current = getByTestId(testIds.pokemonName).textContent;
+      expect(previous).not.toBe(current);
+      previous = current;
     }
   });
 
-  // O primeiro Pokémon da lista deve ser mostrado ao clicar no botão, se estiver no último Pokémon da lista;
-  test(`The first Pokémon on the list should be shown by clicking the button,
-  if it is on the last Pokémon on the list`, () => {
+  test(`O primeiro Pokémon da lista deve ser mostrado
+  ao clicar no botão, se estiver no último Pokémon da lista`, () => {
     const { getByRole, getByTestId } = renderPokedex();
     const firstPokemon = getByTestId(testIds.pokemonName).textContent;
     const button = getByRole('button', { name: /Próximo pokémon/i });
@@ -92,15 +92,14 @@ on the list when the Next Pokémon button is clicked`, () => {
   });
 });
 
-test('The page shows only one Pokémon at a time', () => {
+test('Teste se é mostrado apenas um Pokémon por vez.', () => {
   const { getAllByTestId } = renderPokedex();
   expect(getAllByTestId(testIds.pokemonName).length).toBe(1);
 });
 
-describe('Pokedéx has the filter buttons', () => {
-  // A partir da seleção de um botão de tipo, a Pokédex deve circular somente pelos pokémons daquele tipo
-  test(`From the selection of a type button, the Pokédex should
-  only circulate through the Pokémon of that type`, () => {
+describe('Teste se a Pokédex tem os botões de filtro.', () => {
+  test(`A partir da seleção de um botão de tipo, a Pokédex deve
+  circular somente pelos pokémons daquele tipo.`, () => {
     const { getByRole, getByTestId } = renderPokedex();
     const buttonFireFilter = getByRole('button', { name: /fire/i });
     userEvent.click(buttonFireFilter);
@@ -113,8 +112,8 @@ describe('Pokedéx has the filter buttons', () => {
     expect(getByTestId(testIds.pokemonName).textContent).toBe(firstPokemon);
   });
 
-  // O texto do botão deve corresponder ao nome do tipo, ex. Psychic
-  test('The button text must match the type name, eg. Psychic', () => {
+  test(`O texto do botão deve corresponder ao nome do tipo,
+  ex. Psychic`, () => {
     const { getAllByTestId } = renderPokedex();
     const types = [...new Set(pokemons.map(({ type }) => type))];
     const buttons = getAllByTestId(testIds.filterButton);
