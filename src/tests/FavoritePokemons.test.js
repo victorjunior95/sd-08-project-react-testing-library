@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import FavoritePokemons from '../components/FavoritePokemons';
 import renderWithRouter from './renderWithRouter';
 
-describe('Testes no componente About', () => {
+describe('Testes no componente Favorite Pokemons', () => {
   it('Teste se a página contém as informações sobre a Pokédex', () => {
     const { getByText } = render(<FavoritePokemons />);
     expect(getByText(/No favorite pokemon found/i)).toBeInTheDocument();
