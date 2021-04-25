@@ -13,7 +13,7 @@ describe.only('Testes do requisito 4', () => {
 
     const heading = getByRole('heading', { level: 2 });
     expect(heading).toBeInTheDocument();
-    expect(heading.textContent).toBe('Page requested not found 😭 ');
+    expect(heading.textContent).toBe('Page requested not found 😭');
   });
 
   it('renders a img with a specific source', () => {

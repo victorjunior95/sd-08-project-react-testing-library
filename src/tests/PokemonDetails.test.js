@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
-describe.only('Testes do requisito 7', () => {
+describe('Testes do requisito 7', () => {
   it('renders info of a specific Pokemon', () => {
     const { history } = renderWithRouter(<App />);
     history.push('/pokemons/25');
@@ -22,7 +22,7 @@ describe.only('Testes do requisito 7', () => {
 
     const summary = heading[1];
     expect(summary).toBeDefined();
-    expect(summary.textContent).toBe(' Summary ');
+    expect(summary.textContent).toBe('Summary');
 
     const gameLocationsPokemon = heading[2];
     expect(gameLocationsPokemon).toBeDefined();
