@@ -11,7 +11,7 @@ describe.only('Testes do requisito 7', () => {
     expect(pokemonName).toBeDefined();
     expect(pokemonName.textContent).toBe('Pikachu');
 
-    const pokemonType = screen.getByTestId('pokemonType');
+    const pokemonType = screen.getByTestId('pokemon-type');
     expect(pokemonType).toBeDefined();
     expect(pokemonType.textContent).toBe('Electric');
 
