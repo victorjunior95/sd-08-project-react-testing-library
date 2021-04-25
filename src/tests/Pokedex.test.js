@@ -28,6 +28,11 @@ describe('Testes do requisito 5', () => {
       expect(pokeName).toBeInTheDocument();
       fireEvent.click(nextButton);
     });
+
+    const pokemonAll = getByText(/Pikachu/i);
+    const buttonAll = getByRole('button', { name: 'All' });
+    fireEvent.click(buttonAll);
+    expect(pokemonAll).toBeInTheDocument();
   });
   it('Verifica se é mostrado apenas um Pokemon por vez', () => {
     const { getAllByTestId } = renderWithRouter(<App />);
