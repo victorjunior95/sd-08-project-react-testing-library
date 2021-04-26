@@ -78,6 +78,7 @@ describe('req 5', () => {
     const buttonNext = getByTestId('next-pokemon');
     const buttonAll = getByText('All');
     expect(buttonsType[0].innerHTML).toBe('Fire');
+    expect(pokemonType.innerHTML).toBe('Fire');
     userEvent.click(buttonsType[1]);
     expect(pokemonType.innerHTML).toBe('Psychic');
     userEvent.click(buttonAll);
