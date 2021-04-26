@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import Pokedex from '../components/Pokedex';
 import pokemons from '../data';
+import App from '../App';
 
 const fav = [
   {
@@ -68,21 +69,18 @@ describe('req 5', () => {
 
   it('testando botão de filtro e all, e se next é disabilitado', () => {
     const { queryAllByTestId, getByTestId, getByText } = renderWithRouter(
-      <Pokedex
-        pokemons={ pokemonFiltered }
-        isPokemonFavoriteById={ fav }
-      />,
+      <App />,
     );
     const buttonsType = queryAllByTestId('pokemon-type-button');
     const pokemonType = getByTestId('pokemonType');
     const buttonNext = getByTestId('next-pokemon');
     const buttonAll = getByText('All');
-    expect(buttonsType[0].innerHTML).toBe('Fire');
-    expect(pokemonType.innerHTML).toBe('Fire');
+    expect(buttonsType[0].innerHTML).toBe('Electric');
+    expect(pokemonType.innerHTML).toBe('Electric');
     userEvent.click(buttonsType[1]);
-    expect(pokemonType.innerHTML).toBe('Psychic');
-    userEvent.click(buttonAll);
     expect(pokemonType.innerHTML).toBe('Fire');
+    userEvent.click(buttonAll);
+    expect(pokemonType.innerHTML).toBe('Electric');
     expect(buttonNext.disabled).toBe(false);
     userEvent.click(buttonsType[2]);
     expect(buttonNext.disabled).toBe(true);
