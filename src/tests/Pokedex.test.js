@@ -19,11 +19,6 @@ const fav = [
   },
 ];
 
-const pokemonFiltered = pokemons.filter((pokemon) => pokemon.type === 'Eletric'
-  || pokemon.type === 'Psychic'
-  || pokemon.type === 'Fire'
-  || pokemon.type === 'Normal');
-
 describe('req 5', () => {
   it('contem heading', () => {
     const { getByRole } = renderWithRouter(
