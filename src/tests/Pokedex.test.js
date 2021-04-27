@@ -70,12 +70,7 @@ describe('req 5', () => {
     const pokemonType = getByTestId('pokemonType');
     const buttonNext = getByTestId('next-pokemon');
     const buttonAll = getByText('All');
-<<<<<<< HEAD
     expect(buttonsType[0].innerHTML).toBe('Fire');
-=======
-    expect(buttonsType[0].innerHTML).toBe('Electric');
-    expect(pokemonType.innerHTML).toBe('Electric');
->>>>>>> 58b8ebbbbaedced4a64b0ef54fa9b10e5862e8f2
     userEvent.click(buttonsType[1]);
     expect(pokemonType.innerHTML).toBe('Fire');
     userEvent.click(buttonAll);
