@@ -40,6 +40,7 @@ Pokemon.propTypes = {
 
 Pokemon.defaultProps = {
   showDetailsLink: true,
+  isFavorite: false,
 };
 
 export default Pokemon;

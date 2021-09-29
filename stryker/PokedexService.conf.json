@@ -1,16 +1,9 @@
 {
   "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
   "mutate": [
-    "src/components/About.js",
-    "src/App.js",
-    "src/components/FavoritePokemons.js",
-    "src/components/NotFound.js",
-    "src/components/Pokedex.js",
-    "src/components/Pokemon.js",
-    "src/components/PokemonDetails.js",
     "src/services/pokedexService.js"
   ],
- "mutator": {
+  "mutator": {
     "name": "javascript",
     "excludedMutations": [
       "ArithmeticOperator",
@@ -26,7 +19,11 @@
       "UpdateOperator"
     ]
   },
-  "testRunner": "jest",
+  "testRunner": "command",
+  "commandRunner": {
+    "command": "CI=true npm test 'src/tests/pokedexService.test.js'"
+  },
+  "timeoutMS": 20000,
   "reporters": [
     "progress",
     "clear-text",
@@ -35,5 +32,6 @@
   "coverageAnalysis": "off",
   "jest": {
     "projectType": "create-react-app"
-  }
+  },
+  "warnings": false
 }
